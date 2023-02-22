@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you have any evidence?" %}
+{% set title = "Do you have evidence to support your concern?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "where-do-you-live",
+          name: "supporting-evidence",
           fieldset: {
             legend: {
               text: title,
@@ -26,13 +26,16 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "For example, documents or photographs"
+          },
           items: [
             {
-              value: "england",
+              value: "yes",
               text: "Yes"
             },
             {
-              value: "scotland",
+              value: "no",
               text: "No"
             }
           ]

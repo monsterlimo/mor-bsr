@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "In which part of the UK is the building?" %}
+{% set title = "What is you enquiry about?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "building-region",
+          name: "enquiry-about",
           fieldset: {
             legend: {
               text: title,
@@ -28,24 +28,12 @@
           },
           items: [
             {
-              value: "england",
-              text: "England"
+              value: "advice",
+              text: "I need advice about the building"
             },
             {
-              value: "scotland",
-              text: "Scotland"
-            },
-            {
-              value: "wales",
-              text: "Wales"
-            },
-            {
-              value: "northern-ireland",
-              text: "Northern Ireland"
-            },
-            {
-              value: "jersey",
-              text: "Jersey, Guernsey, the Isle of Man or Gibraltar"
+              value: "concern",
+              text: "I want to raise a concern about the building"
             }
           ]
         }) }}

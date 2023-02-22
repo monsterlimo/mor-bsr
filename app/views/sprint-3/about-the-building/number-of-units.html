@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is your relationship to the building?" %}
+{% set title = "How many residential units are in the building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "where-do-you-live",
+          name: "number-units",
           fieldset: {
             legend: {
               text: title,
@@ -27,27 +27,20 @@
             }
           },
           hint: {
-            text: "We need to know this so we can direct your enquiry to the right people in BSR"
+            text: "A residential unit is a self-contained flat, apartment or house"
           },
           items: [
             {
-              value: "england",
-              text: "Principle accountable person or accountable person"
+              value: "2 or more",
+              text: "2 or more"
             },
             {
-              value: "scotland",
-              text: "Other duty holder",
-              hint: {
-                text: "For example, designer, client or contractor"
-              }
+              value: "fewer than 2",
+              text: "fewer than 2"
             },
             {
-              value: "england",
-              text: "Building inspector or building control approver"
-            },
-            {
-              value: "england",
-              text: "Resident or member of the public"
+              value: "I don't know",
+              text: "I don't know"
             }
           ]
         }) }}

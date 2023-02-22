@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is you enquiry about?" %}
+{% set title = "What is your relationship to the building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "where-do-you-live",
+          name: "building-relationship",
           fieldset: {
             legend: {
               text: title,
@@ -26,14 +26,28 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "We need to know this so we can direct your enquiry to the right people in BSR"
+          },
           items: [
             {
-              value: "england",
-              text: "I need advice about the building"
+              value: "principle accountable person",
+              text: "Principle accountable person or accountable person"
             },
             {
-              value: "scotland",
-              text: "I want to raise a concern about the building"
+              value: "duty holder",
+              text: "Other duty holder",
+              hint: {
+                text: "For example, designer, client or contractor"
+              }
+            },
+            {
+              value: "building inspector",
+              text: "Building inspector or building control approver"
+            },
+            {
+              value: "resident",
+              text: "Resident or member of the public"
             }
           ]
         }) }}

@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Is the building occupied?" %}
+{% set title = "Is the building" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "where-do-you-live",
+          name: "building-status",
           fieldset: {
             legend: {
               text: title,
@@ -28,21 +28,29 @@
           },
           items: [
             {
-              value: "england",
-              text: "Yes"
+              value: "occupied",
+              text: "occupied"
             },
             {
-              value: "scotland",
-              text: "No"
+              value: "finished but not occupied",
+              text: "finished but not occupied"
+            },
+            {
+              value: "under construction",
+              text: "under construction"
+            },
+            {
+              value: "construction has yet to begin",
+              text: "construction has yet to begin"
             }
           ]
         }) }}
-
+{#
         {{ govukDetails({
           summaryText: "Check if your building is a HRB",
           text: "to do"
         }) }}
-
+#}
         {{ govukButton({
           text: "Continue"
         }) }}

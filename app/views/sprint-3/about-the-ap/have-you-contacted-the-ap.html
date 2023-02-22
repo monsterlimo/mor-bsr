@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Have you reported your complaint to the building AP?" %}
+{% set title = "Have you contacted someone accountable for the building about this issue before?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "where-do-you-live",
+          name: "contacted-ap",
           fieldset: {
             legend: {
               text: title,
@@ -26,13 +26,16 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "An accountable person might be the owner, landlord, construction contractor or designer"
+          },
           items: [
             {
-              value: "england",
+              value: "yes",
               text: "Yes"
             },
             {
-              value: "scotland",
+              value: "no",
               text: "No"
             }
           ]

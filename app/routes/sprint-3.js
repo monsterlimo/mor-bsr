@@ -6,27 +6,35 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/about-the-building/which-region', (req, res) => {
-        res.redirect('/sprint-3/about-the-person/who-are-you')
+        res.redirect('/sprint-3/about-the-person/relationship-to-the-building')
     })
 
-    router.post('/sprint-3/about-the-person/who-are-you', (req, res) => {
+    router.post('/sprint-3/about-the-person/relationship-to-the-building', (req, res) => {
         res.redirect('/sprint-3/about-the-person/are-you-a-resident')
     })
 
     router.post('/sprint-3/about-the-person/are-you-a-resident', (req, res) => {
-        res.redirect('/sprint-3/about-the-contact/request-about')
+        res.redirect('/sprint-3/about-the-contact/enquiry-about')
     })
 
-    router.post('/sprint-3/about-the-contact/request-about', (req, res) => {
+    router.post('/sprint-3/about-the-contact/enquiry-about', (req, res) => {
         res.redirect('/sprint-3/about-the-building/do-you-know-the-address')
     })
 
     router.post('/sprint-3/about-the-building/do-you-know-the-address', (req, res) => {
-        res.redirect('/sprint-3/about-the-building/enter-the-building-address')
+        res.redirect('/sprint-3/about-the-building/is-the-building-occupied')
     })
 
-    router.post('/sprint-3/about-the-building/enter-the-building-address', (req, res) => {
-        res.redirect('/sprint-3/about-the-building/is-building-a-hrb')
+    router.post('/sprint-3/about-the-building/is-the-building-occupied', (req, res) => {
+        res.redirect('/sprint-3/about-the-building/how-big-is-the-building')
+    })
+
+    router.post('/sprint-3/about-the-building/how-big-is-the-building', (req, res) => {
+        res.redirect('/sprint-3/about-the-building/number-of-units')
+    })
+
+    router.post('/sprint-3/about-the-building/number-of-units', (req, res) => {
+        res.redirect('/sprint-3/about-the-building/enter-description')
     })
 
     router.post('/sprint-3/about-the-building/is-building-a-hrb', (req, res) => {
@@ -34,10 +42,10 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/about-the-building/is-the-building-occupied', (req, res) => {
-        res.redirect('/sprint-3/about-the-building/enter-complaint-description')
+        res.redirect('/sprint-3/about-the-building/enter-description')
     })
 
-    router.post('/sprint-3/about-the-building/enter-complaint-description', (req, res) => {
+    router.post('/sprint-3/about-the-building/enter-description', (req, res) => {
         res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
     })
 
@@ -47,6 +55,14 @@ module.exports = router => {
 
     router.post('/sprint-3/about-the-ap/have-you-contacted-the-ap', (req, res) => {
         res.redirect('/sprint-3/about-the-ap/enter-ap-details')
+    })
+
+    router.post('/sprint-3/about-the-ap/enter-ap-details', (req, res) => {
+        res.redirect('/sprint-3/about-the-ap/when-contacted-ap')
+    })
+
+    router.post('/sprint-3/about-the-ap/when-contacted-ap', (req, res) => {
+        res.redirect('/sprint-3/about-the-ap/enter-ap-justification')
     })
 
     router.post('/sprint-3/about-the-ap/enter-ap-details', (req, res) => {

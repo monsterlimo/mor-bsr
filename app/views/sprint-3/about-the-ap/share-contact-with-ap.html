@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "where-do-you-live",
+          name: "share-contact-with-ap",
           fieldset: {
             legend: {
               text: title,
@@ -28,11 +28,11 @@
           },
           items: [
             {
-              value: "england",
+              value: "yes",
               text: "Yes"
             },
             {
-              value: "scotland",
+              value: "no",
               text: "No"
             }
           ]

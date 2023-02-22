@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Check your answers before sending your application" %}
+{% set title = "Check your answers" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,16 +16,17 @@
 
       
       <h1 class="govuk-heading-l">{{title}}</h1>
-      <h2 class="govuk-heading-m">Personal details</h2>
+      <p>Review the information you want to send us</p>
+      <h2 class="govuk-heading-m">About you</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
-              text: "Name"
+              text: "Your name"
             },
             value: {
-              text: "Sarah Philips"
+              text: data['first-name'] + " " + data['last-name']
             },
             actions: {
               items: [
@@ -39,10 +40,10 @@
           },
           {
             key: {
-              text: "Date of birth"
+              text: "Relationship to the building"
             },
             value: {
-              text: "5 January 1978"
+              text: data['building-relationship'] | capitalize
             },
             actions: {
               items: [
@@ -56,10 +57,10 @@
           },
           {
             key: {
-              text: "Address"
+              text: "Do you live in the building"
             },
             value: {
-              html: "72 Guild Street<br>London<br>SE23 6FH"
+              text: data['building-resident'] | capitalize
             },
             actions: {
               items: [
@@ -90,16 +91,91 @@
           }
         ]
       }) }}
-      <h2 class="govuk-heading-m">Application details</h2>
+      <h2 class="govuk-heading-m">About the building</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
-              text: "Previous application number"
+              text: "Building address"
             },
             value: {
-              text: "502135326"
+              html: data['address-line-1'] + "<br>" + data['address-line-2'] + "<br>" + data['address-town'] + "<br>" + data['address-county'] + "<br>" + data['address-postcode']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "home address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Is the building occupied"
+            },
+            value: {
+              text: data['building-status'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "How big is the building"
+            },
+            value: {
+              text: data['building-size'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of residential units are in the building"
+            },
+            value: {
+              text: data['number-units'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Enquiry about</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Enquiry about"
+            },
+            value: {
+              text: data['enquiry-about'] | capitalize
             },
             actions: {
               items: [
@@ -113,10 +189,10 @@
           },
           {
             key: {
-              text: "Licence type"
+              text: "Description of your concern about the building?"
             },
             value: {
-              text: "For personal use"
+              text: data['enquiry-description']
             },
             actions: {
               items: [
@@ -164,12 +240,55 @@
           }
         ]
       }) }}
+
+      <h2 class="govuk-heading-m">About the PAP/AP</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Can we share your name and contact details with the PAP/AP?"
+            },
+            value: {
+              html: data['share-contact-with-ap'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "home address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Have you contacted someone accountable for the building about this issue before?"
+            },
+            value: {
+              text: data['contacted-ap'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      <!--
       <h2 class="govuk-heading-m">Now send your application</h2>
       <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+      -->
       <form action="" method="post">
         <input type="hidden" name="answers-checked" value="true">
         {{ govukButton({
-          text: "Accept and send"
+          text: "Send"
         }) }}
       </form>
    

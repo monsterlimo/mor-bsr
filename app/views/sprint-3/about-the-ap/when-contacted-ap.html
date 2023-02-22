@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter a description of the complaint" %}
+{% set title = "When did you contact them?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,16 +16,18 @@
 
       <form action="" method="post">
 
-        {{ govukTextarea({
-          name: "more-detail",
-          id: "more-detail",
-          label: {
-            text: title,
-            classes: "govuk-label--l",
-            isPageHeading: true
+        {{ govukDateInput({
+          id: "passport-issued",
+          namePrefix: "passport-issued",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
           },
           hint: {
-            text: "Do not include personal or financial information, like your National Insurance number or credit card details."
+            text: "For example, 27 3 2007"
           }
         }) }}
 

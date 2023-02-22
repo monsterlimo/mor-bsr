@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter the building AP's name" %}
+{% set title = "Who did you contact?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -25,21 +25,59 @@
         }) %}
           {{ govukInput({
             label: {
-              text: 'First name'
+              text: 'Full name'
             },
             id: "address-line-1",
             name: "address-line-1",
-            classes: "govuk-input--width-20",
-            autocomplete: "address-line1"
+            classes: "govuk-input--width-20"
           }) }}
+
           {{ govukInput({
             label: {
-              text: 'Last name'
+              text: 'What do you believe is their relationship to the building?'
+            },
+            hint: {
+              text: "For example, are they the landlord, owner or construction contractor?"
             },
             id: "address-line-2",
             name: "address-line-2",
-            classes: "govuk-input--width-20",
-            autocomplete: "address-line2"
+            classes: "govuk-input--width-20"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: 'Email (optional)'
+            },
+            hint: {
+              text: "For example, are they the landlord, owner or construction contractor?"
+            },
+            id: "address-line-2",
+            name: "address-line-2",
+            classes: "govuk-input--width-20"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: 'Phone (optional)'
+            },
+            hint: {
+              text: "For example, are they the landlord, owner or construction contractor?"
+            },
+            id: "address-line-2",
+            name: "address-line-2",
+            classes: "govuk-input--width-20"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: 'Address (optional)'
+            },
+            hint: {
+              text: "For example, are they the landlord, owner or construction contractor?"
+            },
+            id: "address-line-2",
+            name: "address-line-2",
+            classes: "govuk-input--width-20"
           }) }}
         {% endcall %}
 

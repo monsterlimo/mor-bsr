@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "In which part of the UK is the building?" %}
+{% set title = "What do you believe is their relationship to the building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "building-region",
+          name: "where-do-you-live",
           fieldset: {
             legend: {
               text: title,
@@ -26,26 +26,17 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "For example, are they the landlord, owner or construction contractor?"
+          },
           items: [
             {
               value: "england",
-              text: "England"
+              text: "Yes"
             },
             {
               value: "scotland",
-              text: "Scotland"
-            },
-            {
-              value: "wales",
-              text: "Wales"
-            },
-            {
-              value: "northern-ireland",
-              text: "Northern Ireland"
-            },
-            {
-              value: "jersey",
-              text: "Jersey, Guernsey, the Isle of Man or Gibraltar"
+              text: "No"
             }
           ]
         }) }}
