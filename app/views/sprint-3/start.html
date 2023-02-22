@@ -33,15 +33,39 @@
           {% if serviceName %} {{ serviceName }} {% endif %}
         </h1>
 
-        <p>Use this service to:</p>
-
+        <p>You can use this service to contact the Building Safety Regulator (BSR) about a building from when it is being designed or constructed as well as when it is in use and occupied.</p>
+        <p>BSR regulates specific risks to building safety:</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>do something</li>
-          <li>update your name, address or other details</li>
-          <li>do something else</li>
+          <li>structural failure</li>
+          <li>spread of fire</li>
+          <li><mark>anymore required?</mark></li>
         </ul>
 
-        <p>Registering takes around 5 minutes.</p>
+        <h2 class="govuk-heading-m">Who should use this service and why</h2>
+
+        <p>Use this service to get advice from BSR, and to raise a concern or file a mandatory occurrence report (MOR) with BSR if you are:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>an accountable person or principle accountable person</li>
+          <li>building inspector</li>
+          <li>building control approver</li>
+          <li>principle client, contractor or designer</li>
+        </ul>
+
+        <h2 class="govuk-heading-m">When not to use this service</h2>
+
+        <p>Do not use this service to report concerns about the general maintenance of a building, for example, malfunctioning lifts, broken windows or doors, external decor, or cleanliness of common parts. Report these issues to an accountable person, such as the building’s landlord or management company.</p>
+
+        <p>If you are unhappy with the behaviour of building contractors during the construction of a building, raise your complaint with the principle contractor.</p>
+
+        {{ govukWarningText({
+          text: "Do not contact BSR if you see a building on fire or collapsing. Call the emergency services on 999.",
+          iconFallbackText: "Warning"
+        }) }}
+
+        <h2 class="govuk-heading-m">If you can’t use this service</h2>
+
+        <p>If you cannot use the online service, call BSR on 0300 790 6787 and we'll complete it for you. BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
 
         {{ govukButton({
           text: "Start now",
@@ -49,7 +73,7 @@
         }) }}
 
       </form>
-
+<!--
       <h2 class="govuk-heading-m">Before you start</h2>
 
       <p>You can also <a href="#">register by post</a>.</p>
@@ -86,7 +110,7 @@
           </ul>
         </nav>
       </aside>
-
+-->
     </div>
   </div>
 {% endblock %}

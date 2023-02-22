@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Who are you?" %}
+{% set title = "What is your relationship to the building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -26,14 +26,28 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "We need to know this so we can direct your enquiry to the right people in BSR"
+          },
           items: [
             {
               value: "england",
-              text: "Member of the public"
+              text: "Principle accountable person or accountable person"
             },
             {
               value: "scotland",
-              text: "Not member of the public"
+              text: "Other duty holder",
+              hint: {
+                text: "For example, designer, client or contractor"
+              }
+            },
+            {
+              value: "england",
+              text: "Building inspector or building control approver"
+            },
+            {
+              value: "england",
+              text: "Resident or member of the public"
             }
           ]
         }) }}
