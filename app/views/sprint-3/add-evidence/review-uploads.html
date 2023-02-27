@@ -55,30 +55,16 @@
         ]
       }) }}
 
+      <p><a href="">Add more evidence</a></p>
+
       <form action="" method="post" novalidate>
 
-        {{ govukRadios({
-          name: "Do you need to add anymore evidence",
-          fieldset: {
-            legend: {
-              text: "Do you need to add anymore evidence"
-            }
-          },
-          items: [
-            {
-              value: "england",
-              text: "Yes"
-            },
-            {
-              value: "scotland",
-              text: "No, I have finished uploading"
-            }
-          ]
-        }) }}
 
         {{ govukButton({
           text: "Continue"
         }) }}
+
+
 
       </form>
 

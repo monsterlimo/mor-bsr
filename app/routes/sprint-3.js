@@ -34,22 +34,6 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/about-the-building/number-of-units', (req, res) => {
-        res.redirect('/sprint-3/about-the-building/enter-description')
-    })
-
-    router.post('/sprint-3/about-the-building/is-building-a-hrb', (req, res) => {
-        res.redirect('/sprint-3/about-the-building/is-the-building-occupied')
-    })
-
-    router.post('/sprint-3/about-the-building/is-the-building-occupied', (req, res) => {
-        res.redirect('/sprint-3/about-the-building/enter-description')
-    })
-
-    router.post('/sprint-3/about-the-building/enter-description', (req, res) => {
-        res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
-    })
-
-    router.post('/sprint-3/about-the-ap/share-contact-with-ap', (req, res) => {
         res.redirect('/sprint-3/about-the-ap/have-you-contacted-the-ap')
     })
 
@@ -58,6 +42,10 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/about-the-ap/enter-ap-details', (req, res) => {
+        res.redirect('/sprint-3/about-the-ap/ap-relationship')
+    })
+
+    router.post('/sprint-3/about-the-ap/ap-relationship', (req, res) => {
         res.redirect('/sprint-3/about-the-ap/when-contacted-ap')
     })
 
@@ -65,11 +53,11 @@ module.exports = router => {
         res.redirect('/sprint-3/about-the-ap/enter-ap-justification')
     })
 
-    router.post('/sprint-3/about-the-ap/enter-ap-details', (req, res) => {
-        res.redirect('/sprint-3/about-the-ap/enter-ap-justification')
+    router.post('/sprint-3/about-the-ap/enter-ap-justification', (req, res) => {
+        res.redirect('/sprint-3/about-the-building/enter-description')
     })
 
-    router.post('/sprint-3/about-the-ap/enter-ap-justification', (req, res) => {
+    router.post('/sprint-3/about-the-building/enter-description', (req, res) => {
         res.redirect('/sprint-3/add-evidence/do-you-have-any-evidence')
     })
 
@@ -82,13 +70,38 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/add-evidence/enter-upload-description', (req, res) => {
+        res.redirect('/sprint-3/add-evidence/anymore-evidence')
+    })
+
+    router.post('/sprint-3/add-evidence/anymore-evidence', (req, res) => {
         res.redirect('/sprint-3/add-evidence/review-uploads')
     })
 
     router.post('/sprint-3/add-evidence/review-uploads', (req, res) => {
+        res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
+    })
+
+    router.post('/sprint-3/about-the-ap/share-contact-with-ap', (req, res) => {
         res.redirect('/sprint-3/about-the-person/enter-your-name')
     })
 
+    /*
+    router.post('/sprint-3/about-the-building/is-building-a-hrb', (req, res) => {
+        res.redirect('/sprint-3/about-the-building/is-the-building-occupied')
+    })
+
+    router.post('/sprint-3/about-the-building/is-the-building-occupied', (req, res) => {
+        res.redirect('/sprint-3/about-the-building/enter-description')
+    })
+    */
+    
+
+
+
+
+    
+
+    
     router.post('/sprint-3/about-the-person/enter-your-name', (req, res) => {
         res.redirect('/sprint-3/about-the-person/enter-your-contact-number')
     })
@@ -103,6 +116,10 @@ module.exports = router => {
 
     router.post('/sprint-3/check-your-answers', (req, res) => {
         res.redirect('/sprint-3/confirmation')
+    })
+
+    router.post('/first-check-answers', (req, res) => {
+        //res.redirect('/sprint-3/confirmation')
     })
 
     

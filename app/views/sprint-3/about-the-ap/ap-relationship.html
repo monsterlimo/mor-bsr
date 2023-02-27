@@ -16,29 +16,18 @@
 
       <form action="" method="post">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        {{ govukRadios({
-          name: "where-do-you-live",
-          fieldset: {
-            legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+        {{ govukInput({
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
           hint: {
             text: "For example, are they the landlord, owner or construction contractor?"
           },
-          items: [
-            {
-              value: "england",
-              text: "Yes"
-            },
-            {
-              value: "scotland",
-              text: "No"
-            }
-          ]
+          id: "ap-relationship",
+          name: "ap-relationship",
+          classes: "govuk-input--width-20"
         }) }}
 
         {{ govukButton({

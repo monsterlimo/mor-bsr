@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Describe your upload" %}
+{% set title = "Describe your [filename] evidence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -17,8 +17,8 @@
       <form action="" method="post">
 
         {{ govukTextarea({
-          name: "more-detail",
-          id: "more-detail",
+          name: "evidence-details",
+          id: "evidence-details",
           rows: 3,
           label: {
             text: title,
@@ -26,14 +26,14 @@
             isPageHeading: true
           },
           hint: {
-            text: "Do not include personal or financial information, like your National Insurance number or credit card details."
+            text: "tell us what the documents are - TO DO"
           }
         }) }}
 
         {{ govukButton({
           text: "Continue"
         }) }}
-
+        <mark>new page to ask if more evidence to upload</mark>
       </form>
 
     </div>

@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "When did you contact them?" %}
+{% set title = "Do you have anymore evidence to support your concern?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,9 +16,9 @@
 
       <form action="" method="post">
 
-        {{ govukDateInput({
-          id: "ap-contacted-date",
-          namePrefix: "passport-issued",
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "more-evidence",
           fieldset: {
             legend: {
               text: title,
@@ -26,9 +26,16 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            text: "For example, 27 3 2007"
-          }
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
         }) }}
 
         {{ govukButton({
