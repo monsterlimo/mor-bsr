@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is your concern about the building?" %}
+{% set title = "What is your complaint about the building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,6 +18,7 @@
 
         {{ govukTextarea({
           name: "enquiry-description",
+          value: data['enquiry-description'],
           id: "more-detail",
           label: {
             text: title,

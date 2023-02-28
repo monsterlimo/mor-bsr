@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Application complete" %}
+{% set title = "Complaint received" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -12,18 +12,26 @@
 
       <div class="govuk-panel govuk-panel--confirmation">
         <h1 class="govuk-panel__title">{{title}}</h1>
+        <div>We've received your complaint about [building address]</div>
         <div class="govuk-panel__body">
-          Your reference number<br><strong>HDJ2123F</strong>
+          Reference number<br><strong>HDJ2123F</strong>
         </div>
       </div>
 
       <p>We have sent you a confirmation email.</p>
 
-      <h2 class="govuk-heading-m">What happens next</h2>
-      <p>We've sent your application to Hackney Electoral Register Office.</p>
-      <p>They will contact you either to confirm your registration, or to ask for more information.</p>
-      <p><a href="https://www.gov.uk/service-manual/user-centred-design/resources/patterns/feedback-pages.html">What did you think of this service?</a> (takes 30 seconds)</p>
+      <h2 class="govuk-heading-m">What you told us</h2>
+      <p>{{ data['enquiry-description'] }}</p>
+      <mark>Anything else to use here</mark>
+      
 
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p>Complaint received</p>
+      <p>Once we have evaluated your complaint, we will tell you what action we are going to take. This may take up 21 working days.</p>
+      <p>All complaints will be evaluated by BSR whether named or anonymous.</p>
+
+      <p><a href="">Back to BSR</a></p>
+      <p><a href="">Back to HSE</a></p>
     </div>
   </div>
 

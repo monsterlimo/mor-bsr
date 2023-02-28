@@ -13,87 +13,72 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
+
       <h1 class="govuk-heading-l">{{title}}</h1>
       <p>Review the information you want to send us</p>
-      <h2 class="govuk-heading-m">About you</h2>
+
+      <h2 class="govuk-heading-m">About the enqiry</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
-              text: "Your name"
+              text: "Enquiry about"
             },
             value: {
-              text: data['first-name'] + " " + data['last-name']
+              text: data['enquiry-about'] | capitalize
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "name"
+                  visuallyHiddenText: "previous application number"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Relationship to the building"
+              text: "Description of your concern about the building?"
             },
             value: {
-              text: data['building-relationship'] | capitalize
+              text: data['enquiry-description']
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "date of birth"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Do you live in the building"
-            },
-            value: {
-              text: data['building-resident'] | capitalize
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Contact details"
-            },
-            value: {
-              text: data['request-description']
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "contact details"
+                  visuallyHiddenText: "licence type"
                 }
               ]
             }
           }
         ]
       }) }}
+
       <h2 class="govuk-heading-m">About the building</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
+          {
+            key: {
+              text: "Building region"
+            },
+            value: {
+              html: data['building-region'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "home address"
+                }
+              ]
+            }
+          },
           {
             key: {
               text: "Building address"
@@ -110,7 +95,7 @@
                 }
               ]
             }
-          },
+          } if data['address-known'] == 'yes',
           {
             key: {
               text: "Is the building occupied"
@@ -165,74 +150,74 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m">Enquiry about</h2>
+      <h2 class="govuk-heading-m">About you</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
-              text: "Enquiry about"
+              text: "Your name"
             },
             value: {
-              text: data['enquiry-about'] | capitalize
+              text: data['contact-first-name'] + " " + data['contact-last-name']
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "previous application number"
+                  visuallyHiddenText: "name"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Description of your concern about the building?"
+              text: "Relationship to the building"
             },
             value: {
-              text: data['enquiry-description']
+              text: data['building-relationship'] | capitalize
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "licence type"
+                  visuallyHiddenText: "date of birth"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Home address"
+              text: "Do you live in the building"
             },
             value: {
-              html: "72 Guild Street<br>London<br>SE23 6FH"
+              text: data['building-resident'] | capitalize
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "home address"
+                  visuallyHiddenText: "address"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Licence period"
+              text: "Contact details"
             },
             value: {
-              text: "Valid for 6 months"
+              html: data['contact-email'] + "<br>" + data['contact-number']
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "contact details"
                 }
               ]
             }
@@ -240,27 +225,12 @@
         ]
       }) }}
 
+    {% if data['enquiry-about'] == 'complaint'  %}
+
       <h2 class="govuk-heading-m">About the PAP/AP</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
-          {
-            key: {
-              text: "Can we share your name and contact details with the PAP/AP?"
-            },
-            value: {
-              html: data['share-contact-with-ap'] | capitalize
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "home address"
-                }
-              ]
-            }
-          },
           {
             key: {
               text: "Have you contacted someone accountable for the building about this issue before?"
@@ -277,13 +247,121 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "Accountable Details"
+            },
+            value: {
+              html: data['ap-name'] + "<br>" + data['ap-email'] + "<br>" + data['ap-phone'] + "<br>" + data['ap-address']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes',
+          {
+            key: {
+              text: "Accountable relationship"
+            },
+            value: {
+              text: data['ap-relationship']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes',
+          {
+            key: {
+              text: "AP contacted date "
+            },
+            value: {
+              html: data['ap-contacted-date-day'] + data['ap-contacted-date-month'] + data['ap-contacted-date-year']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes',
+          {
+            key: {
+              text: "Accountable justification"
+            },
+            value: {
+              text: data['ap-justification']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Can we share your name and contact details with the PAP/AP?"
+            },
+            value: {
+              html: data['share-contact-with-ap'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "home address"
+                }
+              ]
+            }
+          } if data['contacted-ap'] == 'yes'
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">About the evidence</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Filename"
+            },
+            value: {
+              text: data['evidence-details']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
           }
         ]
       }) }}
-      <!--
-      <h2 class="govuk-heading-m">Now send your application</h2>
-      <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
-      -->
+
+      {% endif %}
+
       <form action="" method="post">
         <input type="hidden" name="answers-checked" value="true">
         {{ govukButton({

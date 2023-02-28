@@ -34,11 +34,19 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/about-the-building/number-of-units', (req, res) => {
-        res.redirect('/sprint-3/about-the-ap/have-you-contacted-the-ap')
+        if (req.session.data['enquiry-about'] == "complaint" && req.session.data['building-status'] == "occupied") {
+            res.redirect('/sprint-3/about-the-ap/have-you-contacted-the-ap')
+        } else {
+            res.redirect('/sprint-3/about-the-building/enter-description')
+        }
     })
 
     router.post('/sprint-3/about-the-ap/have-you-contacted-the-ap', (req, res) => {
-        res.redirect('/sprint-3/about-the-ap/enter-ap-details')
+        if (req.session.data['contacted-ap'] == "yes") {
+            res.redirect('/sprint-3/about-the-ap/enter-ap-details')
+        } else {
+            res.redirect('/sprint-3/about-the-ap/enter-ap-justification')
+        }
     })
 
     router.post('/sprint-3/about-the-ap/enter-ap-details', (req, res) => {
@@ -58,11 +66,19 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/about-the-building/enter-description', (req, res) => {
-        res.redirect('/sprint-3/add-evidence/do-you-have-any-evidence')
+        if (req.session.data['enquiry-about'] == "advice") {
+            res.redirect('/sprint-3/about-the-person/enter-your-name')
+        } else {
+            res.redirect('/sprint-3/add-evidence/do-you-have-any-evidence')
+        }
     })
 
     router.post('/sprint-3/add-evidence/do-you-have-any-evidence', (req, res) => {
-        res.redirect('/sprint-3/add-evidence/upload-your-evidence')
+        if (req.session.data['supporting-evidence'] == "yes") {
+            res.redirect('/sprint-3/add-evidence/upload-your-evidence')
+        } else {
+            res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
+        }
     })
 
     router.post('/sprint-3/add-evidence/upload-your-evidence', (req, res) => {
@@ -74,7 +90,11 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/add-evidence/anymore-evidence', (req, res) => {
-        res.redirect('/sprint-3/add-evidence/review-uploads')
+        if (req.session.data['more-evidence'] == "yes") {
+            res.redirect('/sprint-3/add-evidence/upload-your-evidence')
+        } else {
+            res.redirect('/sprint-3/add-evidence/review-uploads')
+        }
     })
 
     router.post('/sprint-3/add-evidence/review-uploads', (req, res) => {
@@ -85,23 +105,6 @@ module.exports = router => {
         res.redirect('/sprint-3/about-the-person/enter-your-name')
     })
 
-    /*
-    router.post('/sprint-3/about-the-building/is-building-a-hrb', (req, res) => {
-        res.redirect('/sprint-3/about-the-building/is-the-building-occupied')
-    })
-
-    router.post('/sprint-3/about-the-building/is-the-building-occupied', (req, res) => {
-        res.redirect('/sprint-3/about-the-building/enter-description')
-    })
-    */
-    
-
-
-
-
-    
-
-    
     router.post('/sprint-3/about-the-person/enter-your-name', (req, res) => {
         res.redirect('/sprint-3/about-the-person/enter-your-contact-number')
     })
@@ -117,10 +120,5 @@ module.exports = router => {
     router.post('/sprint-3/check-your-answers', (req, res) => {
         res.redirect('/sprint-3/confirmation')
     })
-
-    router.post('/first-check-answers', (req, res) => {
-        //res.redirect('/sprint-3/confirmation')
-    })
-
     
 }

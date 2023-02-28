@@ -1,7 +1,7 @@
 module.exports = {
 
   // Insert values here
-  
+
 }
 
 
@@ -16,10 +16,10 @@ module.exports = {
 // building-size - [7 floors or more / fewer than 7 floors / i don't know]
 // number-units - [2 or more / fewer than 2 / i don't know]
 // contacted-ap - [yes / no]
-// ap contact details - [ap-name / ap-email / ap-phone / ap-address]
-// ap-relationship - [free text]
+// ap contact details - [ap-name / ap-email / ap-number / ap-address]
+// ap-relationship - [ap-relationship]
 // ap-contacted-date - [day / month / year] 
-// ap-justification - [free text]
+// ap-justification - [ap-justification]
 // enquiry-about - [free text]
 // supporting-evidence [yes / no]
 // upload-evidence - [filename]
