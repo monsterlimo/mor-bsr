@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you have supporting information?" %}
+{% set title = "Date of the occurence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,9 +16,9 @@
 
       <form action="" method="post">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        {{ govukRadios({
-          name: "supporting-evidence",
+        {{ govukDateInput({
+          id: "occurrence-date",
+          namePrefix: "occurrence-date",
           fieldset: {
             legend: {
               text: title,
@@ -27,18 +27,8 @@
             }
           },
           hint: {
-            text: "For example, documents or photographs"
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes"
-            },
-            {
-              value: "no",
-              text: "No"
-            }
-          ]
+            text: "When did the occurrence take place? If you don't know the precise date, enter the first of the month."
+          }
         }) }}
 
         {{ govukButton({

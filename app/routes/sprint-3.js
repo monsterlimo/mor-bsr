@@ -18,6 +18,18 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/about-the-contact/enquiry-about', (req, res) => {
+        if (req.session.data['enquiry-about'] == "mor") {
+            res.redirect('/sprint-3/about-occurrence/declaration')
+        } else {
+            res.redirect('/sprint-3/about-the-building/do-you-know-the-address')
+        }    
+    })
+
+    router.post('/sprint-3/about-occurrence/declaration', (req, res) => {
+        res.redirect('/sprint-3/about-occurrence/reporter-relationship')
+    })
+
+    router.post('/sprint-3/about-occurrence/reporter-relationship', (req, res) => {
         res.redirect('/sprint-3/about-the-building/do-you-know-the-address')
     })
 
@@ -36,9 +48,27 @@ module.exports = router => {
     router.post('/sprint-3/about-the-building/number-of-units', (req, res) => {
         if (req.session.data['enquiry-about'] == "complaint" && req.session.data['building-status'] == "occupied") {
             res.redirect('/sprint-3/about-the-ap/have-you-contacted-the-ap')
+        } else if (req.session.data['enquiry-about'] == "mor") {
+            res.redirect('/sprint-3/about-occurrence/occurrence-type')
         } else {
             res.redirect('/sprint-3/about-the-building/enter-description')
         }
+    })
+
+    router.post('/sprint-3/about-occurrence/occurrence-type', (req, res) => {
+        res.redirect('/sprint-3/about-occurrence/occurrence-date')
+    })
+
+    router.post('/sprint-3/about-occurrence/occurrence-date', (req, res) => {
+        res.redirect('/sprint-3/about-occurrence/occurrence-reporter')
+    })
+
+    router.post('/sprint-3/about-occurrence/occurrence-reporter', (req, res) => {
+        res.redirect('/sprint-3/about-occurrence/occurrence-details')
+    })
+
+    router.post('/sprint-3/about-occurrence/occurrence-details', (req, res) => {
+        res.redirect('/sprint-3/add-evidence/do-you-have-any-evidence')
     })
 
     router.post('/sprint-3/about-the-ap/have-you-contacted-the-ap', (req, res) => {
@@ -98,7 +128,12 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/add-evidence/review-uploads', (req, res) => {
-        res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
+        if (req.session.data['enquiry-about'] == "mor") {
+            res.redirect('/sprint-3/about-the-person/enter-your-name')
+        } else {
+            res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
+        }
+        
     })
 
     router.post('/sprint-3/about-the-ap/share-contact-with-ap', (req, res) => {

@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you have supporting information?" %}
+{% set title = "In what capacity are you making a MOR?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "supporting-evidence",
+          name: "mor-submitter-role",
           fieldset: {
             legend: {
               text: title,
@@ -26,17 +26,30 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            text: "For example, documents or photographs"
-          },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "accountable person",
+              text: "accountable person"
             },
             {
-              value: "no",
-              text: "No"
+              value: "principal accountable person",
+              text: "principal accountable person"
+            },
+            {
+              value: "principal client",
+              text: "principal client"
+            },
+            {
+              value: "principal designer",
+              text: "principal designer"
+            },
+            {
+              value: "principal contractor",
+              text: "principal contractor"
+            },
+            {
+              value: "other",
+              text: "other"
             }
           ]
         }) }}

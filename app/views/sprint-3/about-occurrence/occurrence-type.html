@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you have supporting information?" %}
+{% set title = "Type of occurrence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "supporting-evidence",
+          name: "occurrence-type",
           fieldset: {
             legend: {
               text: title,
@@ -27,16 +27,16 @@
             }
           },
           hint: {
-            text: "For example, documents or photographs"
+            text: "What type of occurrence are you reporting?"
           },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "risk of structural failure",
+              text: "risk of structural failure"
             },
             {
-              value: "no",
-              text: "No"
+              value: "risk of fire spreading",
+              text: "risk of fire spreading"
             }
           ]
         }) }}

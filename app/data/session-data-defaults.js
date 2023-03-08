@@ -9,7 +9,7 @@ module.exports = {
 // building-region [scotland / england / wales / norther ireland / jersey]
 // building-relationship [principle accountable person / other duty holder / building inspector / resident]
 // building-resident - [yes / no]
-// enquiry-about - [advice / complaint]
+// enquiry-about - [advice / complaint / mor]
 // address-known - [yes / no]
 // building address [address-line-1 / address-line-2 / address-town / address-county / address-postcode]
 // building-status - [occupied / finished but not occupied / under construction / construction yet to begin
@@ -27,3 +27,10 @@ module.exports = {
 // more-evidence - [yes / no]
 // share-contact-with-ap - [yes / no]
 // contact details - [contact-first-name / contact-last-name / contact-number / contact-email]
+
+// MOR
+// mor-submitter-role - [accountable person / principal accountable person / principal client / principal designer / principal contractor / other]
+// occurrence-type - [risk of structural failure / risk of fire spreading]
+// reporter-first-name / reporter-last-name / reporter-email / reporter-relationship]
+// occurrence-details - [free text]
+// occurrence-date - [day / month / year] 

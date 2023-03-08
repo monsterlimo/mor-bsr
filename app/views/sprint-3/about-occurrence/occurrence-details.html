@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Upload supporting information" %}
+{% set title = "Details of the occurrence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,18 +16,18 @@
 
       <form action="" method="post">
 
-        <h1 class="govuk-heading-l">{{title}}</h1>
-
-        {{ govukFileUpload({
-          id: "upload-evidence",
-          name: "upload-evidence",
+        {{ govukTextarea({
+          name: "occurrence-details",
+          id: "occurrence-details",
           label: {
-            text: "Upload a file"
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
           }
         }) }}
 
         {{ govukButton({
-          text: "Upload"
+          text: "Continue"
         }) }}
 
       </form>

@@ -225,6 +225,103 @@
         ]
       }) }}
 
+    {% if data['enquiry-about'] == 'mor'  %}
+
+      <h2 class="govuk-heading-m">About the mandatory occurrence</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "In what capacity are you making a MOR?"
+            },
+            value: {
+              text: data['mor-submitter-role'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence type"
+            },
+            value: {
+              text: data['occurrence-type'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence date"
+            },
+            value: {
+              text: data['occurrence-date-day'] + " " + data['occurrence-date-month'] + " " + data['occurrence-date-year']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence reporter"
+            },
+            value: {
+              html: data['reporter-first-name'] + " " + data['reporter-last-name'] + "<br>" + data['reporter-email']  + "<br>" + data['reporter-relationship']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence details"
+            },
+            value: {
+              text: data['occurrence-details']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+    {% endif %}
+
     {% if data['enquiry-about'] == 'complaint'  %}
 
       <h2 class="govuk-heading-m">About the PAP/AP</h2>
