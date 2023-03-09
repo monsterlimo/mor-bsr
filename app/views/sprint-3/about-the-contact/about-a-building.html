@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is you enquiry about?" %}
+{% set title = "Do you need advice about a building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "enquiry-about",
+          name: "about-a-building",
           fieldset: {
             legend: {
               text: title,
@@ -28,17 +28,13 @@
           },
           items: [
             {
-              value: "advice",
-              text: "I need advice from the Building Safety Regulator"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "complaint",
-              text: "I want to make a complaint about the building"
-            },
-            {
-              value: "mor",
-              text: "I want to make a mandatory occurrence report (MOR)"
-            } if data['building-relationship'] != "resident"
+              value: "no",
+              text: "No, I need advice which is not related to a specific buidling"
+            }
           ]
         }) }}
 

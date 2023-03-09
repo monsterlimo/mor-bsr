@@ -26,7 +26,7 @@
               text: "Enquiry about"
             },
             value: {
-              text: data['enquiry-about'] | capitalize
+              text: (data['enquiry-about'] | capitalize) or "Advice"
             },
             actions: {
               items: [
@@ -40,10 +40,10 @@
           },
           {
             key: {
-              text: "Description of your concern about the building?"
+              text: "Advice you have asked for" if data["enquiry-about"] == "advice" else  "Description of your complaint about the building?"
             },
             value: {
-              text: data['enquiry-description']
+              text: data['enquiry-description'] or "Need some guidance on a new high rise building"
             },
             actions: {
               items: [
@@ -54,7 +54,7 @@
                 }
               ]
             }
-          }
+          } if data['enquiry-about'] != "mor"
         ]
       }) }}
 
@@ -67,7 +67,7 @@
               text: "Building region"
             },
             value: {
-              html: data['building-region'] | capitalize
+              html: (data['building-region'] | capitalize) or "England"
             },
             actions: {
               items: [
@@ -101,7 +101,7 @@
               text: "Is the building occupied"
             },
             value: {
-              text: data['building-status'] | capitalize
+              text: (data['building-status'] | capitalize) or "Yes"
             },
             actions: {
               items: [
@@ -118,7 +118,7 @@
               text: "How big is the building"
             },
             value: {
-              text: data['building-size'] | capitalize
+              text: (data['building-size'] | capitalize) or "7 or more floors"
             },
             actions: {
               items: [
@@ -135,7 +135,7 @@
               text: "Number of residential units are in the building"
             },
             value: {
-              text: data['number-units'] | capitalize
+              text: (data['number-units'] | capitalize) or "2 or more units"
             },
             actions: {
               items: [
@@ -159,7 +159,7 @@
               text: "Your name"
             },
             value: {
-              text: data['contact-first-name'] + " " + data['contact-last-name']
+              text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
             },
             actions: {
               items: [
@@ -176,7 +176,7 @@
               text: "Relationship to the building"
             },
             value: {
-              text: data['building-relationship'] | capitalize
+              text: (data['building-relationship'] | capitalize) or "Principle accountable person"
             },
             actions: {
               items: [
@@ -193,7 +193,7 @@
               text: "Do you live in the building"
             },
             value: {
-              text: data['building-resident'] | capitalize
+              text: (data['building-resident'] | capitalize) or "Yes"
             },
             actions: {
               items: [
@@ -210,7 +210,7 @@
               text: "Contact details"
             },
             value: {
-              html: data['contact-email'] + "<br>" + data['contact-number']
+              html: (data['contact-email'] or "john@test.com") + "<br>" + (data['contact-number'] or "012345678")
             },
             actions: {
               items: [
@@ -227,7 +227,7 @@
 
     {% if data['enquiry-about'] == 'mor'  %}
 
-      <h2 class="govuk-heading-m">About the mandatory occurrence</h2>
+      {#<h2 class="govuk-heading-m">About the mandatory occurrence</h2>#}
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
@@ -236,7 +236,7 @@
               text: "In what capacity are you making a MOR?"
             },
             value: {
-              text: data['mor-submitter-role'] | capitalize
+              text: (data['mor-submitter-role'] | capitalize) or "Principle accountable person"
             },
             actions: {
               items: [
@@ -253,7 +253,7 @@
               text: "Occurrence type"
             },
             value: {
-              text: data['occurrence-type'] | capitalize
+              text: data['occurrence-type']
             },
             actions: {
               items: [
@@ -270,7 +270,7 @@
               text: "Occurrence date"
             },
             value: {
-              text: data['occurrence-date-day'] + " " + data['occurrence-date-month'] + " " + data['occurrence-date-year']
+              text: (data['occurrence-date-day'] or "10") + " " + (data['occurrence-date-month'] or "5") + " " + (data['occurrence-date-year' or 2022)]
             },
             actions: {
               items: [
@@ -287,7 +287,7 @@
               text: "Occurrence reporter"
             },
             value: {
-              html: data['reporter-first-name'] + " " + data['reporter-last-name'] + "<br>" + data['reporter-email']  + "<br>" + data['reporter-relationship']
+              html: (data['reporter-first-name'] or "Jane") + " " + (data['reporter-last-name'] or "Wilson") + "<br>" + (data['reporter-email'] or "jane@test.com")  + "<br>" + (data['reporter-relationship'] or "Visitor")
             },
             actions: {
               items: [
@@ -304,7 +304,7 @@
               text: "Occurrence details"
             },
             value: {
-              text: data['occurrence-details']
+              text: data['occurrence-details'] or "Details of the occurrence"
             },
             actions: {
               items: [
@@ -333,7 +333,7 @@
               text: "Have you contacted someone accountable for the building about this issue before?"
             },
             value: {
-              text: data['contacted-ap'] | capitalize
+              text: data['contacted-ap'] | capitalize or "Yes"
             },
             actions: {
               items: [
@@ -350,7 +350,7 @@
               text: "Accountable Details"
             },
             value: {
-              html: data['ap-name'] + "<br>" + data['ap-email'] + "<br>" + data['ap-phone'] + "<br>" + data['ap-address']
+              html: (data['ap-name'] or "Alan Johnson") + "<br>" + (data['ap-email'] or "alan@test.com") + "<br>" + (data['ap-phone'] or "0192837465") + "<br>" + data['ap-address']
             },
             actions: {
               items: [
@@ -367,7 +367,7 @@
               text: "Accountable relationship"
             },
             value: {
-              text: data['ap-relationship']
+              text: data['ap-relationship'] or "Landlord"
             },
             actions: {
               items: [
@@ -384,7 +384,7 @@
               text: "AP contacted date "
             },
             value: {
-              html: data['ap-contacted-date-day'] + data['ap-contacted-date-month'] + data['ap-contacted-date-year']
+              html: (data['ap-contacted-date-day'] or "20") + (data['ap-contacted-date-month'] or "1") + (data['ap-contacted-date-year'] or "2023")
             },
             actions: {
               items: [
@@ -401,7 +401,7 @@
               text: "Accountable justification"
             },
             value: {
-              text: data['ap-justification']
+              text: data['ap-justification'] or "These are the steps that were followed"
             },
             actions: {
               items: [
@@ -418,7 +418,7 @@
               text: "Can we share your name and contact details with the PAP/AP?"
             },
             value: {
-              html: data['share-contact-with-ap'] | capitalize
+              html: data['share-contact-with-ap'] | capitalize or "Yes"
             },
             actions: {
               items: [
@@ -442,7 +442,7 @@
               text: "Filename"
             },
             value: {
-              text: data['evidence-details']
+              text: data['evidence-details'] or "Details about the file"
             },
             actions: {
               items: [

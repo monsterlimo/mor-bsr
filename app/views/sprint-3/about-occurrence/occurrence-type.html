@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Type of occurrence" %}
+{% set title = "What type of occurrence are you reporting?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -17,7 +17,7 @@
       <form action="" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        {{ govukRadios({
+        {{ govukCheckboxes({
           name: "occurrence-type",
           fieldset: {
             legend: {
@@ -27,7 +27,7 @@
             }
           },
           hint: {
-            text: "What type of occurrence are you reporting?"
+            text: "Select all that apply"
           },
           items: [
             {

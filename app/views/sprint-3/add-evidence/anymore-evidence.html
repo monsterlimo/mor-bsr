@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you have anymore information to support your complaint?" %}
+{% set type = "complaint" if data['enquiry-about'] == "complaint" else "MOR" %}
+{% set title = "Do you have any more information to support your " + type + "?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit

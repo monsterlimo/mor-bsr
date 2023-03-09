@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is your complaint about the building?" %}
+{% set title = "What advice do you need?" if data['enquiry-about'] == "advice" else "What is your complaint about the building?"  %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit

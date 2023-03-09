@@ -21,7 +21,28 @@ module.exports = router => {
         if (req.session.data['enquiry-about'] == "mor") {
             res.redirect('/sprint-3/about-occurrence/declaration')
         } else {
+            if (req.session.data['enquiry-about'] == "advice") {
+                // advice
+                res.redirect('/sprint-3/about-the-contact/about-a-building')
+            } else {
+                // complaint
+                res.redirect('/sprint-3/about-the-building/do-you-know-the-address')
+            }   
+        }    
+    })
+
+    router.post('/sprint-3/about-the-contact/about-a-building', (req, res) => {
+        if (req.session.data['about-a-building'] == "yes") {
             res.redirect('/sprint-3/about-the-building/do-you-know-the-address')
+        } else {
+            
+            if (req.session.data['enquiry-about'] == "advice") {
+                // advice
+                res.redirect('/sprint-3/about-the-building/enter-description')
+            } else {
+                // complaint
+                res.redirect('/sprint-3/about-the-ap/have-you-contacted-the-ap')
+            }
         }    
     })
 
@@ -107,7 +128,8 @@ module.exports = router => {
         if (req.session.data['supporting-evidence'] == "yes") {
             res.redirect('/sprint-3/add-evidence/upload-your-evidence')
         } else {
-            res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
+            // needs to go to contact
+            res.redirect('/sprint-3/about-the-person/enter-your-name')
         }
     })
 
@@ -128,16 +150,15 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/add-evidence/review-uploads', (req, res) => {
-        if (req.session.data['enquiry-about'] == "mor") {
+        //if (req.session.data['enquiry-about'] == "mor") {
             res.redirect('/sprint-3/about-the-person/enter-your-name')
-        } else {
-            res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
-        }
-        
+        //} else {
+        //    res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
+        //}
     })
 
     router.post('/sprint-3/about-the-ap/share-contact-with-ap', (req, res) => {
-        res.redirect('/sprint-3/about-the-person/enter-your-name')
+        res.redirect('/sprint-3/check-your-answers')
     })
 
     router.post('/sprint-3/about-the-person/enter-your-name', (req, res) => {
@@ -149,7 +170,11 @@ module.exports = router => {
     })
 
     router.post('/sprint-3/about-the-person/enter-your-email', (req, res) => {
-        res.redirect('/sprint-3/check-your-answers')
+        if (req.session.data['enquiry-about'] == "complaint") {
+            res.redirect('/sprint-3/about-the-ap/share-contact-with-ap')
+        } else {
+            res.redirect('/sprint-3/check-your-answers')
+        }
     })
 
     router.post('/sprint-3/check-your-answers', (req, res) => {

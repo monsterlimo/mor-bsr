@@ -1,5 +1,23 @@
 {% extends "layouts/main.html" %}
-{% set title = "Complaint received" %}
+
+
+
+
+
+{% if data['enquiry-about'] == "mor" %}
+  {% set type = "occurrence report"  %}  
+{% elif data['enquiry-about'] == "advice" %}
+  {% set type = "request for advice" %}
+{% else %}
+  {% set type = "complaint"  %}
+{% endif %}
+
+
+{#{% set type = if (data['enquiry-about'] == "mor") { return "occurrence report" } else if (data['enquiry-about'] == advice) { return "Request for advice" } else { return "Complaint" } %}#}
+
+{% set title = type | capitalize + " received" %}
+
+
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -12,7 +30,7 @@
 
       <div class="govuk-panel govuk-panel--confirmation">
         <h1 class="govuk-panel__title">{{title}}</h1>
-        <div>We've received your complaint about [building address]</div>
+        <div>We've received your {{ type }} about [building address]</div>
         <div class="govuk-panel__body">
           Reference number<br><strong>HDJ2123F</strong>
         </div>
@@ -21,15 +39,17 @@
       <p>We have sent you a confirmation email.</p>
 
       <h2 class="govuk-heading-m">What you told us</h2>
-      <p>{{ data['enquiry-description'] }}</p>
-      <mark>Anything else to use here</mark>
-      
+      <p>{{ data['enquiry-description'] or "I need to complain about a landlord about a potential fire risk" }}</p>
+
+      <h2 class="govuk-heading-m">The supporting information you uploaded</h2>
+      <p>Filename123 - a picture of a potential fire spread risk<br>
+      Filename456 - a picture of a potential fire spread risk</p> 
 
       <h2 class="govuk-heading-m">What happens next</h2>
-      <p>Complaint received</p>
-      <p>Once we have evaluated your complaint, we will tell you what action we are going to take. This may take up to 21 working days.</p>
-      <p>All complaints will be evaluated by BSR whether named or anonymous.</p>
-
+      <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. This may take up to 21 working days{% if data["enquiry-about"] == "advice" %} if we have to consult building safety experts {% endif %}.</p>
+      {% if data['enquiry-about'] == "complaint" %}
+        <p>All {{ type }}s will be evaluated by BSR whether named or anonymous.</p>
+      {% endif %}
       <p><a href="">Back to BSR</a></p>
       <p><a href="">Back to HSE</a></p>
     </div>
