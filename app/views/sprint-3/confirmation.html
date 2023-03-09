@@ -40,10 +40,12 @@
 
       <h2 class="govuk-heading-m">What you told us</h2>
       <p>{{ data['enquiry-description'] or "I need to complain about a landlord about a potential fire risk" }}</p>
-
+      
+      {% if data['enquiry-about'] != "advice" %}
       <h2 class="govuk-heading-m">The supporting information you uploaded</h2>
       <p>Filename123 - a picture of a potential fire spread risk<br>
-      Filename456 - a picture of a potential fire spread risk</p> 
+      Filename456 - a picture of a potential fire spread risk</p>
+      {% endif %}
 
       <h2 class="govuk-heading-m">What happens next</h2>
       <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. This may take up to 21 working days{% if data["enquiry-about"] == "advice" %} if we have to consult building safety experts {% endif %}.</p>
