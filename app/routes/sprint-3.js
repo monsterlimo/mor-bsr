@@ -66,6 +66,8 @@ module.exports = router => {
         res.redirect('/sprint-3/about-the-building/number-of-units')
     })
 
+    // force a rebuild of the prototype
+
     router.post('/sprint-3/about-the-building/number-of-units', (req, res) => {
         if (req.session.data['enquiry-about'] == "complaint" && req.session.data['building-status'] == "occupied") {
             res.redirect('/sprint-3/about-the-ap/have-you-contacted-the-ap')

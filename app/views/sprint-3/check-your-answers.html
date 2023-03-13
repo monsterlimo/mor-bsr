@@ -58,6 +58,7 @@
         ]
       }) }}
 
+      {% if data['about-a-building'] == 'yes'  %}
       <h2 class="govuk-heading-m">About the building</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
@@ -149,6 +150,7 @@
           }
         ]
       }) }}
+      {% endif %}
 
       <h2 class="govuk-heading-m">About you</h2>
       {{ govukSummaryList({
