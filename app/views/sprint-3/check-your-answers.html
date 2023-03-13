@@ -31,7 +31,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-contact/enquiry-about",
                   text: "Change",
                   visuallyHiddenText: "previous application number"
                 }
@@ -48,7 +48,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-building/enter-description",
                   text: "Change",
                   visuallyHiddenText: "licence type"
                 }
@@ -73,7 +73,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-building/which-region",
                   text: "Change",
                   visuallyHiddenText: "home address"
                 }
@@ -90,7 +90,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-building/do-you-know-the-address",
                   text: "Change",
                   visuallyHiddenText: "home address"
                 }
@@ -107,7 +107,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-building/is-the-building-occupied",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -124,7 +124,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-building/how-big-is-the-building",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -141,7 +141,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-building/number-of-units",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -166,7 +166,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-person/enter-your-name",
                   text: "Change",
                   visuallyHiddenText: "name"
                 }
@@ -183,7 +183,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-person/relationship-to-the-building",
                   text: "Change",
                   visuallyHiddenText: "date of birth"
                 }
@@ -200,7 +200,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-person/are-you-a-resident",
                   text: "Change",
                   visuallyHiddenText: "address"
                 }
@@ -217,7 +217,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-person/enter-your-contact-number",
                   text: "Change",
                   visuallyHiddenText: "contact details"
                 }
@@ -229,7 +229,7 @@
 
     {% if data['enquiry-about'] == 'mor'  %}
 
-      {#<h2 class="govuk-heading-m">About the mandatory occurrence</h2>#}
+      <h2 class="govuk-heading-m">About the mandatory occurrence</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
@@ -243,7 +243,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-occurrence/reporter-relationship",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -260,7 +260,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-occurrence/occurrence-type",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -277,7 +277,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-occurrence/occurrence-date",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -294,7 +294,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-occurrence/occurrence-reporter",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -311,7 +311,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-occurrence/occurrence-details",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -340,7 +340,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-ap/have-you-contacted-the-ap",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -357,7 +357,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-ap/enter-ap-details",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -374,7 +374,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-ap/ap-relationship",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -386,12 +386,12 @@
               text: "AP contacted date "
             },
             value: {
-              html: (data['ap-contacted-date-day'] or "20") + (data['ap-contacted-date-month'] or "1") + (data['ap-contacted-date-year'] or "2023")
+              html: (data['ap-contacted-date-day'] or "20") + " " + (data['ap-contacted-date-month'] or "1") + " " + (data['ap-contacted-date-year'] or "2023")
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-ap/when-contacted-ap",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -408,7 +408,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-ap/enter-ap-justification",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
@@ -425,7 +425,7 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "about-the-ap/share-contact-with-ap",
                   text: "Change",
                   visuallyHiddenText: "home address"
                 }
@@ -434,8 +434,8 @@
           } if data['contacted-ap'] == 'yes'
         ]
       }) }}
-
-      <h2 class="govuk-heading-m">About the evidence</h2>
+        
+      <h2 class="govuk-heading-m">About the supporting information</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
@@ -449,13 +449,31 @@
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "add-evidence/review-uploads",
                   text: "Change",
                   visuallyHiddenText: "licence period"
                 }
               ]
             }
-          }
+          } if data['supporting-evidence'] == "yes",
+          {
+            key: {
+              text: "Filename"
+            },
+            value: {
+              text: "No supporting information supplied"
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-evidence/do-you-have-any-evidence",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['supporting-evidence'] == "no"
+
         ]
       }) }}
 
