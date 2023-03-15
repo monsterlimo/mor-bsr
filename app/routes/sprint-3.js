@@ -58,9 +58,33 @@ module.exports = router => {
         res.redirect('/sprint-3/about-the-building/is-the-building-occupied')
     })
 
+    // at this point we need to show alternative
+    // pages for cpaturing building info for professionals
+
     router.post('/sprint-3/about-the-building/is-the-building-occupied', (req, res) => {
-        res.redirect('/sprint-3/about-the-building/how-big-is-the-building')
+        if (req.session.data['enquiry-about'] == "mor") {
+            res.redirect('/sprint-3/about-the-building/prof-number-of-floors')
+        } else {
+            res.redirect('/sprint-3/about-the-building/how-big-is-the-building')
+        }
     })
+
+    // professional route start
+    router.post('/sprint-3/about-the-building/prof-number-of-floors', (req, res) => {
+        res.redirect('/sprint-3/about-the-building/prof-height-of-building')
+    })
+
+    router.post('/sprint-3/about-the-building/prof-height-of-building', (req, res) => {
+        res.redirect('/sprint-3/about-the-building/prof-number-of-units')
+    })
+
+    router.post('/sprint-3/about-the-building/prof-number-of-units', (req, res) => {
+        // here we can calculate if the building is a HRB
+        res.redirect('/sprint-3/about-occurrence/occurrence-type')
+    })
+    // professional route end
+
+
 
     router.post('/sprint-3/about-the-building/how-big-is-the-building', (req, res) => {
         res.redirect('/sprint-3/about-the-building/number-of-units')
