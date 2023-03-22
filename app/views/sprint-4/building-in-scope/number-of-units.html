@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "How many residential units are in the building?" %}
+{% set title = "Are there 2 or more residential units in the building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -31,12 +31,12 @@
           },
           items: [
             {
-              value: "2 or more",
-              text: "2 or more"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "fewer than 2",
-              text: "fewer than 2"
+              value: "no",
+              text: "No"
             },
             {
               value: "I don't know",

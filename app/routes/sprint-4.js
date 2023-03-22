@@ -52,15 +52,9 @@ module.exports = router => {
     router.post('/sprint-4/about-the-person/enter-your-contact-details', (req, res) => {
         if (req.session.data['enquiry-about'] == "mor") {
             res.redirect('/sprint-4/about-the-person/what-is-your-role')
-        } else if (req.session.data['enquiry-about'] == "complaint") {
-            res.redirect('/sprint-4/about-the-ap/share-details-with-ap')
         } else {
             res.redirect('/sprint-4/about-the-person/what-is-your-relationship-to-the-building')
         }
-    })
-
-    router.post('/sprint-4/about-the-ap/share-details-with-ap', (req, res) => {
-        res.redirect('/sprint-4/about-the-person/what-is-your-relationship-to-the-building')
     })
 
     router.post('/sprint-4/about-the-person/what-is-your-relationship-to-the-building', (req, res) => {
@@ -101,7 +95,7 @@ module.exports = router => {
             res.redirect('/sprint-4/about-the-occurrence/occurrence-type')
         } else if (req.session.data['enquiry-about'] == "complaint") {
             // complaint => reminder about scope of bsr
-            res.redirect('/sprint-4/about-the-complaint/scope-of-bsr')
+            res.redirect('/sprint-4/about-the-complaint/complaint-details')
         } else {
             // advice => enter advice needed
             res.redirect('/sprint-4/about-the-advice-required/enter-advice-required')
@@ -175,7 +169,7 @@ module.exports = router => {
         if (req.session.data['contacted-ap'] == "yes") {
             res.redirect('/sprint-4/about-the-ap/enter-ap-details')
         } else {
-            res.redirect('/sprint-4/about-the-ap/enter-ap-justification')
+            res.redirect('/sprint-4/about-the-ap/share-details-with-ap')
         }
     })
 
@@ -188,6 +182,10 @@ module.exports = router => {
     })
 
     router.post('/sprint-4/about-the-ap/when-contacted-ap', (req, res) => {
+        res.redirect('/sprint-4/about-the-ap/share-details-with-ap')
+    })
+
+    router.post('/sprint-4/about-the-ap/share-details-with-ap', (req, res) => {
         res.redirect('/sprint-4/check-your-answers')
     })
 

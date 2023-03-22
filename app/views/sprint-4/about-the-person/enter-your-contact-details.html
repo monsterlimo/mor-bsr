@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter your contact details" %}
+{% set title = "Your contact details" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -21,13 +21,12 @@
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
           }
+          
         }) %}
+        <p>We need your contact details so we can tell you what we are doing about your complaint. We'll ask you later in this service if you don't want us to share your details with anyone else, such as the building's landlord or management company.</p>
           {{ govukInput({
             label: {
               text: 'Contact number'
-            },
-            hint: {
-              text: "some hint text here"
             },
             id: "contact-number",
             name: "contact-number",
@@ -36,9 +35,6 @@
           {{ govukInput({
             label: {
               text: 'Contact email'
-            },
-            hint: {
-              text: "some hint text here"
             },
             id: "contact-email",
             name: "contact-email",

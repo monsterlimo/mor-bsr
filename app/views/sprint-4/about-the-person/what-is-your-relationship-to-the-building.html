@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Are you..." %}
+{% set title = "Are you a resident of the building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -26,14 +26,17 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "If you're acting on behalf of someone who is a resident, even if you are not, select yes"
+          },
           items: [
             {
-              value: "resident",
-              text: "resident"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "not resident",
-              text: "not resident"
+              value: "no",
+              text: "No"
             }
           ]
         }) }}

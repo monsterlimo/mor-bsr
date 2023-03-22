@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "TODO Find the address" %}
+{% set title = "Building address" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -28,7 +28,7 @@
               text: 'Postcode'
             },
             hint: {
-              text: "some hint text here"
+              text: "If you know the post code of the building, type it here and select the address from the choices given."
             },
             id: "address-line-1",
             name: "address-line-1",
@@ -38,9 +38,6 @@
           {{ govukInput({
             label: {
               text: 'Address line 1 (optional)'
-            },
-            hint: {
-              text: "for example"
             },
             id: "address-line-2",
             name: "address-line-2",

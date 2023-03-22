@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter your name" %}
+{% set title = "Your name" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,7 +15,6 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <mark>or organisation</mark>
         {% call govukFieldset({
           legend: {
             text: title,
@@ -23,6 +22,7 @@
             isPageHeading: true
           }
         }) %}
+        <p>Or the name of the organisation you represent</p>
           {{ govukInput({
             label: {
               text: 'First name'

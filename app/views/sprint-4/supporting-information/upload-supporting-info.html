@@ -26,6 +26,17 @@
           }
         }) }}
 
+        {{ govukInput({
+          label: {
+            text: "File name"
+          },
+          hint: {
+            text: "Give each item of supporting information a file name that describes what it is about. For example, if you've uploaded a photo of faulty fire doors, name the photo 'faulty fire doors'."
+          },
+          id: "event-name",
+          name: "event-name"
+        }) }}
+
         {{ govukButton({
           text: "Upload"
         }) }}
