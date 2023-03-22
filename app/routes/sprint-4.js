@@ -52,9 +52,15 @@ module.exports = router => {
     router.post('/sprint-4/about-the-person/enter-your-contact-details', (req, res) => {
         if (req.session.data['enquiry-about'] == "mor") {
             res.redirect('/sprint-4/about-the-person/what-is-your-role')
+        } else if (req.session.data['enquiry-about'] == "complaint") {
+            res.redirect('/sprint-4/about-the-ap/share-details-with-ap')
         } else {
             res.redirect('/sprint-4/about-the-person/what-is-your-relationship-to-the-building')
         }
+    })
+
+    router.post('/sprint-4/about-the-ap/share-details-with-ap', (req, res) => {
+        res.redirect('/sprint-4/about-the-person/what-is-your-relationship-to-the-building')
     })
 
     router.post('/sprint-4/about-the-person/what-is-your-relationship-to-the-building', (req, res) => {
@@ -62,7 +68,7 @@ module.exports = router => {
     })
 
     // prof building in scope flow
-    
+
     router.post('/sprint-4/about-the-person/what-is-your-role', (req, res) => {
         res.redirect('/sprint-4/building-in-scope/prof-number-of-floors')   
     })
