@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+{% set title = "What is your enquiry about?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "enquiry-about",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "advice",
+              text: "I need advice from the Building Safety Regulator"
+            },
+            {
+              value: "complaint",
+              text: "I want to make a complaint about the building"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "mor",
+              text: "I want to make a mandatory occurrence report (MOR)",
+              hint: {
+                text: "additional hint text"
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

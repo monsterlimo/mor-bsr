@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+{% set title = "What advice do you need?" if data['enquiry-about'] == "advice" else "What is your complaint about the building?"  %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {{ govukTextarea({
+          name: "enquiry-description",
+          value: data['enquiry-description'],
+          id: "more-detail",
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

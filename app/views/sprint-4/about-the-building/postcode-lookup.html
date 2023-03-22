@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+{% set title = "TODO Find the address" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        
+        {% call govukFieldset({
+          legend: {
+            text: title,
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+          {{ govukInput({
+            label: {
+              text: 'Postcode'
+            },
+            hint: {
+              text: "some hint text here"
+            },
+            id: "address-line-1",
+            name: "address-line-1",
+            autocomplete: "address-line1",
+            classes: "govuk-input--width-20"
+          }) }}
+          {{ govukInput({
+            label: {
+              text: 'Address line 1 (optional)'
+            },
+            hint: {
+              text: "for example"
+            },
+            id: "address-line-2",
+            name: "address-line-2",
+            autocomplete: "address-line2"
+          }) }}
+        {% endcall %}
+
+        <p><a href="">Enter address manually</a></p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

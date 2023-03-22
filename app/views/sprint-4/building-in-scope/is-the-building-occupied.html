@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+{% set title = "Is the building" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "building-status",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "occupied",
+              text: "occupied"
+            },
+            {
+              value: "finished but not occupied",
+              text: "finished but not occupied"
+            },
+            {
+              value: "under construction",
+              text: "under construction"
+            },
+            {
+              value: "construction has yet to begin",
+              text: "construction has yet to begin"
+            }
+          ]
+        }) }}
+{#
+        {{ govukDetails({
+          summaryText: "Check if your building is a HRB",
+          text: "to do"
+        }) }}
+#}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

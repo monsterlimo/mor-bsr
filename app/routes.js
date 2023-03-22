@@ -8,3 +8,4 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 // Add your routes here
 require('./routes/sprint-3')(router)
+require('./routes/sprint-4')(router)

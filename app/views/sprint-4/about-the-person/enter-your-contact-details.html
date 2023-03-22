@@ -1,0 +1,58 @@
+{% extends "layouts/main.html" %}
+{% set title = "Enter your contact details" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        {% call govukFieldset({
+          legend: {
+            text: title,
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+          {{ govukInput({
+            label: {
+              text: 'Contact number'
+            },
+            hint: {
+              text: "some hint text here"
+            },
+            id: "contact-number",
+            name: "contact-number",
+            classes: "govuk-input--width-20"
+          }) }}
+          {{ govukInput({
+            label: {
+              text: 'Contact email'
+            },
+            hint: {
+              text: "some hint text here"
+            },
+            id: "contact-email",
+            name: "contact-email",
+            classes: "govuk-input--width-20"
+          }) }}
+        {% endcall %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
