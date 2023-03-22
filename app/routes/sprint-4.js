@@ -113,6 +113,10 @@ module.exports = router => {
     })
 
     router.post('/sprint-4/about-the-complaint/scope-of-bsr', (req, res) => {
+        res.redirect('/sprint-4/about-the-complaint/complaint-details')
+    })
+
+    router.post('/sprint-4/about-the-complaint/complaint-details', (req, res) => {
         res.redirect('/sprint-4/supporting-information/do-you-have-any-supporting-info')
     })
 
