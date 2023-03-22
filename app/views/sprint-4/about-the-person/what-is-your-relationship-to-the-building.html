@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you need advice about a building?" %}
+{% set title = "Are you..." %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "about-a-building",
+          name: "building-resident",
           fieldset: {
             legend: {
               text: title,
@@ -28,12 +28,12 @@
           },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "resident",
+              text: "resident"
             },
             {
-              value: "no",
-              text: "No, I need advice which is not related to a specific buidling"
+              value: "not resident",
+              text: "not resident"
             }
           ]
         }) }}
