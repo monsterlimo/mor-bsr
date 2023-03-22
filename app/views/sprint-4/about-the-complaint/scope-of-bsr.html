@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "scope of BSR" %}
+{% set title = "Scope of BSR" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,6 +15,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        <p>remind the user about fire spread and structual safety before complaining</p>
 
         {{ govukButton({
           text: "Continue"
