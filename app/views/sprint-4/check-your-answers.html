@@ -189,24 +189,7 @@
                 }
               ]
             }
-          },
-          {
-            key: {
-              text: "Do you live in the building"
-            },
-            value: {
-              text: (data['building-resident'] | capitalize) or "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/are-you-a-resident",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
-            }
-          },
+          } if data['about-a-building'] == "yes",
           {
             key: {
               text: "Contact details"

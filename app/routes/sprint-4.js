@@ -5,6 +5,7 @@ module.exports = router => {
         res.redirect('/sprint-4/what-is-your-request-about')
     })
 
+    /*
     router.post('/sprint-4/what-is-your-request-about', (req, res) => {
         if (req.session.data['enquiry-about'] == "mor") {
             res.redirect('/sprint-4/about-the-occurrence/mor-information')
@@ -12,6 +13,33 @@ module.exports = router => {
             res.redirect('/sprint-4/about-the-building/postcode-lookup')
         }
     })
+*/
+
+    // delete this section if required
+
+    router.post('/sprint-4/what-is-your-request-about', (req, res) => {
+        if (req.session.data['enquiry-about'] == "mor") {
+            res.redirect('/sprint-4/about-the-occurrence/mor-information')
+        } else if (req.session.data['enquiry-about'] == "complaint") {
+            res.redirect('/sprint-4/about-the-building/postcode-lookup')
+        } else {
+            res.redirect('/sprint-4/about-the-advice-required/about-a-building')
+        }
+    })
+
+    router.post('/sprint-4/about-the-advice-required/about-a-building', (req, res) => {
+        if (req.session.data['about-a-building'] == "yes") {
+            res.redirect('/sprint-4/about-the-building/postcode-lookup')
+        } else {
+            res.redirect('/sprint-4/about-the-person/enter-your-name')
+        }
+    })
+
+    // delete this section if required
+    
+
+
+
 
     router.post('/sprint-4/about-the-occurrence/mor-information', (req, res) => {
         res.redirect('/sprint-4/about-the-building/postcode-lookup')
@@ -53,7 +81,11 @@ module.exports = router => {
         if (req.session.data['enquiry-about'] == "mor") {
             res.redirect('/sprint-4/about-the-person/what-is-your-role')
         } else {
-            res.redirect('/sprint-4/about-the-person/what-is-your-relationship-to-the-building')
+            if (req.session.data['about-a-building'] == "yes") {
+                res.redirect('/sprint-4/about-the-person/what-is-your-relationship-to-the-building')
+            } else {
+                res.redirect('/sprint-4/about-the-advice-required/enter-advice-required')
+            }
         }
     })
 
