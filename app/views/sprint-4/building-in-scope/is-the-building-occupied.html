@@ -32,29 +32,31 @@
               text: "occupied"
             },
             {
+              value: "Occupied with building work ongoing",
+              text: "Occupied with building work ongoing",
+              hint: {
+                text: "Do not include decorating work"
+              }
+            },
+            {
               value: "finished but not occupied",
               text: "finished but not occupied"
-            },
+            } if data['building-resident'] != "yes",
             {
               value: "under construction",
               text: "under construction"
-            },
+            } if data['building-resident'] != "yes",
             {
               value: "construction has yet to begin",
               text: "construction has yet to begin"
-            },
+            } if data['building-resident'] != "yes",
             {
               value: "unoccupied and awaiting demolition",
               text: "Unoccupied and awaiting demolition"
-            }
+            } if data['building-resident'] != "yes"
           ]
         }) }}
-{#
-        {{ govukDetails({
-          summaryText: "Check if your building is a HRB",
-          text: "to do"
-        }) }}
-#}
+
         {{ govukButton({
           text: "Continue"
         }) }}

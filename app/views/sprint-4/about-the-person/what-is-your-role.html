@@ -15,6 +15,16 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        {% set otherDutyHolder %}
+          {{ govukInput({
+            id: "other-duty-holder",
+            name: "other-duty-holder",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Enter a role"
+            }
+          }) }}
+        {% endset -%}
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
@@ -28,31 +38,34 @@
           },
           hint: {
             text: "We need to know this so we can direct your enquiry to the right people in Building Safety Regulator"
-          },
+          } if data["enquiry-about"] == "advice",
+          hint: {
+            text: "If you are making an MOR for an organisation, select the role of your organisation"
+          } if data["enquiry-about"] == "mor",
           items: [
             {
               value: "principle accountable person",
               text: "Principle accountable person or accountable person"
             },
             {
-              value: "principal contractor or principal designer",
-              text: "Principal contractor or principal designer"
+              value: "principal contractor ",
+              text: "Principal contractor"
+            },
+            {
+              value: "principal designer",
+              text: "Principal designer"
             },
             {
               value: "duty holder",
               text: "Other duty holder",
-              hint: {
-                text: "For example, designer, client or contractor"
+              conditional: {
+                html: otherDutyHolder
               }
-            },
-            {
-              value: "building inspector",
-              text: "Building inspector or building control approver"
             },
             {
               value: "resident",
               text: "Resident or member of the public"
-            }
+            } if data["request-advice"] != mor
           ]
         }) }}
 

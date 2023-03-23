@@ -41,7 +41,15 @@
           }) }}
           {{ govukInput({
             label: {
-              text: 'Email'
+              text: 'Organisation '
+            },
+            id: "reporter-organisation",
+            name: "reporter-organisation",
+            classes: "govuk-input--width-20"
+          }) }}
+          {{ govukInput({
+            label: {
+              text: 'Email (optional)'
             },
             id: "reporter-email",
             name: "reporter-email",

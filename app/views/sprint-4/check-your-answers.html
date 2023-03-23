@@ -229,7 +229,7 @@
 
     {% if data['enquiry-about'] == 'mor'  %}
 
-      <h2 class="govuk-heading-m">About the mandatory occurrence</h2>
+      <h2 class="govuk-heading-m">About the occurrence</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
@@ -326,13 +326,13 @@
 
     {% if data['enquiry-about'] == 'complaint'  %}
 
-      <h2 class="govuk-heading-m">About the PAP/AP</h2>
+      <h2 class="govuk-heading-m">About the accountable person</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
           {
             key: {
-              text: "Have you contacted someone accountable for the building about this issue before?"
+              text: "Have you contacted someone accountable for the building about this before?"
             },
             value: {
               text: data['contacted-ap'] | capitalize or "Yes"
@@ -349,7 +349,7 @@
           },
           {
             key: {
-              text: "Accountable Details"
+              text: "Contact details of the accountable person"
             },
             value: {
               html: (data['ap-name'] or "Alan Johnson") + "<br>" + (data['ap-email'] or "alan@test.com") + "<br>" + (data['ap-phone'] or "0192837465") + "<br>" + data['ap-address']
@@ -366,7 +366,7 @@
           } if data['contacted-ap'] == 'yes',
           {
             key: {
-              text: "Accountable relationship"
+              text: "Accountable relationship to the building"
             },
             value: {
               text: data['ap-relationship'] or "Landlord"
@@ -383,7 +383,7 @@
           } if data['contacted-ap'] == 'yes',
           {
             key: {
-              text: "AP contacted date "
+              text: "Date the accountable person was contacted"
             },
             value: {
               html: (data['ap-contacted-date-day'] or "20") + " " + (data['ap-contacted-date-month'] or "1") + " " + (data['ap-contacted-date-year'] or "2023")
@@ -400,24 +400,7 @@
           } if data['contacted-ap'] == 'yes',
           {
             key: {
-              text: "Accountable justification"
-            },
-            value: {
-              text: data['ap-justification'] or "These are the steps that were followed"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-ap/enter-ap-justification",
-                  text: "Change",
-                  visuallyHiddenText: "licence period"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Can we share your name and contact details with the PAP/AP?"
+              text: "Can we share your details with an accountable person for the building?"
             },
             value: {
               html: data['share-contact-with-ap'] | capitalize or "Yes"
