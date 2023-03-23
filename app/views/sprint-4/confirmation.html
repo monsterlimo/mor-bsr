@@ -5,11 +5,14 @@
 
 
 {% if data['enquiry-about'] == "mor" %}
-  {% set type = "occurrence report"  %}  
+  {% set type = "occurrence report"  %}
+  {% set fallbackDesc = "I want to make a mandatory occurrence report" %}  
 {% elif data['enquiry-about'] == "advice" %}
   {% set type = "request for advice" %}
+  {% set fallbackDesc = "I want advice about a high-rise residential building" %}  
 {% else %}
   {% set type = "complaint"  %}
+  {% set fallbackDesc = "I want to make a complaint" %}  
 {% endif %}
 
 
@@ -39,7 +42,7 @@
       <p>We have sent you a confirmation email.</p>
 
       <h2 class="govuk-heading-m">What you told us</h2>
-      <p>{{ data['enquiry-description'] or "I need to complain about a landlord about a potential fire risk" }}</p>
+      <p>{{ data['enquiry-description'] or fallbackDesc }}</p>
       
       {% if data['enquiry-about'] != "advice" %}
       <h2 class="govuk-heading-m">The supporting information you uploaded</h2>

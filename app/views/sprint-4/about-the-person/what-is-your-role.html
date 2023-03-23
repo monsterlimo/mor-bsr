@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "your role" %}
+{% set title = "Your role" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -27,12 +27,16 @@
             }
           },
           hint: {
-            text: "We need to know this so we can direct your enquiry to the right people in BSR"
+            text: "We need to know this so we can direct your enquiry to the right people in Building Safety Regulator"
           },
           items: [
             {
               value: "principle accountable person",
               text: "Principle accountable person or accountable person"
+            },
+            {
+              value: "principal contractor or principal designer",
+              text: "Principal contractor or principal designer"
             },
             {
               value: "duty holder",

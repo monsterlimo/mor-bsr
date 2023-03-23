@@ -23,7 +23,9 @@
           }
           
         }) %}
+        {% if data['enquiry-about'] == "complaint" %}
         <p>We need your contact details so we can tell you what we are doing about your complaint. We'll ask you later in this service if you don't want us to share your details with anyone else, such as the building's landlord or management company.</p>
+        {% endif %}
           {{ govukInput({
             label: {
               text: 'Contact number'
