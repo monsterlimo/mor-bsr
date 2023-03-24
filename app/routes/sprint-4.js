@@ -80,6 +80,8 @@ module.exports = router => {
     router.post('/sprint-4/about-the-person/enter-your-contact-details', (req, res) => {
         if (req.session.data['enquiry-about'] == "mor") {
             res.redirect('/sprint-4/about-the-person/what-is-your-role')
+        } else if (req.session.data['enquiry-about'] == "complaint") {
+            res.redirect('/sprint-4/about-the-person/what-is-your-relationship-to-the-building')
         } else {
             if (req.session.data['about-a-building'] == "yes") {
                 res.redirect('/sprint-4/about-the-person/what-is-your-relationship-to-the-building')
