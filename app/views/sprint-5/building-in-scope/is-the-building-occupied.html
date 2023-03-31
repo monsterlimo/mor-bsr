@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Is the building" %}
+{% set title = "Is the building occupied?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -28,39 +28,15 @@
           },
           items: [
             {
-              value: "occupied",
-              text: "Occupied"
+              value: "yes",
+              text: "Yes"
             },
             {
-              value: "Occupied with current building work",
-              text: "Occupied with current building work",
-              hint: {
-                text: "Do not include decorating work"
-              }
-            },
-            {
-              value: "complete but unoccupied",
-              text: "Complete but unoccupied"
-            } if data['building-resident'] != "yes",
-            {
-              value: "unoccupied with current building work",
-              text: "Unoccupied with current building work"
-            } if data['building-resident'] != "yes",
-            {
-              value: "under construction",
-              text: "under construction"
-            } if data['building-resident'] != "yes",
-            {
-              value: "construction has yet to begin",
-              text: "construction has yet to begin"
-            } if data['building-resident'] != "yes",
-            {
-              value: "unoccupied and awaiting demolition",
-              text: "Unoccupied and awaiting demolition"
-            } if data['building-resident'] != "yes"
+              value: "no",
+              text: "No"
+            }
           ]
         }) }}
-
 
         {{ govukButton({
           text: "Continue"

@@ -84,7 +84,11 @@ module.exports = router => {
         if (req.session.data['enquiry-about'] == "mor") {
             res.redirect('/sprint-5/about-the-person/what-is-your-role')
         } else if (req.session.data['enquiry-about'] == "complaint") {
-            res.redirect('/sprint-5/about-the-person/what-is-your-relationship-to-the-building')
+            if (req.session.data['about-a-building'] == "yes") {
+                res.redirect('/sprint-5/about-the-ap/share-details-with-ap')
+            } else {
+                res.redirect('/sprint-5/about-the-complaint/complaint-details')
+            }
         } else {
             if (req.session.data['about-a-building'] == "yes") {
                 res.redirect('/sprint-5/about-the-person/what-is-your-relationship-to-the-building')
@@ -94,15 +98,24 @@ module.exports = router => {
         }
     })
 
+    router.post('/sprint-5/about-the-ap/share-details-with-ap', (req, res) => {
+        res.redirect('/sprint-5/about-the-person/what-is-your-relationship-to-the-building')
+    })
+
+    // only appears for public
     router.post('/sprint-5/about-the-person/what-is-your-relationship-to-the-building', (req, res) => {
-        if (req.session.data['building-region']) {
-            res.redirect('/sprint-5/building-in-scope/number-of-floors')  
+        if (req.session.data['building-resident'] == "yes") {
+            res.redirect('/sprint-5/building-in-scope/any-building-work')   
         } else {
-            if (req.session.data['enquiry-about'] == "advice") {
-                res.redirect('/sprint-5/building-in-scope/number-of-floors')   
-            } else {
-                res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
-            }
+            res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
+        }
+    })
+
+    router.post('/sprint-5/building-in-scope/any-building-work', (req, res) => {
+        if (req.session.data['building-region']) {
+            res.redirect('/sprint-5/building-in-scope/number-of-floors')   
+        } else {
+            res.redirect('/sprint-5/about-the-complaint/complaint-details')   
         }
     })
 
@@ -112,6 +125,10 @@ module.exports = router => {
         } else {
             res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
         }
+    })
+
+    router.post('/sprint-5/building-in-scope/is-the-building-occupied', (req, res) => {
+        res.redirect('/sprint-5/building-in-scope/any-building-work')
     })
 
     router.post('/sprint-5/building-in-scope/prof-number-of-floors', (req, res) => {
@@ -132,7 +149,7 @@ module.exports = router => {
         if (req.session.data['enquiry-about'] == "advice") {
             res.redirect('/sprint-5/about-the-request/enter-advice-required')   
         } else {
-            res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
+            res.redirect('/sprint-5/about-the-complaint/complaint-details')   
         }
     })
 
@@ -140,18 +157,7 @@ module.exports = router => {
         res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
     })
 
-    router.post('/sprint-5/building-in-scope/is-the-building-occupied', (req, res) => {
-        if (req.session.data['enquiry-about'] == "mor") {
-            // mor => about the occurrence
-            res.redirect('/sprint-5/about-the-occurrence/occurrence-type')
-        } else if (req.session.data['enquiry-about'] == "complaint") {
-            // complaint => reminder about scope of bsr
-            res.redirect('/sprint-5/about-the-complaint/complaint-details')
-        } else {
-            // advice => enter advice needed
-            res.redirect('/sprint-5/about-the-request/enter-advice-required')
-        }
-    })
+    
 
     router.post('/sprint-5/about-the-request/enter-advice-required', (req, res) => {
         res.redirect('/sprint-5/check-your-answers')
@@ -225,20 +231,19 @@ module.exports = router => {
     })
 
     router.post('/sprint-5/about-the-ap/enter-ap-details', (req, res) => {
-        res.redirect('/sprint-5/about-the-ap/ap-relationship')
-    })
-
-    router.post('/sprint-5/about-the-ap/ap-relationship', (req, res) => {
+        //res.redirect('/sprint-5/about-the-ap/ap-relationship')
         res.redirect('/sprint-5/about-the-ap/when-contacted-ap')
     })
 
-    router.post('/sprint-5/about-the-ap/when-contacted-ap', (req, res) => {
-        res.redirect('/sprint-5/about-the-ap/share-details-with-ap')
-    })
+    // router.post('/sprint-5/about-the-ap/ap-relationship', (req, res) => {
+    //    res.redirect('/sprint-5/about-the-ap/when-contacted-ap')
+    // })
 
-    router.post('/sprint-5/about-the-ap/share-details-with-ap', (req, res) => {
+    router.post('/sprint-5/about-the-ap/when-contacted-ap', (req, res) => {
         res.redirect('/sprint-5/check-your-answers')
     })
+
+   
 
     router.post('/sprint-5/check-your-answers', (req, res) => {
         res.redirect('/sprint-5/confirmation')

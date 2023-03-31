@@ -40,7 +40,7 @@
           },
           {
             key: {
-              text: "Advice you have asked for" if data["enquiry-about"] == "advice" else "Description of your complaint about the building?"
+              text: "Advice you have asked for" if data["enquiry-about"] == "advice" else "Description of your complaint"
             },
             value: {
               text: data['enquiry-description'] or "Need some guidance on a new high rise building"
@@ -99,7 +99,7 @@
           } if data['address-known'] == 'yes',
           {
             key: {
-              text: "Is the building occupied"
+              text: "Building occupied?"
             },
             value: {
               text: (data['building-status'] | capitalize) or "Yes"
@@ -116,7 +116,7 @@
           },
           {
             key: {
-              text: "How big is the building"
+              text: "Building height"
             },
             value: {
               text: (data['building-size'] | capitalize) or "7 or more floors"
@@ -315,7 +315,7 @@
         rows: [
           {
             key: {
-              text: "Have you contacted someone accountable for the building about this before?"
+              text: "Have you contacted them before?"
             },
             value: {
               text: data['contacted-ap'] | capitalize or "Yes"
@@ -332,7 +332,7 @@
           },
           {
             key: {
-              text: "Contact details of the accountable person"
+              text: "Their contact details"
             },
             value: {
               html: (data['ap-name'] or "Alan Johnson") + "<br>" + (data['ap-email'] or "alan@test.com") + "<br>" + (data['ap-phone'] or "0192837465") + "<br>" + data['ap-address']
@@ -349,7 +349,7 @@
           } if data['contacted-ap'] == 'yes',
           {
             key: {
-              text: "Accountable relationship to the building"
+              text: "Their role"
             },
             value: {
               text: data['ap-relationship'] or "Landlord"
@@ -366,7 +366,7 @@
           } if data['contacted-ap'] == 'yes',
           {
             key: {
-              text: "Date the accountable person was contacted"
+              text: "Date contacted"
             },
             value: {
               html: (data['ap-contacted-date-day'] or "20") + " " + (data['ap-contacted-date-month'] or "1") + " " + (data['ap-contacted-date-year'] or "2023")
@@ -383,7 +383,7 @@
           } if data['contacted-ap'] == 'yes',
           {
             key: {
-              text: "Can we share your details with an accountable person for the building?"
+              text: "Can we share your details with them?"
             },
             value: {
               html: data['share-contact-with-ap'] | capitalize or "Yes"

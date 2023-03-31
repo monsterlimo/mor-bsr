@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Is your question about a building?" if data['enquiry-about'] == "advice" else "Is your complaint about a building?" %}
+{% set title = "Is there building work ongoing?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,7 +18,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "about-a-building",
+          name: "building-status",
           fieldset: {
             legend: {
               text: title,
@@ -26,17 +26,21 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "Do not include decorating work"
+          },
           items: [
             {
               value: "yes",
-              text: "Yes" if data['enquiry-about'] == "advice" else "Yes it relates to a specific building"
+              text: "Yes"
             },
             {
               value: "no",
-              text: "No, I need to ask a question which is not related to a specific building" if data['enquiry-about'] == "advice" else "No, it does not relate to a specific building"
+              text: "No"
             }
           ]
         }) }}
+
 
         {{ govukButton({
           text: "Continue"

@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Your complaint" %}
+{% set title = "Tell us briefly about your complaint" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,27 +15,20 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        {% set hintText %}
-          <p>Tell us briefly about your complaint.</p>
-
-          <p>If you have already complained to an accountable person, you can tell us who that is later in this service.</p>
-
-          {{ govukDetails({
-            summaryText: "What can I complain to BSR about?",
-            text: "The Building Safety Regulator deals only with risks to the building involving spread of fire and structural failure. If you have a complaint about the general maintenance of the building, for example, external decor, or cleanliness of common parts, contact an accountable person, such as the building’s landlord or management company.</p>"
-          }) }}
-
-        {% endset %}
-
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+        
+        <p>If you have already complained to an accountable person, you can tell us who that is later in this service.</p>
+        {{ govukDetails({
+          summaryText: "What can I complain to BSR about?",
+          text: "The Building Safety Regulator deals only with risks to the building involving spread of fire and structural failure. If you have a complaint about the general maintenance of the building, for example, external decor, or cleanliness of common parts, contact an accountable person, such as the building’s landlord or management company."
+        }) }}
+        
         {{ govukTextarea({
           name: "occurrence-details",
           id: "occurrence-details",
-          hint: {
-            html: hintText
-          },
           label: {
-            text: title,
-            classes: "govuk-label--l",
+            text: "Your complaint",
+            classes: "govuk-label--m",
             isPageHeading: true
           }
         }) }}
