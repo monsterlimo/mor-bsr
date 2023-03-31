@@ -35,17 +35,10 @@
             autocomplete: "address-line1",
             classes: "govuk-input--width-20"
           }) }}
-          {{ govukInput({
-            label: {
-              text: 'Address line 1 (optional)'
-            },
-            id: "address-line-2",
-            name: "address-line-2",
-            autocomplete: "address-line2"
-          }) }}
+
         {% endcall %}
 
-        <p><a href="/sprint-5/about-the-building/do-you-have-a-hrb-number">Enter address manually</a></p>
+        <p><a href="/sprint-5/about-the-building/which-region">Enter address manually</a></p>
 
         {{ govukButton({
           text: "Continue"

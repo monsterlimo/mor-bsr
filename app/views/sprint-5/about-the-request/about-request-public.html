@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you want to" %}
+{% set title = "What do you want from BSR?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,31 +16,32 @@
 
       <form action="" method="post">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        {{ govukRadios({
-          name: "enquiry-about",
-          fieldset: {
-            legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [
-            {
-              value: "advice",
-              text: "make a complaint to the Building Safety Regulator (BSR)"
-            },
-            {
-              value: "complaint",
-              text: "ask BSR for advice"
-            }
-          ]
-        }) }}
+        <h1 class="govuk-heading-l">{{ title }}</h1>
 
         <p>If you’re a resident or member of the public, first make your complaint to an accountable person for the building, for example, the building’s landlord or management company.</p>
         <p>You should use this service only to complain about risks involving structural failure or spread of fire, and only if the accountable person you reported them to has not dealt with them.</p>
         <p>You can contact BSR about a building from when it is being designed or constructed as well as when it is in use and occupied.</p>
+
+        {{ govukRadios({
+          name: "enquiry-about",
+          fieldset: {
+            legend: {
+              text: "Do you want to",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "complaint",
+              text: "make a complaint to the Building Safety Regulator (BSR)"
+            },
+            {
+              value: "advice",
+              text: "ask BSR for advice"
+            }
+          ]
+        }) }}
 
         {{ govukButton({
           text: "Continue"

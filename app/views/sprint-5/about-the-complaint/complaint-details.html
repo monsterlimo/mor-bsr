@@ -15,12 +15,23 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        {% set hintText %}
+          <p>Tell us briefly about your complaint.</p>
+
+          <p>If you have already complained to an accountable person, you can tell us who that is later in this service.</p>
+
+          {{ govukDetails({
+            summaryText: "What can I complain to BSR about?",
+            text: "The Building Safety Regulator deals only with risks to the building involving spread of fire and structural failure. If you have a complaint about the general maintenance of the building, for example, external decor, or cleanliness of common parts, contact an accountable person, such as the building’s landlord or management company.</p>"
+          }) }}
+
+        {% endset %}
 
         {{ govukTextarea({
           name: "occurrence-details",
           id: "occurrence-details",
           hint: {
-            html: "<p>Tell us briefly about your complaint.</p><p>The Building Safety Regulator deals only with risks to the building involving spread of fire and structural failure. If you have a complaint about the general maintenance of the building, for example, external decor, or cleanliness of common parts, contact an accountable person, such as the building’s landlord or management company.</p><p>If you have already complained to an accountable person, you can tell us who that is later in this service.</p><p>Next we will ask if you have any supporting information to upload, such as documents or photos.</p>"
+            html: hintText
           },
           label: {
             text: title,
@@ -28,6 +39,8 @@
             isPageHeading: true
           }
         }) }}
+
+        <p>Next we will ask if you have any supporting information to upload, such as documents or photos.</p>
 
         {{ govukButton({
           text: "Continue"

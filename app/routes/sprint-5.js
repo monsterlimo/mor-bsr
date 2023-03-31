@@ -41,7 +41,7 @@ module.exports = router => {
         res.redirect('/sprint-5/about-the-building/confirm-address')
     })
 
-    router.post('/sprint-5/about-the-advice-required/about-a-building', (req, res) => {
+    router.post('/sprint-5/about-the-request/about-a-building', (req, res) => {
         if (req.session.data['about-a-building'] == "yes") {
             res.redirect('/sprint-5/about-the-building/postcode-lookup')
         } else {
@@ -95,7 +95,15 @@ module.exports = router => {
     })
 
     router.post('/sprint-5/about-the-person/what-is-your-relationship-to-the-building', (req, res) => {
-        res.redirect('/sprint-5/building-in-scope/number-of-floors')   
+        if (req.session.data['building-region']) {
+            res.redirect('/sprint-5/building-in-scope/number-of-floors')  
+        } else {
+            if (req.session.data['enquiry-about'] == "advice") {
+                res.redirect('/sprint-5/building-in-scope/number-of-floors')   
+            } else {
+                res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
+            }
+        }
     })
 
     router.post('/sprint-5/about-the-person/what-is-your-role', (req, res) => {
@@ -121,7 +129,11 @@ module.exports = router => {
     })
 
     router.post('/sprint-5/building-in-scope/number-of-units', (req, res) => {
-        res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
+        if (req.session.data['enquiry-about'] == "advice") {
+            res.redirect('/sprint-5/about-the-request/enter-advice-required')   
+        } else {
+            res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
+        }
     })
 
     router.post('/sprint-5/building-in-scope/prof-number-of-units', (req, res) => {
@@ -137,11 +149,11 @@ module.exports = router => {
             res.redirect('/sprint-5/about-the-complaint/complaint-details')
         } else {
             // advice => enter advice needed
-            res.redirect('/sprint-5/about-the-advice-required/enter-advice-required')
+            res.redirect('/sprint-5/about-the-request/enter-advice-required')
         }
     })
 
-    router.post('/sprint-5/about-the-advice-required/enter-advice-required', (req, res) => {
+    router.post('/sprint-5/about-the-request/enter-advice-required', (req, res) => {
         res.redirect('/sprint-5/check-your-answers')
     })
 

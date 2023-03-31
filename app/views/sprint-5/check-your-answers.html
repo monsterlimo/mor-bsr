@@ -12,7 +12,7 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-three-quarters">
 
       <h1 class="govuk-heading-l">{{title}}</h1>
       <p>Review the information you want to send us</p>
@@ -133,7 +133,7 @@
           },
           {
             key: {
-              text: "Number of residential units are in the building"
+              text: "Number of residential units"
             },
             value: {
               text: (data['number-units'] | capitalize) or "2 or more units"

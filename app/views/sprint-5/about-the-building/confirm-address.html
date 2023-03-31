@@ -33,7 +33,7 @@
               value: {
                 text: "ABC123456789"
               }
-            } if data['enquiry-about'] != "advice",
+            } if data['type-of-person'] == "professional",
             {
               key: {
                 text: "Building name"
@@ -86,12 +86,12 @@
         }) }}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Confirm"
         }) }}
 
-        <p><a href="">Search again</a></p>
+        <p><a href="postcode-lookup">Search again</a></p>
 
-        <p><a href="">Enter address manually</a></p>
+        <p><a href="which-region">Enter address manually</a></p>
 
       </form>
 

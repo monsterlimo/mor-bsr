@@ -16,7 +16,17 @@
 
       <form action="" method="post">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {% set otherTypeOfPerson %}
+          {{ govukInput({
+            label: {
+              text: "Your role"
+            },
+            classes: "govuk-input--width-20",
+            id: "your-role",
+            name: "your-role"
+          }) }}
+        {% endset %}
+
         {{ govukRadios({
           name: "type-of-person",
           fieldset: {
@@ -29,11 +39,18 @@
           items: [
             {
               value: "public",
-              text: "resident or member of the public"
+              text: "a resident or member of the public"
             },
             {
               value: "professional",
-              text: "accountable person (AP), principal accountable person (PAP), principal contractor or principal designer"
+              text: "an accountable person (AP), principal accountable person (PAP), principal contractor or principal designer"
+            },
+            {
+              value: "public",
+              text: "other",
+              conditional: {
+                html: otherTypeOfPerson
+              }
             }
           ]
         }) }}
