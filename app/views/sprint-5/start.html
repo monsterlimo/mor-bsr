@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <h1 class="govuk-heading-xl">
+          {% if serviceName %} {{ serviceName }} {% endif %}
+        </h1>
+
+        <p>Use this service to contact the Building Safety Regulator (BSR).</p>
+
+        <p>BSR regulates high-rise buildings. These are buildings with 7 or more storeys or that are 18 metres or higher, and either:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>have at least 2 residential units</li>
+          <li>are hospitals or care homes during design and construction</li>
+        </ul>
+        
+        <p>BSR regulates only specific risks to building safety, involving:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>structural failure</li>
+          <li>spread of fire</li>
+        </ul>
+
+        {{ govukWarningText({
+          text: "Do not contact BSR if you see a building on fire or collapsing. Call the emergency services on 999.",
+          iconFallbackText: "Warning"
+        }) }}
+ 
+        <p>If you are a resident or other member of the public you can use this service to get advice or make a complaint to BSR.</p>
+
+        <p>Use this service to make a mandatory occurrence report (MOR) if you are</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>an accountable person (AP) or principal accountable person (PAP)</li>
+          <li>principal contractor or principal designer.</li>
+        </ul>
+
+        <h2 class="govuk-heading-m">When not to use this service</h2>
+
+        <p>Do not use this service to report concerns about the general maintenance of a building, for example, external decor or cleanliness of common parts. Report these issues to an accountable person, such as the building’s landlord or management company.</p>
+
+        <p>If you are unhappy with the behaviour of building contractors during the construction of a building, raise this complaint with the principal contractor.</p>
+
+        <h2 class="govuk-heading-m">If you cannot use this service</h2>
+
+        <p>If you cannot use the online service, call BSR on 0300 790 6787. BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+
+        <p>A translation service is available if you would prefer to speak in a language other than English.</p>
+
+        {{ govukButton({
+          text: "Start now",
+          isStartButton: true
+        }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

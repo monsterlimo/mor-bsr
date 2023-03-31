@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+{% set title = "Is the building" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "building-status",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "occupied",
+              text: "Occupied"
+            },
+            {
+              value: "Occupied with current building work",
+              text: "Occupied with current building work",
+              hint: {
+                text: "Do not include decorating work"
+              }
+            },
+            {
+              value: "complete but unoccupied",
+              text: "Complete but unoccupied"
+            } if data['building-resident'] != "yes",
+            {
+              value: "unoccupied with current building work",
+              text: "Unoccupied with current building work"
+            } if data['building-resident'] != "yes",
+            {
+              value: "under construction",
+              text: "under construction"
+            } if data['building-resident'] != "yes",
+            {
+              value: "construction has yet to begin",
+              text: "construction has yet to begin"
+            } if data['building-resident'] != "yes",
+            {
+              value: "unoccupied and awaiting demolition",
+              text: "Unoccupied and awaiting demolition"
+            } if data['building-resident'] != "yes"
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
