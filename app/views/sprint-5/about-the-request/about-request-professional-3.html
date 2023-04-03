@@ -16,32 +16,37 @@
 
       <form action="" method="post">
 
+        <h1 class="govuk-heading-l">{{ title }}<h1>
+        
 
         {{ govukRadios({
           name: "enquiry-about",
           fieldset: {
             legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: "Do you want to",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
               value: "complaint",
-              text: "I want to make a complaint to the Building Safety Regulator (BSR)"
+              text: "make a complaint to the Building Safety Regulator (BSR)"
             },
             {
               value: "advice",
-              text: "I want to ask BSR for advice"
+              text: "ask BSR for advice"
+            },
+            {
+              value: "mor",
+              text: "make a mandatory occurrence report (MOR)"
             }
           ]
         }) }}
 
-        <p>If you’re a resident or member of the public, first make your complaint to an accountable person for the building, for example, the building’s landlord or management company.</p>
-        <p>You should use this service only to complain about risks involving structural failure or spread of fire, and only if the accountable person you reported them to has not dealt with them.</p>
-        <p>You can contact BSR about a building from when it is being designed or constructed as well as when it is in use and occupied.</p>
-
+        <p>If you are an AP or PAP, you must make a MOR for a building in the event of a risk of structural failure or spread of fire.</p>
+        <p>If you are another accountable or responsible person for a building, and you consider a MOR should have been made but has not, make a complaint to BSR using this service.</p>
+        
         {{ govukButton({
           text: "Continue"
         }) }}

@@ -16,27 +16,29 @@
 
       <form action="" method="post">
 
+        <h1 class="govuk-heading-l">{{ title }}</h1>
 
         {{ govukRadios({
           name: "enquiry-about",
           fieldset: {
             legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: "Do you want to",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
               value: "complaint",
-              text: "I want to make a complaint to the Building Safety Regulator (BSR)"
+              text: "make a complaint to the Building Safety Regulator (BSR)"
             },
             {
               value: "advice",
-              text: "I want to ask BSR for advice"
+              text: "ask BSR for advice"
             }
           ]
         }) }}
+
 
         <p>If you’re a resident or member of the public, first make your complaint to an accountable person for the building, for example, the building’s landlord or management company.</p>
         <p>You should use this service only to complain about risks involving structural failure or spread of fire, and only if the accountable person you reported them to has not dealt with them.</p>

@@ -14,32 +14,29 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="" method="post">
-
-        <h1 class="govuk-heading-l">{{ title }}<h1>
-        
+      <form action="" method="post">        
 
         {{ govukRadios({
           name: "enquiry-about",
           fieldset: {
             legend: {
-              text: "Do you want to",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--m"
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
               value: "complaint",
-              text: "make a complaint to the Building Safety Regulator (BSR)"
+              text: "I want to make a complaint to the Building Safety Regulator (BSR)"
             },
             {
               value: "advice",
-              text: "ask BSR for advice"
+              text: "I want to ask BSR for advice"
             },
             {
               value: "mor",
-              text: "make a mandatory occurrence report (MOR)"
+              text: "I want to make a mandatory occurrence report (MOR)"
             }
           ]
         }) }}
