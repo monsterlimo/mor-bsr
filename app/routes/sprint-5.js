@@ -101,7 +101,7 @@ module.exports = router => {
             if (req.session.data['about-a-building'] == "yes") {
                 res.redirect('/sprint-5/about-the-person/what-is-your-relationship-to-the-building')
             } else {
-                res.redirect('/sprint-5/about-the-advice-required/enter-advice-required')
+                res.redirect('/sprint-5/about-the-request/enter-advice-required')
             }
         }
     })
@@ -112,11 +112,36 @@ module.exports = router => {
 
     // only appears for public
     router.post('/sprint-5/about-the-person/what-is-your-relationship-to-the-building', (req, res) => {
+        if (req.session.data['enquiry-about'] == "advice") {
+            if (req.session.data['building-region']) {
+                res.redirect('/sprint-5/building-in-scope/number-of-floors') 
+            } else {
+                res.redirect('/sprint-5/about-the-request/enter-advice-required') 
+            } 
+        } else {
+            if (req.session.data['building-resident'] == "yes") {
+                res.redirect('/sprint-5/building-in-scope/any-building-work') 
+            } else {
+                res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
+            }
+        }
+        
+        /*
         if (req.session.data['building-resident'] == "yes") {
-            res.redirect('/sprint-5/building-in-scope/any-building-work')   
+            if (req.session.data['enquiry-about'] == "advice") {
+                if (req.session.data['building-region']) {
+                    res.redirect('/sprint-5/building-in-scope/number-of-floors') 
+                } else {
+                    res.redirect('/sprint-5/about-the-request/enter-advice-required') 
+                }
+            } else {
+                res.redirect('/sprint-5/building-in-scope/any-building-work')  
+            }
+             
         } else {
             res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
         }
+        */
     })
 
     router.post('/sprint-5/building-in-scope/any-building-work', (req, res) => {
@@ -242,7 +267,7 @@ module.exports = router => {
         if (req.session.data['contacted-ap'] == "yes") {
             res.redirect('/sprint-5/about-the-ap/enter-ap-details')
         } else {
-            res.redirect('/sprint-5/about-the-ap/share-details-with-ap')
+            res.redirect('/sprint-5/check-your-answers')
         }
     })
 
