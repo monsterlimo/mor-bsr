@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Your organisations role" %}
+{% set title = "The role of your organisation" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -40,7 +40,7 @@
             text: "We need to know this so we can direct your enquiry to the right people in Building Safety Regulator"
           } if data["enquiry-about"] == "advice",
           hint: {
-            text: "If you are submitting an MOR as an individual, not on behalf of an org, select your role?"
+            text: "If you are submitting an MOR as an individual, not on behalf of an organisation, select your role."
           } if data["enquiry-about"] == "mor",
           items: [
             {
