@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What type of occurrence are you reporting?" %}
+{% set title = "Is the building" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -17,8 +17,8 @@
       <form action="" method="post">
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        {{ govukCheckboxes({
-          name: "occurrence-type",
+        {{ govukRadios({
+          name: "building-status",
           fieldset: {
             legend: {
               text: title,
@@ -26,24 +26,25 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            text: "Select all that apply"
-          },
           items: [
             {
-              value: "risk of structural failure",
-              text: "risk of structural failure"
+              value: "occupied",
+              text: "occupied"
             },
             {
-              value: "risk of fire spreading",
-              text: "risk of fire spreading"
-            } if data['building-status'] == "occupied" or data['building-status'] == "complete but occupied",
+              value: "complete but occupied",
+              text: "complete but occupied"
+            },
             {
-              value: "fire safety",
-              text: "fire safety"
-            } if data['building-status'] == "in design" or data['building-status'] == "in construction"
+              value: "in design",
+              text: "in design"
+            },
+            {
+              value: "in construction",
+              text: "in construction"
+            }
           ]
-        }) }}         
+        }) }}
 
         {{ govukButton({
           text: "Continue"

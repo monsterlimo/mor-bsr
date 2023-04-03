@@ -26,7 +26,15 @@ module.exports = router => {
     })
 
     router.post('/sprint-5/about-the-occurrence/mor-information', (req, res) => {
-        res.redirect('/sprint-5/about-the-building/postcode-lookup')
+        res.redirect('/sprint-5/building-in-scope/prof-is-the-building-occupied')
+    })
+
+    router.post('/sprint-5/building-in-scope/prof-is-the-building-occupied', (req, res) => {
+        if (req.session.data['building-status'] == "occupied" || req.session.data['building-status'] == "complete but occupied") {
+            res.redirect('/sprint-5/about-the-building/do-you-have-a-hrb-number')
+        } else {
+            res.redirect('/sprint-5/about-the-building/which-region')
+        }  
     })
 
     router.post('/sprint-5/about-the-building/do-you-have-a-hrb-number', (req, res) => {
@@ -120,11 +128,11 @@ module.exports = router => {
     })
 
     router.post('/sprint-5/about-the-person/what-is-your-role', (req, res) => {
-        if (req.session.data['building-region']) {
+        //if (req.session.data['building-region']) {
             res.redirect('/sprint-5/building-in-scope/prof-number-of-floors')   
-        } else {
-            res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
-        }
+        //} else {
+        //    res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
+        //}
     })
 
     router.post('/sprint-5/building-in-scope/is-the-building-occupied', (req, res) => {
@@ -154,7 +162,7 @@ module.exports = router => {
     })
 
     router.post('/sprint-5/building-in-scope/prof-number-of-units', (req, res) => {
-        res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
+        res.redirect('/sprint-5/about-the-occurrence/occurrence-type')   
     })
 
     

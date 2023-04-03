@@ -21,7 +21,7 @@
             name: "other-duty-holder",
             classes: "govuk-!-width-one-third",
             label: {
-              text: "Enter a role"
+              text: "Your organisations role"
             }
           }) }}
         {% endset -%}
@@ -56,8 +56,8 @@
               text: "Principal designer"
             },
             {
-              value: "duty holder",
-              text: "Other duty holder",
+              value: "other",
+              text: "Other",
               conditional: {
                 html: otherDutyHolder
               }
