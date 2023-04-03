@@ -30,7 +30,7 @@ module.exports = router => {
     })
 
     router.post('/sprint-5/building-in-scope/prof-is-the-building-occupied', (req, res) => {
-        if (req.session.data['building-status'] == "occupied" || req.session.data['building-status'] == "complete but occupied") {
+        if (req.session.data['building-status'] == "occupied" || req.session.data['building-status'] == "complete but not occupied") {
             res.redirect('/sprint-5/about-the-building/do-you-have-a-hrb-number')
         } else {
             res.redirect('/sprint-5/about-the-building/which-region')

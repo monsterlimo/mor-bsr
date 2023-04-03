@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What do you want from BSR?" %}
+{% set title = "What is your reason for contacting the Building Safety Regulator (BSR)?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -17,10 +17,6 @@
       <form action="" method="post">
 
         <h1 class="govuk-heading-l">{{ title }}</h1>
-
-        <p>If you’re a resident or member of the public, first make your complaint to an accountable person for the building, for example, the building’s landlord or management company.</p>
-        <p>You should use this service only to complain about risks involving structural failure or spread of fire, and only if the accountable person you reported them to has not dealt with them.</p>
-        <p>You can contact BSR about a building from when it is being designed or constructed as well as when it is in use and occupied.</p>
 
         {{ govukRadios({
           name: "enquiry-about",
@@ -42,6 +38,11 @@
             }
           ]
         }) }}
+
+
+        <p>If you’re a resident or member of the public, first make your complaint to an accountable person for the building, for example, the building’s landlord or management company.</p>
+        <p>You should use this service only to complain about risks involving structural failure or spread of fire, and only if the accountable person you reported them to has not dealt with them.</p>
+        <p>You can contact BSR about a building from when it is being designed or constructed as well as when it is in use and occupied.</p>
 
         {{ govukButton({
           text: "Continue"

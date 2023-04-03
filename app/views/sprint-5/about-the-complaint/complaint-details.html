@@ -17,11 +17,14 @@
       <form action="" method="post">
         <h1 class="govuk-heading-l">{{ title }}</h1>
         
-        <p>If you have already complained to an accountable person, you can tell us who that is later in this service.</p>
-        {{ govukDetails({
-          summaryText: "What can I complain to BSR about?",
-          text: "The Building Safety Regulator deals only with risks to the building involving spread of fire and structural failure. If you have a complaint about the general maintenance of the building, for example, external decor, or cleanliness of common parts, contact an accountable person, such as the building’s landlord or management company."
-        }) }}
+        <p>If you have already complained to an accountable person, you can tell us who you complained to and when later in this service.</p>
+        
+        {% if data['type-of-person'] == "public" %}
+          {{ govukDetails({
+            summaryText: "What can I complain to BSR about?",
+            text: "The Building Safety Regulator deals only with risks to the building involving spread of fire and structural failure. If you have a complaint about the general maintenance of the building, for example, external decor, or cleanliness of common parts, contact an accountable person, such as the building’s landlord or management company."
+          }) }}
+        {% endif %}
         
         {{ govukTextarea({
           name: "occurrence-details",
