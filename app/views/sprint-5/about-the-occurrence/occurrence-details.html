@@ -16,11 +16,17 @@
 
       <form action="" method="post">
 
+        {% set hintText %}
+          <p>Include any remedial action that you or someone else has taken to mitigate the risk.</p>
+          <p>Next we will ask you to upload supporting information, such as documents or photographs.</p>
+        {% endset %}
+
+
         {{ govukTextarea({
           name: "occurrence-details",
           id: "occurrence-details",
           hint: {
-            text: "Include any remedial action that you or someone else has taken to mitigate the risk. Next we will ask you to upload supporting information, such as documents or photographs."
+            html: hintText
           },
           label: {
             text: title,

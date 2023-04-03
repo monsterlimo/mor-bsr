@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Date of the occurence" %}
+{% set title = "Who first reported the occurrence?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,9 +16,9 @@
 
       <form action="" method="post">
 
-        {{ govukDateInput({
-          id: "occurrence-date",
-          namePrefix: "occurrence-date",
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "who-reported-occurrence",
           fieldset: {
             legend: {
               text: title,
@@ -26,9 +26,16 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            html: "When did the occurrence take place?<br>For example, 27 05 2023"
-          }
+          items: [
+            {
+              value: "i did",
+              text: "I did"
+            },
+            {
+              value: "someone else reported it to me",
+              text: "Someone else reported it to me"
+            }
+          ]
         }) }}
 
         {{ govukButton({

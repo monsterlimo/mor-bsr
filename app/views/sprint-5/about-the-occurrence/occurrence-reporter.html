@@ -17,18 +17,6 @@
       <form action="" method="post">
         <h1 class="govuk-heading-l">{{ title }}</h1>
 
-
-{{ govukCheckboxes({
-  items: [
-    {
-      value: "carcasses",
-      text: "I saw the occurrence first"
-    }
-  ]
-}) }}
-
-          <h2 class="govuk-heading-m">Enter the details of the person or organisation that reported it to you</h2>
-
           {{ govukInput({
             label: {
               text: 'Full name or organisation'

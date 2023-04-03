@@ -41,7 +41,7 @@ module.exports = router => {
         if (req.session.data['has-building-reg-number'] == "yes") {
             res.redirect('/sprint-5/about-the-building/enter-hrb-number')
         } else {
-            res.redirect('/sprint-5/about-the-building/which-region')
+            res.redirect('/sprint-5/about-the-building/postcode-lookup')
         }
     })
 
@@ -128,11 +128,11 @@ module.exports = router => {
     })
 
     router.post('/sprint-5/about-the-person/what-is-your-role', (req, res) => {
-        //if (req.session.data['building-region']) {
+        if (req.session.data['building-region']) {
             res.redirect('/sprint-5/building-in-scope/prof-number-of-floors')   
-        //} else {
-        //    res.redirect('/sprint-5/building-in-scope/is-the-building-occupied')   
-        //}
+        } else {
+            res.redirect('/sprint-5/about-the-occurrence/occurrence-type')   
+        }
     })
 
     router.post('/sprint-5/building-in-scope/is-the-building-occupied', (req, res) => {
@@ -184,7 +184,15 @@ module.exports = router => {
     })
 
     router.post('/sprint-5/about-the-occurrence/occurrence-date', (req, res) => {
-        res.redirect('/sprint-5/about-the-occurrence/occurrence-reporter')
+        res.redirect('/sprint-5/about-the-occurrence/occurrence-who-reported')
+    })
+
+    router.post('/sprint-5/about-the-occurrence/occurrence-who-reported', (req, res) => {
+        if (req.session.data['who-reported-occurrence'] == "i did") {
+            res.redirect('/sprint-5/about-the-occurrence/occurrence-details')
+        } else {
+            res.redirect('/sprint-5/about-the-occurrence/occurrence-reporter')
+        }
     })
 
     router.post('/sprint-5/about-the-occurrence/occurrence-reporter', (req, res) => {
