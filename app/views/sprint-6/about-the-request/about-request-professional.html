@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+{% set title = "What is your reason for contacting the Building Safety Regulator (BSR)?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">        
+
+        {{ govukRadios({
+          name: "enquiry-about",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "complaint",
+              text: "I want to make a complaint to the Building Safety Regulator (BSR)"
+            },
+            {
+              value: "advice",
+              text: "I want to ask BSR for advice"
+            },
+            {
+              value: "mor",
+              text: "I want to make a mandatory occurrence report (MOR)"
+            }
+          ]
+        }) }}
+
+        <p>If you are an AP or PAP, you must make a MOR for a building in the event of a risk of structural failure or spread of fire.</p>
+        <p>If you are another accountable or responsible person for a building, and you consider a MOR should have been made but has not, make a complaint to BSR using this service.</p>
+        
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+{% set title = "What do you want from BSR?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+
+        <h1 class="govuk-heading-l">{{ title }}<h1>
+        <p>If you are an accountable person (AP) or principal accountable person (PAP), you must make a MOR for a building in the event of a risk of structural failure or spread of fire.</p>
+        <p>If you are another accountable or responsible person for a building, and you consider a MOR should have been made but has not, make a complaint to BSR using this service.</p>
+
+        {{ govukRadios({
+          name: "enquiry-about",
+          fieldset: {
+            legend: {
+              text: "Do you want to",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "complaint",
+              text: "make a complaint to the Building Safety Regulator (BSR)"
+            },
+            {
+              value: "advice",
+              text: "ask BSR for advice"
+            },
+            {
+              value: "mor",
+              text: "make a mandatory occurrence report (MOR)"
+            }
+          ]
+        }) }}
+       
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

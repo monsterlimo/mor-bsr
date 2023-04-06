@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <h1 class="govuk-heading-xl">
+          {% if serviceName %} {{ serviceName }} {% endif %}
+        </h1>
+
+        <p>Anyone can use this service to</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>ask a question to the Building Safety Regulator (BSR)</li>
+          <li>make a complaint to BSR</li>
+        </ul>
+ 
+        <p>You can contact BSR about a building from when it is being designed or constructed as well as when it is in use and occupied.</p>
+
+        <p>If you’re a resident or member of the public, first make your complaint to an accountable person for the building, for example, the building’s landlord or management company. Use this service if you cannot approach the accountable person or they have not dealt with your issue.</p>
+
+        <h2 class="govuk-heading-m">About the Building Safety Regulator</h2>
+
+        <p>BSR regulates high-rise buildings. These are buildings with 7 or more storeys or that are 18 metres or higher, and either:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>have at least 2 residential units</li>
+          <li>are hospitals or care homes during design and construction</li>
+        </ul>
+ 
+        <p>BSR regulates only specific risks to building safety, involving:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>structural failure</li>
+          <li>spread of fire</li>
+          <li>fire safety when the building is in design and under construction</li>
+        </ul>
+ 
+        <p><a href="">Read the guidance about risk of structural failure, spread of fire and fire safety. (opens in a new tab)</a></p>
+
+        <h2 class="govuk-heading-m">When not to use this service</h2>
+
+        <p>Do not use this service to report concerns about the general maintenance of a building, for example, external decor, or cleanliness of common parts. Report these issues to an accountable person.</p>
+
+        <p>If you are unhappy with the behaviour of building contractors during the construction of a building, raise this complaint with the principal contractor.</p>
+
+        <h2 class="govuk-heading-m">If you can’t use this service</h2>
+
+        <p>If you cannot use the online service, call BSR on 0300 790 6787 and we'll complete it for you. BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+
+        <p>A translation service is available if you would prefer to speak in a language other than English.</p>
+
+        {{ govukButton({
+          text: "Start now",
+          isStartButton: true
+        }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
