@@ -453,8 +453,51 @@
       }) }}
       {% endif %}
 
+      {% if data['enquiry-about'] == 'advice'  %}
+        <h2 class="govuk-heading-m">About the question</h2>
+        {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Question about"
+            },
+            value: {
+              text: data['about-who'] or "Landlord"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-request/ask-a-question-about-who",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['request-about-what'] != "building",
+          {
+            key: {
+              text: "Question details"
+            },
+            value: {
+              text: data['enquiry-description'] or "Information about a something"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-ap/enter-ap-details",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      {% endif %}
 
-      {% if data['request-about-what'] == 'building'  %}
+
+      {% if data['enquiry-about'] == 'complaint'  %}
 
       <h2 class="govuk-heading-m">About the accountable person</h2>
       {{ govukSummaryList({
