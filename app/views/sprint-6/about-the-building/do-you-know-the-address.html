@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you know the address of the building where the occurrence took place?" if data['enquiry-about'] == "mor" else "Do you know the address of the building?"  %}
+{% set title = "Do you know the address of the building?"  %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,69 +15,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-
-        {% set addressHTML %}
-          {% call govukFieldset({
-            legend: {
-              text: "Enter the address of the building",
-              classes: "govuk-fieldset__legend--s"
-            }
-          }) %}
-          {{ govukInput({
-            label: {
-              text: 'Building number and street name'
-            },
-            id: "address-line-1",
-            name: "address-line-1",
-            autocomplete: "address-line1",
-            value: data['address-line-1']
-          }) }}
-          {#
-          {{ govukInput({
-            label: {
-              text: 'Address line 2 (optional)'
-            },
-            id: "address-line-2",
-            name: "address-line-2",
-            autocomplete: "address-line2",
-            value: data['address-line-2']
-          }) }}
-          #}
-          {{ govukInput({
-            label: {
-              text: "Town or area"
-            },
-            classes: "govuk-!-width-two-thirds",
-            id: "address-town",
-            name: "address-town",
-            autocomplete: "address-level2",
-            value: data['address-town']
-          }) }}
-          {#
-          {{ govukInput({
-            label: {
-              text: "County (optional)"
-            },
-            classes: "govuk-!-width-two-thirds",
-            id: "address-county",
-            name: "address-county",
-            value: data['address-county']
-          }) }}
-          #}
-          {{ govukInput({
-            label: {
-              text: "Postcode"
-            },
-            classes: "govuk-input--width-10",
-            id: "address-postcode",
-            name: "address-postcode",
-            autocomplete: "postal-code",
-            value: data['address-postcode']
-          }) }}
-          {% endcall %}
-        {% endset -%}
-        
-       
+        <span class="govuk-caption-l">About the building</span>
         {{ govukRadios({
           name: "address-known",
           fieldset: {
@@ -90,10 +28,7 @@
           items: [
             {
               value: "yes",
-              text: "Yes",
-              conditional: {
-                html: addressHTML
-              }
+              text: "Yes"
             },
             {
               value: "no",

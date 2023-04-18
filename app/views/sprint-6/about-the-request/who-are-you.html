@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "The role of your organisation" %}
+{% set title = "Who are you?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,6 +15,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        <span class="govuk-caption-l">About the request</span>
         {% set otherDutyHolder %}
           {{ govukInput({
             id: "other-duty-holder",
@@ -28,7 +29,7 @@
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "building-relationship",
+          name: "type-of-person",
           fieldset: {
             legend: {
               text: title,
@@ -37,23 +38,20 @@
             }
           },
           hint: {
-            text: "We need to know this so we can direct your enquiry to the right people in Building Safety Regulator"
-          } if data["enquiry-about"] == "advice",
-          hint: {
-            text: "If you are submitting an MOR as an individual, not on behalf of an organisation, select your role."
-          } if data["enquiry-about"] == "mor",
+            text: "Select 'resident' if you are a resident or acting on behalf of one"
+          },
           items: [
             {
-              value: "principle accountable person",
-              text: "Principle accountable person or accountable person"
+              value: "resident",
+              text: "a resident"
+            },
+             {
+              value: "public",
+              text: "a member of the public"
             },
             {
-              value: "principal contractor ",
-              text: "Principal contractor"
-            },
-            {
-              value: "principal designer",
-              text: "Principal designer"
+              value: "professional",
+              text: "a building professional, for example an accountable person"
             },
             {
               value: "other",
@@ -61,17 +59,15 @@
               conditional: {
                 html: otherDutyHolder
               }
-            },
-            {
-              value: "resident",
-              text: "Resident or member of the public"
-            } if data["request-advice"] != mor
+            }
           ]
         }) }}
 
         {{ govukButton({
           text: "Continue"
         }) }}
+
+        <!--<p>Data<br>Request about <strong>{{ data['request-about-what'] }} - {{ data['enquiry-about']  }}</strong></p>-->
 
       </form>
 

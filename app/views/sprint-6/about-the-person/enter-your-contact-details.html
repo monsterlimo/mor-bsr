@@ -15,6 +15,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        <span class="govuk-caption-l">About you</span>
         {% call govukFieldset({
           legend: {
             text: title,
@@ -44,6 +45,9 @@
           }) }}
         {% endcall %}
 
+        <mark>add in radio for sharing contact details with the AP<br></mark>
+        <mark>can we share your details with the ap/org your complaining about</mark>
+        
         {{ govukButton({
           text: "Continue"
         }) }}

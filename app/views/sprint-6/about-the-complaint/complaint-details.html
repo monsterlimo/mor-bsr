@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Tell us briefly about your complaint" %}
+{% set title = "What is your complaint?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,9 +15,12 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <h1 class="govuk-heading-l">{{ title }}</h1>
-        
+        <span class="govuk-caption-l">About the complaint</span>
+
+        {% set hint %}
+        <p>Tell us what happened, when, who was involved and if any action has been taken to resolve to problem.</p>
         <p>If you have already complained to an accountable person, you can tell us who you complained to and when later in this service.</p>
+        {% endset %}
         
         {% if data['type-of-person'] == "public" %}
           {{ govukDetails({
@@ -29,9 +32,12 @@
         {{ govukTextarea({
           name: "occurrence-details",
           id: "occurrence-details",
+          hint: {
+            html: hint
+          },
           label: {
-            text: "Your complaint",
-            classes: "govuk-label--m",
+            text: title,
+            classes: "govuk-label--l",
             isPageHeading: true
           }
         }) }}

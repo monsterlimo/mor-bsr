@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What advice do you want?"  %}
+{% set title = "What question do you want to ask?"  %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,7 +15,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-
+        <span class="govuk-caption-l">About the question</span> 
         {{ govukTextarea({
           name: "enquiry-description",
           value: data['enquiry-description'],
@@ -30,6 +30,8 @@
         {{ govukButton({
           text: "Continue"
         }) }}
+
+        <!--<p>Data<br>Request about <strong>{{ data['request-about-what'] }} - {{ data['enquiry-about']  }}</strong></p>-->
 
       </form>
 

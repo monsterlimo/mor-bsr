@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Have you complained about this issue to an accountable person?" %}
+{% set title = "Who do you want to complain about?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,6 +15,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        <span class="govuk-caption-l">About the complaint</span>
 
         {% set notContactedAP %}
           {{ govukInput({
@@ -27,32 +28,17 @@
           }) }}
         {% endset %}
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        {{ govukRadios({
-          name: "contacted-ap",
-          fieldset: {
-            legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+        {{ govukInput({
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
           hint: {
-            text: "For example, the landlord or management company."
+            text: "For example a building inspector, designer or an accountable person such as a management company or landlord"
           },
-          items: [
-            {
-              value: "yes",
-              text: "Yes"
-            },
-            {
-              value: "no",
-              text: "No",
-              conditional: {
-                html: notContactedAP
-              }
-            }
-          ]
+          id: "event-name",
+          name: "event-name"
         }) }}
 
         {{ govukButton({

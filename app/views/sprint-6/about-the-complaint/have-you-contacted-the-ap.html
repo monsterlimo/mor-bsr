@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you have supporting information?" %}
+{% set title = "Have you complained about this issue to an accountable person?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,9 +16,21 @@
 
       <form action="" method="post">
         <span class="govuk-caption-l">About the complaint</span>
+
+        {% set notContactedAP %}
+          {{ govukInput({
+            label: {
+              text: "Tell us why you didn't contact the accountable person",
+              classes: "govuk-label--s"
+            },
+            id: "width-20",
+            name: "width-20"
+          }) }}
+        {% endset %}
+
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "supporting-evidence",
+          name: "contacted-ap",
           fieldset: {
             legend: {
               text: title,
@@ -27,7 +39,7 @@
             }
           },
           hint: {
-            text: "For example documents or photos."
+            html: "<p>For example, the landlord or management company.</p><p>The Building Safety Regulator will review your complaint even if you have not contacted an accountable person.</p>"
           },
           items: [
             {
@@ -36,7 +48,10 @@
             },
             {
               value: "no",
-              text: "No"
+              text: "No",
+              conditional: {
+                html: notContactedAP
+              }
             }
           ]
         }) }}

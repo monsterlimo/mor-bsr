@@ -15,6 +15,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        <span class="govuk-caption-l">About the accountable person</span>
 
         {% call govukFieldset({
           legend: {
@@ -23,12 +24,25 @@
             isPageHeading: true
           }
         }) %}
+
           {{ govukInput({
             label: {
-              text: 'Full name or organisation'
+              text: 'Organisation'
+            },
+            hint: {
+              text: "If you don't know the name of the organisation tell us the name of the person you contacted "
             },
             id: "ap-name",
             name: "ap-name",
+            classes: "govuk-input--width-20"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: 'Their role (optional)'
+            },
+            id: "ap-role",
+            name: "ap-role",
             classes: "govuk-input--width-20"
           }) }}
 
@@ -50,14 +64,7 @@
             classes: "govuk-input--width-20"
           }) }}
 
-          {{ govukInput({
-            label: {
-              text: 'Their role (optional)'
-            },
-            id: "ap-role",
-            name: "ap-role",
-            classes: "govuk-input--width-20"
-          }) }}
+          
         {% endcall %}
 
         {{ govukButton({
