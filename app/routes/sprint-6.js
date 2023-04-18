@@ -151,15 +151,14 @@ module.exports = router => {
                 // HRB
                 res.redirect('/sprint-6/about-the-complaint/have-you-contacted-the-ap')
             }
-            
         } else {
-            res.redirect('/sprint-6/about-the-complaint/complain-about-who')
+            res.redirect('/sprint-6/about-the-complaint/complaint-about-who')
         }
         
        }
     })
 
-    router.post('/sprint-6/about-the-complaint/complain-about-who', (req, res) => {
+    router.post('/sprint-6/about-the-complaint/complaint-about-who', (req, res) => {
         res.redirect('/sprint-6/about-the-complaint/have-you-contacted-the-ap')
     })
 
@@ -292,13 +291,7 @@ module.exports = router => {
         if (req.session.data['supporting-evidence'] == "yes") {
             res.redirect('/sprint-6/supporting-information/upload-supporting-info')
         } else {
-            
-            if (req.session.data['enquiry-about'] == "complaint") {
-                // no complaint goes to AP
-                res.redirect('/sprint-6/about-the-ap/have-you-contacted-the-ap')
-            } else {
-                res.redirect('/sprint-6/check-your-answers')
-            }
+            res.redirect('/sprint-6/about-the-ap/enter-ap-details')
         }
     })
 

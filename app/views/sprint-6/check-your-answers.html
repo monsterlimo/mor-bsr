@@ -400,6 +400,23 @@
           },
           {
             key: {
+              text: "Complaint about"
+            },
+            value: {
+              text: data['complaint-about-who'] or "Landlord" 
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-complaint/complaint-details",
+                  text: "Change",
+                  visuallyHiddenText: "licence period"
+                }
+              ]
+            }
+          } if data['complaint-about-who'],
+          {
+            key: {
               text: "Complaint details"
             },
             value: {
