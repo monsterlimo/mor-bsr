@@ -170,6 +170,12 @@ module.exports = router => {
     router.post('/sprint-6/about-the-complaint/have-you-contacted-the-ap', (req, res) => {
         res.redirect('/sprint-6/about-the-complaint/complaint-details')
     })
+
+    router.post('/sprint-6/about-the-ap/enter-ap-details', (req, res) => {
+        res.redirect('/sprint-6/about-the-ap/when-contacted-ap')
+    })
+
+
 /*
     router.post('/sprint-6/about-the-ap/share-details-with-ap', (req, res) => {
         res.redirect('/sprint-6/about-the-person/what-is-your-relationship-to-the-building')
