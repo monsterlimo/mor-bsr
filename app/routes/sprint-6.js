@@ -119,15 +119,39 @@ module.exports = router => {
 
     router.post('/sprint-6/about-the-person/enter-your-contact-details', (req, res) => {
        if (req.session.data['enquiry-about'] == "advice") {
+        // advice
         if (req.session.data['request-about-what'] == "person") {
             res.redirect('/sprint-6/about-the-request/ask-a-question-about-who')
         } else {
-            res.redirect('/sprint-6/about-the-request/enter-advice-required')
+            // building
+            if (req.session.data['building-region']) {
+                // HRB public check
+                if (req.session.data['type-of-person'] == "professional") {
+                    res.redirect('/sprint-6/building-in-scope/prof-number-of-floors')
+                } else {
+                    res.redirect('/sprint-6/building-in-scope/number-of-floors')
+                }
+            } else {
+                // HRB
+                res.redirect('/sprint-6/about-the-request/enter-advice-required')
+            }
         }
        } else {
-        // it's a complaint
+        // complaint
         if (req.session.data['request-about-what'] == "building") {
-            res.redirect('/sprint-6/about-the-complaint/have-you-contacted-the-ap')
+            // building
+            if (req.session.data['building-region']) {
+                // HRB public check
+                if (req.session.data['type-of-person'] == "professional") {
+                    res.redirect('/sprint-6/building-in-scope/prof-number-of-floors')
+                } else {
+                    res.redirect('/sprint-6/building-in-scope/number-of-floors')
+                }
+            } else {
+                // HRB
+                res.redirect('/sprint-6/about-the-complaint/have-you-contacted-the-ap')
+            }
+            
         } else {
             res.redirect('/sprint-6/about-the-complaint/complain-about-who')
         }
@@ -213,7 +237,11 @@ module.exports = router => {
     })
 
     router.post('/sprint-6/building-in-scope/prof-number-of-units', (req, res) => {
-        res.redirect('/sprint-6/about-the-occurrence/occurrence-type')   
+        if (req.session.data['enquiry-about'] == "advice") {
+            res.redirect('/sprint-6/about-the-request/enter-advice-required')   
+        } else {
+            res.redirect('/sprint-6/about-the-complaint/complaint-details')   
+        }
     })
 
     

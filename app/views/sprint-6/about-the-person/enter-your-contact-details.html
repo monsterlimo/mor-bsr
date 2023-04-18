@@ -45,8 +45,31 @@
           }) }}
         {% endcall %}
 
-        <mark>add in radio for sharing contact details with the AP<br></mark>
-        <mark>can we share your details with the ap/org your complaining about</mark>
+        {% if data['enquiry-about'] == "complaint" %}
+          {{ govukRadios({
+          name: "share-contact-with-ap",
+          fieldset: {
+            legend: {
+              text: "Can we share your details with the accountable person or organisation you are complaining about?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, the landlord or management company"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+        {% endif %}
         
         {{ govukButton({
           text: "Continue"
