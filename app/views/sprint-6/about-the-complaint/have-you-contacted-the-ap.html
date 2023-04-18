@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Have you complained about this issue to an accountable person?" %}
+{% set title = "Have you complained about this issue to an accountable person?" if data['request-about-what'] == "building" else "Have you complained about this issue to the person or organisation before?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -20,12 +20,19 @@
         {% set notContactedAP %}
           {{ govukInput({
             label: {
-              text: "Tell us why you didn't contact the accountable person",
+              text: "Tell us why you didn't contact them",
               classes: "govuk-label--s"
             },
             id: "width-20",
             name: "width-20"
           }) }}
+        {% endset %}
+
+        {% set hintLine = "The Building Safety Regulator will review your complaint even if you have not contacted an accountable person." if data['request-about-what'] == "building" else "The Building Safety Regulator will review your complaint even if you have not contacted the person or organisation before." %}
+
+        {% set hint %}
+          <p>For example, the landlord or management company.</p>
+          <p>{{ hintLine}}</p>
         {% endset %}
 
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -39,7 +46,7 @@
             }
           },
           hint: {
-            html: "<p>For example, the landlord or management company.</p><p>The Building Safety Regulator will review your complaint even if you have not contacted an accountable person.</p>"
+            html: hint
           },
           items: [
             {
