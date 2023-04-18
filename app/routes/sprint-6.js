@@ -7,6 +7,7 @@ module.exports = router => {
     })
 
     router.post('/sprint-6/start-advice', (req, res) => {
+        req.session.data = []
         res.redirect('/sprint-6/about-the-request/request-about')
     })
 
