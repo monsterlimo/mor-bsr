@@ -33,7 +33,7 @@
                 {
                   href: "about-the-request/request-about",
                   text: "Change",
-                  visuallyHiddenText: "previous application number"
+                  visuallyHiddenText: "what the request is about"
                 }
               ]
             }
@@ -50,7 +50,7 @@
                 {
                   href: "about-the-request/complaint-or-advice",
                   text: "Change",
-                  visuallyHiddenText: "previous application number"
+                  visuallyHiddenText: "what you need help with"
                 }
               ]
             }
@@ -67,7 +67,7 @@
                 {
                   href: "about-the-request/who-are-you",
                   text: "Change",
-                  visuallyHiddenText: "previous application number"
+                  visuallyHiddenText: "who are you"
                 }
               ]
             }
@@ -92,7 +92,7 @@
                 {
                   href: "about-the-building/which-region",
                   text: "Change",
-                  visuallyHiddenText: "home address"
+                  visuallyHiddenText: "where the building is located"
                 }
               ]
             }
@@ -109,7 +109,7 @@
                 {
                   href: "about-the-building/postcode-lookup",
                   text: "Change",
-                  visuallyHiddenText: "home address"
+                  visuallyHiddenText: "the building address"
                 }
               ]
             }
@@ -124,9 +124,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-building/is-the-building-occupied",
+                  href: "building-in-scope/is-the-building-occupied",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "is the building occupied"
                 }
               ]
             }
@@ -143,7 +143,7 @@
                 {
                   href: "building-in-scope/number-of-floors",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "building height"
                 }
               ]
             }
@@ -160,7 +160,7 @@
                 {
                   href: "building-in-scope/number-of-units",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "number of residential units"
                 }
               ]
             }
@@ -177,7 +177,7 @@
                 {
                   href: "building-in-scope/prof-number-of-floors",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "number of floors"
                 }
               ]
             }
@@ -194,7 +194,7 @@
                 {
                   href: "building-in-scope/prof-height-of-building",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "height of the building"
                 }
               ]
             }
@@ -211,7 +211,7 @@
                 {
                   href: "building-in-scope/prof-number-of-units",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "number of residential units"
                 }
               ]
             }
@@ -236,7 +236,7 @@
                 {
                   href: "about-the-person/enter-your-name",
                   text: "Change",
-                  visuallyHiddenText: "name"
+                  visuallyHiddenText: "your name"
                 }
               ]
             }
@@ -253,7 +253,7 @@
                 {
                   href: "about-the-person/enter-your-contact-details",
                   text: "Change",
-                  visuallyHiddenText: "contact details"
+                  visuallyHiddenText: "your contact details"
                 }
               ]
             }
@@ -261,105 +261,7 @@
         ]
       }) }}
 
-    {% if data['enquiry-about'] == 'mor'  %}
-
-      <h2 class="govuk-heading-m">About the occurrence</h2>
-      {{ govukSummaryList({
-        classes: 'govuk-!-margin-bottom-9',
-        rows: [
-          {
-            key: {
-              text: "In what capacity are you making a MOR?"
-            },
-            value: {
-              text: (data['mor-submitter-role'] | capitalize) or "Principle accountable person"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-occurrence/reporter-relationship",
-                  text: "Change",
-                  visuallyHiddenText: "licence period"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Occurrence type"
-            },
-            value: {
-              text: data['occurrence-type']
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-occurrence/occurrence-type",
-                  text: "Change",
-                  visuallyHiddenText: "licence period"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Occurrence date"
-            },
-            value: {
-              text: (data['occurrence-date-day'] or "10") + " " + (data['occurrence-date-month'] or "5") + " " + (data['occurrence-date-year' or 2022)]
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-occurrence/occurrence-date",
-                  text: "Change",
-                  visuallyHiddenText: "licence period"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Occurrence reporter"
-            },
-            value: {
-              html: (data['reporter-first-name'] or "Jane") + " " + (data['reporter-last-name'] or "Wilson") + "<br>" + (data['reporter-email'] or "jane@test.com")  + "<br>" + (data['reporter-relationship'] or "Visitor")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-occurrence/occurrence-reporter",
-                  text: "Change",
-                  visuallyHiddenText: "licence period"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Occurrence details"
-            },
-            value: {
-              text: data['occurrence-details'] or "Details of the occurrence"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-occurrence/occurrence-details",
-                  text: "Change",
-                  visuallyHiddenText: "licence period"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-    {% endif %}
-
-
-    {% if data['enquiry-about'] == 'complaint'  %}
-
+      {% if data['enquiry-about'] == 'complaint'  %}
       <h2 class="govuk-heading-m">About the complaint</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
@@ -374,9 +276,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-ap/have-you-contacted-the-ap",
+                  href: "about-the-complaint/have-you-contacted-the-ap",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "share contact details with the accountable person"
                 }
               ]
             }
@@ -393,7 +295,7 @@
                 {
                   href: "about-the-ap/enter-ap-details",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "complained to the accountable person"
                 }
               ]
             }
@@ -408,9 +310,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-complaint/complaint-details",
+                  href: "about-the-complaint/complaint-about-who",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "complaint about"
                 }
               ]
             }
@@ -427,7 +329,7 @@
                 {
                   href: "about-the-complaint/complaint-details",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "complaint details"
                 }
               ]
             }
@@ -444,7 +346,7 @@
                 {
                   href: "supporting-information/review-uploads",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "supporting information"
                 }
               ]
             }
@@ -470,7 +372,7 @@
                 {
                   href: "about-the-request/ask-a-question-about-who",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "question about"
                 }
               ]
             }
@@ -485,9 +387,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-ap/enter-ap-details",
+                  href: "about-the-request/enter-advice-required",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "question details"
                 }
               ]
             }
@@ -515,7 +417,7 @@
                 {
                   href: "about-the-ap/enter-ap-details",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "accountable person organisation or name"
                 }
               ]
             }
@@ -532,7 +434,7 @@
                 {
                   href: "about-the-ap/enter-ap-details",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "accountable person role"
                 }
               ]
             }
@@ -549,7 +451,7 @@
                 {
                   href: "about-the-ap/enter-ap-details",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "accountable person contact details"
                 }
               ]
             }
@@ -564,36 +466,17 @@
             actions: {
               items: [
                 {
-                  href: "about-the-ap/enter-ap-details",
+                  href: "about-the-ap/when-contacted-ap",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "when contacted accountable person"
                 }
               ]
             }
-          } if data['contacted-ap'] == 'yes',
-          {
-            key: {
-              text: "Supporting information"
-            },
-            value: {
-              html: "<p>image-of-corridor.png<br>4238-17-10-2023.jpeg<br>report.docx</p>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "supporting-information/review-uploads",
-                  text: "Change",
-                  visuallyHiddenText: "licence period"
-                }
-              ]
-            }
-          }
+          } if data['contacted-ap'] == 'yes'
         ]
       }) }}
 
       {% endif %}
-
-
 
       <form action="" method="post">
         <input type="hidden" name="answers-checked" value="true">
