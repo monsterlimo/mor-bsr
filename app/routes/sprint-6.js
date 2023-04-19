@@ -292,7 +292,11 @@ module.exports = router => {
         if (req.session.data['supporting-evidence'] == "yes") {
             res.redirect('/sprint-6/supporting-information/upload-supporting-info')
         } else {
-            res.redirect('/sprint-6/about-the-ap/enter-ap-details')
+            if (req.session.data['contacted-ap'] == "yes") {
+                res.redirect('/sprint-6/about-the-ap/enter-ap-details')
+            } else {
+                res.redirect('/sprint-6/check-your-answers')
+            }
         }
     })
 
@@ -303,7 +307,11 @@ module.exports = router => {
     router.post('/sprint-6/supporting-information/review-uploads', (req, res) => {
         if (req.session.data['enquiry-about'] == "complaint") {
             // no complaint goes to AP
-            res.redirect('/sprint-6/about-the-ap/enter-ap-details')
+            if (req.session.data['contacted-ap'] == "yes") {
+                res.redirect('/sprint-6/about-the-ap/enter-ap-details')
+            } else {
+                res.redirect('/sprint-6/check-your-answers')
+            }
         } else {
             res.redirect('/sprint-6/check-your-answers')
         }
