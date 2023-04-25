@@ -23,7 +23,7 @@
         rows: [
           {
             key: {
-              text: "Request about"
+              text: "What do you want to contact the Building Safety Regulator about?"
             },
             value: {
               text: (data['request-about-what'] | capitalize) or "Building"
@@ -40,7 +40,7 @@
           },
           {
             key: {
-              text: "Help with"
+              text: "How can the Building Safety Regulator help you?"
             },
             value: {
               text: (data['enquiry-about'] | capitalize) or "Advice"
@@ -57,7 +57,7 @@
           },
           {
             key: {
-              text: "Relationship to the building"
+              text: "Who are you?"
             },
             value: {
               text: (data['type-of-person'] | capitalize) or "Resident"
@@ -285,7 +285,7 @@
           },
           {
             key: {
-              text: "Complained to the accountable person"
+              text: "Have you complained about this issue to an accountable person?"
             },
             value: {
               text: data['contacted-ap'] or "Yes"
@@ -302,7 +302,7 @@
           },
           {
             key: {
-              text: "Complaint about"
+              text: "Who did you contact?"
             },
             value: {
               text: data['complaint-about-who'] or "Landlord" 
@@ -319,7 +319,24 @@
           } if data['complaint-about-who'],
           {
             key: {
-              text: "Complaint details"
+              text: "When did you contact them?"
+            },
+            value: {
+              text: data['ap-contacted-date-day'] + "-" + data['ap-contacted-date-month'] + "-" + data['ap-contacted-date-year'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-complaint/complaint-about-who",
+                  text: "Change",
+                  visuallyHiddenText: "complaint about"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "What is your complaint?"
             },
             value: {
               text: data['complaint-details'] or "About the complaint" 
@@ -362,7 +379,7 @@
         rows: [
           {
             key: {
-              text: "Question about"
+              text: "What question do you want to ask?"
             },
             value: {
               text: data['about-who'] or "Landlord"
@@ -373,23 +390,6 @@
                   href: "about-the-request/ask-a-question-about-who",
                   text: "Change",
                   visuallyHiddenText: "question about"
-                }
-              ]
-            }
-          } if data['request-about-what'] != "building",
-          {
-            key: {
-              text: "Question details"
-            },
-            value: {
-              text: data['enquiry-description'] or "Information about a something"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-request/enter-advice-required",
-                  text: "Change",
-                  visuallyHiddenText: "question details"
                 }
               ]
             }

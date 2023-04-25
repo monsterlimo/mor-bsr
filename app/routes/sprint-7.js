@@ -122,7 +122,7 @@ module.exports = router => {
        if (req.session.data['enquiry-about'] == "advice") {
         // advice
         if (req.session.data['request-about-what'] == "person") {
-            res.redirect('/sprint-7/about-the-request/ask-a-question-about-who')
+            res.redirect('/sprint-7/about-the-request/enter-advice-required')
         } else {
             // building
             if (req.session.data['building-region']) {
