@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Is your question about a building?" if data['enquiry-about'] == "advice" else "Is your complaint about a building?" %}
+{% set serviceName = "Contact the Building Safety Regulator" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit

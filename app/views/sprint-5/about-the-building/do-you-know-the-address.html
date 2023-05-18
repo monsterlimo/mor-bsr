@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Do you know the address of the building where the occurrence took place?" if data['enquiry-about'] == "mor" else "Do you know the address of the building?"  %}
+{% set serviceName = "Contact the Building Safety Regulator" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit

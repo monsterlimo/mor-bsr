@@ -1,6 +1,7 @@
 {% extends "layouts/main.html" %}
 {% set type = "complaint" if data['enquiry-about'] == "complaint" else "MOR" %}
 {% set title = "Do you have any more information to support your " + type + "?" %}
+{% set serviceName = "Contact the Building Safety Regulator" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
