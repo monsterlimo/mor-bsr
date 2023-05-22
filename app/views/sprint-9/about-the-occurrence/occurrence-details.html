@@ -15,23 +15,50 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
 
-        {% set hintText %}
-          <p>Include any remedial action that you or someone else has taken to mitigate the risk.</p>
-          <p>Next we will ask you to upload supporting information, such as documents or photographs.</p>
-        {% endset %}
+        <p>Include any remedial action that you or someone else has taken to mitigate the risk.</p>
+        <p>Next we will ask you to upload supporting information, such as documents or photographs.</p>
+
 
 
         {{ govukTextarea({
           name: "occurrence-details",
           id: "occurrence-details",
-          hint: {
-            html: hintText
-          },
           label: {
-            text: title,
-            classes: "govuk-label--l",
-            isPageHeading: true
+            text: "What happened",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "occurrence-details",
+          id: "occurrence-details",
+          label: {
+            text: "Why did it happen",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "occurrence-details",
+          id: "occurrence-details",
+          label: {
+            text: "Who was involved",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "occurrence-details",
+          id: "occurrence-details",
+          label: {
+            text: "What action was taken",
+            classes: "govuk-label--s",
+            isPageHeading: false
           }
         }) }}
 

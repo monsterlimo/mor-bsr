@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "In what capacity are you making a MOR?" %}
+{% set title = "How are you or your organisation involved in this building?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,8 +16,7 @@
 
       <form action="" method="post">
 
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        {{ govukRadios({
+        {{ govukCheckboxes({
           name: "mor-submitter-role",
           fieldset: {
             legend: {
@@ -25,6 +24,9 @@
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
+          },
+          hint: {
+            text: "Select all that apply."
           },
           items: [
             {

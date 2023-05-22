@@ -7,7 +7,11 @@ module.exports = router => {
     })
 
     router.post('/sprint-9/about-the-building/is-the-building-occupied', (req, res) => {
-        res.redirect('/sprint-9/about-the-building/do-you-have-a-hrb-number')
+        if (req.session.data['building-status'] == "in design" || req.session.data['building-status'] == "in construction") {
+            res.redirect('/sprint-9/about-the-building/which-region')
+        } else {
+            res.redirect('/sprint-9/about-the-building/do-you-have-a-hrb-number')
+        }
     })
 
     router.post('/sprint-9/about-the-building/do-you-have-a-hrb-number', (req, res) => {
@@ -31,7 +35,7 @@ module.exports = router => {
     })
 
     router.post('/sprint-9/about-the-building/confirm-address', (req, res) => {
-        res.redirect('/sprint-9/about-the-person/enter-your-name')
+        res.redirect('/sprint-9/about-the-person/org-or-individual')
     })
 
     router.post('/sprint-9/about-the-building/which-region', (req, res) => {
@@ -43,11 +47,19 @@ module.exports = router => {
     })
 
     router.post('/sprint-9/about-the-building/enter-the-building-address', (req, res) => {
+        res.redirect('/sprint-9/about-the-person/org-or-individual')
+    })
+
+    router.post('/sprint-9/about-the-person/org-or-individual', (req, res) => {
         res.redirect('/sprint-9/about-the-person/enter-your-name')
     })
 
     router.post('/sprint-9/about-the-person/enter-your-name', (req, res) => {
-        res.redirect('/sprint-9/about-the-person/enter-your-org-name')
+        if (req.session.data['type-of-reporter'] == "organisation") {
+            res.redirect('/sprint-9/about-the-person/enter-your-org-name')
+        } else {
+            res.redirect('/sprint-9/about-the-person/enter-your-contact-details')
+        }
     })
 
     router.post('/sprint-9/about-the-person/enter-your-org-name', (req, res) => {
@@ -55,10 +67,10 @@ module.exports = router => {
     })
 
     router.post('/sprint-9/about-the-person/enter-your-contact-details', (req, res) => {
-        res.redirect('/sprint-9/about-the-person/reporter-relationship')
+        res.redirect('/sprint-9/about-the-person/your-role')
     })
 
-    router.post('/sprint-9/about-the-person/reporter-relationship', (req, res) => {
+    router.post('/sprint-9/about-the-person/your-role', (req, res) => {
         res.redirect('/sprint-9/building-in-scope/number-of-floors')
     })
 
@@ -75,7 +87,11 @@ module.exports = router => {
     })
 
     router.post('/sprint-9/building-in-scope/number-of-units', (req, res) => {
-        const inScope = true;
+        const height = req.session.data['building-height']
+        const floors = req.session.data['number-floors']
+        const units = req.session.data['number-units']
+        const inScope = (height >= 18 || floors >= 7) && units >= 2;
+
         if (inScope) {
             res.redirect('/sprint-9/about-the-occurrence/occurrence-type')
         } else {

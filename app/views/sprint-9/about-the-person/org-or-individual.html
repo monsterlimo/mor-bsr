@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "When did you become aware of the occurence" %}
+{% set title = "Org or individual" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,9 +16,9 @@
 
       <form action="" method="post">
 
-        {{ govukDateInput({
-          id: "occurrence-date",
-          namePrefix: "occurrence-date",
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "type-of-reporter",
           fieldset: {
             legend: {
               text: title,
@@ -26,9 +26,16 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            html: "For example, 27 05 2023"
-          }
+          items: [
+            {
+              value: "organisation",
+              text: "organisaion"
+            },
+            {
+              value: "individual",
+              text: "individual"
+            }
+          ]
         }) }}
 
         {{ govukButton({
