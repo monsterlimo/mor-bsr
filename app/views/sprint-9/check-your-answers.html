@@ -168,6 +168,7 @@
           }
         ]
       }) }}
+     
 
       {% set detailsHTML %}
         {{ govukDetails({
@@ -185,7 +186,7 @@
               text: "In what capacity are you making a MOR?"
             },
             value: {
-              text: (data['mor-submitter-role'] | capitalize) or "Principle accountable person"
+              text: data['mor-submitter-role']
             },
             actions: {
               items: [
@@ -284,6 +285,7 @@
           }
         ]
       }) }}
+   
 
       <form action="" method="post">
         <input type="hidden" name="answers-checked" value="true">
