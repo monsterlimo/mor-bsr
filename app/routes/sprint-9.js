@@ -8,9 +8,17 @@ module.exports = router => {
 
     router.post('/sprint-9/about-the-building/is-the-building-occupied', (req, res) => {
         if (req.session.data['building-status'] == "in design" || req.session.data['building-status'] == "in construction") {
-            res.redirect('/sprint-9/about-the-building/which-region')
+            res.redirect('/sprint-9/about-the-building/have-an-address')
         } else {
             res.redirect('/sprint-9/about-the-building/do-you-have-a-hrb-number')
+        }
+    })
+
+    router.post('/sprint-9/about-the-building/have-an-address', (req, res) => {
+        if (req.session.data['has-address'] == "yes") {
+            res.redirect('/sprint-9/about-the-building/postcode-lookup')
+        } else {
+            res.redirect('/sprint-9/about-the-building/building-location')
         }
     })
 
@@ -18,8 +26,12 @@ module.exports = router => {
         if (req.session.data['has-building-reg-number'] == "yes") {
             res.redirect('/sprint-9/about-the-building/enter-hrb-number')
         } else {
-            res.redirect('/sprint-9/about-the-building/postcode-lookup')
+            res.redirect('/sprint-9/about-the-building/have-an-address')
         }
+    })
+
+    router.post('/sprint-9/about-the-building/building-location', (req, res) => {
+        res.redirect('/sprint-9/about-the-person/your-details')
     })
 
     router.post('/sprint-9/about-the-building/enter-hrb-number', (req, res) => {
@@ -35,7 +47,7 @@ module.exports = router => {
     })
 
     router.post('/sprint-9/about-the-building/confirm-address', (req, res) => {
-        res.redirect('/sprint-9/about-the-person/org-or-individual')
+        res.redirect('/sprint-9/about-the-person/your-details')
     })
 
     router.post('/sprint-9/about-the-building/which-region', (req, res) => {
@@ -50,20 +62,8 @@ module.exports = router => {
         res.redirect('/sprint-9/about-the-person/org-or-individual')
     })
 
-    router.post('/sprint-9/about-the-person/org-or-individual', (req, res) => {
-        res.redirect('/sprint-9/about-the-person/enter-your-name')
-    })
-
-    router.post('/sprint-9/about-the-person/enter-your-name', (req, res) => {
-        if (req.session.data['type-of-reporter'] == "organisation") {
-            res.redirect('/sprint-9/about-the-person/enter-your-org-name')
-        } else {
-            res.redirect('/sprint-9/about-the-person/enter-your-contact-details')
-        }
-    })
-
-    router.post('/sprint-9/about-the-person/enter-your-org-name', (req, res) => {
-        res.redirect('/sprint-9/about-the-person/enter-your-contact-details')
+    router.post('/sprint-9/about-the-person/your-details', (req, res) => {
+        res.redirect('/sprint-9/about-the-person/your-role')
     })
 
     router.post('/sprint-9/about-the-person/enter-your-contact-details', (req, res) => {
@@ -71,7 +71,27 @@ module.exports = router => {
     })
 
     router.post('/sprint-9/about-the-person/your-role', (req, res) => {
-        res.redirect('/sprint-9/building-in-scope/number-of-floors')
+        const roles = req.session.data['reporter-role'];
+
+        if (roles.length == 1) {
+            roles.forEach(role => {
+                if (role == "other") {
+                    res.redirect('/sprint-9/about-the-person/not-able-to-submit')
+                } else {
+                    if (req.session.data['has-building-reg-number'] == "yes") {
+                        res.redirect('/sprint-9/about-the-occurrence/occurrence-details')
+                    } else {
+                        res.redirect('/sprint-9/building-in-scope/number-of-floors')
+                    }
+                }
+            });
+        } else {
+            if (req.session.data['has-building-reg-number'] == "yes") {
+                res.redirect('/sprint-9/about-the-occurrence/occurrence-details')
+            } else {
+                res.redirect('/sprint-9/building-in-scope/number-of-floors')
+            }
+        }
     })
 
     router.post('/sprint-9/building-in-scope/number-of-floors', (req, res) => {

@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your contact details" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About you</span>
+        {% call govukFieldset({
+          legend: {
+            text: title,
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: 'Full name'
+            },
+            id: "contact-full-name",
+            name: "contact-full-name",
+            value: data['contact-full-name'],
+            classes: "govuk-input--width-20"
+          }) }}
+          
+          {{ govukInput({
+            label: {
+              text: 'Email'
+            },
+            id: "contact-email",
+            name: "contact-email",
+            value: data['contact-email'],
+            classes: "govuk-input--width-20"
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: 'Organisation name (optional)'
+            },
+            hint: {
+            text: "For example, when you are making a MOR on behalf of an organisation."
+            },
+            id: "contact-organisation",
+            name: "contact-organisation",
+            value: data['contact-organisation'],
+            classes: "govuk-input--width-20"
+          }) }}
+          
+        {% endcall %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,32 +1,16 @@
 {% extends "layouts/main.html" %}
-
-{% if data['enquiry-about'] == "mor" %}
-  {% set type = "occurrence report"  %}
-  {% set fallbackDesc = "I want to make a mandatory occurrence report" %}  
-{% elif data['enquiry-about'] == "advice" %}
-  {% set type = "request for advice" %}
-  {% set fallbackDesc = "I want advice about a high-rise residential building" %}  
-{% else %}
-  {% set type = "complaint"  %}
-  {% set fallbackDesc = "I want to make a complaint" %}  
-{% endif %}
-
-
-{% set title = type | capitalize + " received" %}
-
+{% set title = "Occurrence report received" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       <div class="govuk-panel govuk-panel--confirmation">
         <h1 class="govuk-panel__title">{{title}}</h1>
-        <div>We've received your {{ type }} about [building address]</div>
+        <div>We've received your occurrence report about [building address]</div>
         <div class="govuk-panel__body">
           Reference number<br><strong>HDJ2123F</strong>
         </div>
@@ -34,14 +18,10 @@
 
       <p>We have sent you a confirmation email that includes your reference number.</p>
 
-
       <h2 class="govuk-heading-m">What happens next</h2>
-      <p>Once we have evaluated your {{ type }}, we will tell you what action we are going to take. This may take up to 21 working days{% if data["enquiry-about"] == "advice" %} if we have to consult building safety experts {% endif %}.</p>
-      {% if data['enquiry-about'] == "complaint" %}
-        <p>All {{ type }}s will be evaluated by BSR whether named or anonymous.</p>
-      {% endif %}
+      <p>Once we have evaluated your occurrence report, we will tell you what action we are going to take. This may take up to 21 working days if we have to consult building safety experts.</p>
+      <p>All occurrence reports will be evaluated by BSR whether named or anonymous.</p>
       <p><a href="">What did you think of this service?</a> (takes 30 seconds)</p>
     </div>
   </div>
-
 {% endblock %}
