@@ -18,8 +18,12 @@ module.exports = router => {
         if (req.session.data['has-address'] == "yes") {
             res.redirect('/sprint-9/about-the-building/postcode-lookup')
         } else {
-            res.redirect('/sprint-9/about-the-building/building-location')
+            res.redirect('/sprint-9/about-the-building/choose-how-to-locate-building')
         }
+    })
+
+    router.post('/sprint-9/about-the-building/choose-how-to-locate-building', (req, res) => {
+        res.redirect('/sprint-9/about-the-person/your-details')
     })
 
     router.post('/sprint-9/about-the-building/do-you-have-a-hrb-number', (req, res) => {
