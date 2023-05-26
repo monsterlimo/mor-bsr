@@ -16,11 +16,11 @@
       <span class="govuk-caption-l">About the complaint</span>
       <h1 class="govuk-heading-xl">{{ title }}</h1>
 
-    <!--
+      <form action="" method="post">
+
     <div id="file-upload-1-hint" class="govuk-hint">
-      You can upload your receipt as a scanned copy or photo of the original. The selected file must be smaller than 100MB.
+      You can upload supporting information as a scanned copy or photo of the original. The selected file must be smaller than 100MB.
     </div>
-    -->
 
     <p id="upload-update" class="govuk-body govuk-!-display-none" aria-live="polite">1 of 2 files uploaded</p>
 
@@ -31,7 +31,7 @@
     -->
     <div class="govuk-form-group">
       <label class="govuk-label govuk-visually-hidden" for="file-upload-1">
-        Upload receipts
+        Upload supporting information
       </label>
       <input class="govuk-file-upload" id="upload-button" name="file-upload-1" type="file" multiple="multiple">
     </div>
@@ -68,7 +68,7 @@
       </div>-->
     </dl>
 
-      <form action="" method="post">
+      
     
         {{ govukButton({
           text: "Continue"
@@ -92,9 +92,6 @@ document.getElementById("upload-button").addEventListener("change", fileSelected
 const fileRows = document.getElementById("file-row-container");
 const uploadUpdate = document.getElementById("upload-update");
 
-
-
-
 function fileUpload() {
   //console.log("upload clicked")
 }
@@ -106,6 +103,7 @@ function fileSelected(e) {
     const markup = `
       <dt class="govuk-summary-list__key">
         <a class="govuk-link" href="#">${e.target.files[i].name}</a>
+         <input type="hidden" id="filesUploaded" name="filesUploaded" value="${e.target.files[i].name}">
       </dt>
       <dd class="govuk-summary-list__value">
         <strong class="govuk-tag govuk-tag--yellow">uploading</strong>
@@ -122,13 +120,12 @@ function fileSelected(e) {
     row.innerHTML = markup
     fileRows.append(row)
 
-
     filesUploading = document.getElementsByClassName('govuk-tag--yellow').length
     filesUploaded =document.getElementsByClassName('govuk-tag--green').length
 
     uploadUpdate.textContent = `${filesUploaded} of ${filesUploading} files uploaded`;
     uploadUpdate.classList.remove("govuk-!-display-none");
- 
+
   }
 
 }

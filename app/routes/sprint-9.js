@@ -73,25 +73,29 @@ module.exports = router => {
     router.post('/sprint-9/about-the-person/your-role', (req, res) => {
         const roles = req.session.data['reporter-role'];
 
-        if (roles.length == 1) {
-            roles.forEach(role => {
-                if (role == "other") {
-                    res.redirect('/sprint-9/about-the-person/not-able-to-submit')
-                } else {
-                    if (req.session.data['has-building-reg-number'] == "yes") {
-                        res.redirect('/sprint-9/about-the-occurrence/occurrence-details')
+        if (roles) {
+            if (roles.length == 1) {
+                roles.forEach(role => {
+                    if (role == "other") {
+                        res.redirect('/sprint-9/about-the-person/not-able-to-submit')
                     } else {
-                        res.redirect('/sprint-9/building-in-scope/number-of-floors')
+                        if (req.session.data['has-building-reg-number'] == "yes") {
+                            res.redirect('/sprint-9/about-the-occurrence/occurrence-type')
+                        } else {
+                            res.redirect('/sprint-9/building-in-scope/number-of-floors')
+                        }
                     }
-                }
-            });
-        } else {
-            if (req.session.data['has-building-reg-number'] == "yes") {
-                res.redirect('/sprint-9/about-the-occurrence/occurrence-details')
+                });
             } else {
-                res.redirect('/sprint-9/building-in-scope/number-of-floors')
+                if (req.session.data['has-building-reg-number'] == "yes") {
+                    res.redirect('/sprint-9/about-the-occurrence/occurrence-type')
+                } else {
+                    res.redirect('/sprint-9/building-in-scope/number-of-floors')
+                }
             }
-        }
+        } else {
+            res.redirect('/sprint-9/about-the-occurrence/occurrence-type')
+        }        
     })
 
     router.post('/sprint-9/building-in-scope/number-of-floors', (req, res) => {
@@ -140,6 +144,17 @@ module.exports = router => {
     })
 
     router.post('/sprint-9/supporting-information/upload-supporting-info', (req, res) => {
+        console.log(req.session.data['filesUploaded'])
+        console.log("before: " + typeof(req.session.data['filesUploaded']))
+
+        if (typeof(req.session.data['filesUploaded']) == "string") {
+            // convert string to object
+            var myArray = [];
+            myArray.push(req.session.data['filesUploaded'])
+            req.session.data['filesUploaded'] = myArray
+
+            console.log("after: " + typeof(req.session.data['filesUploaded']))
+        }
         res.redirect('/sprint-9/supporting-information/review-uploads')
     })
 
