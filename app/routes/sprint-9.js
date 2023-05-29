@@ -136,9 +136,9 @@ module.exports = router => {
     })
 
     router.post('/sprint-9/about-the-occurrence/occurrence-details', (req, res) => {
-        res.redirect('/sprint-9/supporting-information/do-you-have-any-supporting-info')
+        res.redirect('/sprint-9/supporting-information/upload-supporting-info')
     })
-
+/*
     router.post('/sprint-9/supporting-information/do-you-have-any-supporting-info', (req, res) => {
         if (req.session.data['supporting-evidence'] == "yes") {
             res.redirect('/sprint-9/supporting-information/upload-supporting-info')
@@ -146,7 +146,7 @@ module.exports = router => {
             res.redirect('/sprint-9/check-your-answers')
         }
     })
-
+*/
     router.post('/sprint-9/supporting-information/upload-supporting-info', (req, res) => {
         console.log(req.session.data['filesUploaded'])
         console.log("before: " + typeof(req.session.data['filesUploaded']))

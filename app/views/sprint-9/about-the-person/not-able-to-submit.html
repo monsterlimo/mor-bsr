@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Only certain roles are allowed to submit a mandatory occurrence report" %}
+{% set title = "Only certain duty holders can submit a mandatory occurrence report" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,12 +15,12 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="" method="post">
         <h1 class="govuk-heading-l">{{ title }}</h1>
-        <p>Roles:
+        <p>Duty holders:
         <ul class="govuk-list govuk-list--bullet">
           <li>Principal accountable person</li>
           <li>Accountable person</li>
-          <li>Principal designer</li>
           <li>Principal contractor</li>
+          <li>Principal designer</li>
         </ul>
       </form>
     </div>
