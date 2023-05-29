@@ -17,11 +17,27 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
       <p>Review the information you want to send us</p>
 
-      {% if data['request-about-what'] == 'building'  %}
       <h2 class="govuk-heading-m">About the building</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
+          {
+            key: {
+              text: "Building HRB number"
+            },
+            value: {
+              html: data['building-reg-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/which-region",
+                  text: "Change",
+                  visuallyHiddenText: "home address"
+                }
+              ]
+            }
+          } if data['has-building-reg-number'],
           {
             key: {
               text: "Building region"
@@ -55,10 +71,10 @@
                 }
               ]
             }
-          },
+          } if data['has-building-reg-number'] == "no",
           {
             key: {
-              text: "Building occupied?"
+              text: "Building status"
             },
             value: {
               text: (data['building-status'] | capitalize) or "Yes"
@@ -89,7 +105,7 @@
                 }
               ]
             }
-          },
+          } if data['has-building-reg-number'] == "no",
           {
             key: {
               text: "Building height"
@@ -106,13 +122,13 @@
                 }
               ]
             }
-          },
+          } if data['has-building-reg-number'] == "no",
           {
             key: {
               text: "Number of units"
             },
             value: {
-              text: (data['number-units'] | capitalize) or "85"
+              text: data['number-units'] or "85"
             },
             actions: {
               items: [
@@ -122,11 +138,10 @@
                   visuallyHiddenText: "licence period"
                 }
               ]
-            }
-          }
+            } 
+          } if data['has-building-reg-number'] == "no"
         ]
       }) }}
-      {% endif %}
 
       <h2 class="govuk-heading-m">About you</h2>
       {{ govukSummaryList({
@@ -137,7 +152,7 @@
               text: "Your name"
             },
             value: {
-              text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
+              text: (data['contact-full-name'] or "John Smith")
             },
             actions: {
               items: [
@@ -154,7 +169,24 @@
               text: "Contact details"
             },
             value: {
-              html: (data['contact-email'] or "john@test.com") + "<br>" + (data['contact-number'] or "012345678")
+              html: (data['contact-email'] or "john@test.com")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-contact-details",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Your organisation details"
+            },
+            value: {
+              html: data['contact-organisation'] or "No organisation supplied"
             },
             actions: {
               items: [
@@ -168,12 +200,22 @@
           }
         ]
       }) }}
+
+      {% set supportingInfo %}
+        <ul class="govuk-list govuk-list--bullet">
+        {% for file in data['filesUploaded'] %}
+          <li>{{ file }}</li>
+        {% else %}
+            <p>You have not uploaded any supporting information</p>
+        {% endfor %}
+      </ul>
+      {% endset %}
      
 
       {% set detailsHTML %}
         {{ govukDetails({
           summaryText: "View supporting information",
-          html: "file1234.png<br>photo-2022-10-10:20:40:10"
+          html: supportingInfo
         }) }}
       {% endset %}
 
@@ -183,10 +225,10 @@
         rows: [
           {
             key: {
-              text: "In what capacity are you making a MOR?"
+              text: "How are you or your organisation involved in this building?"
             },
             value: {
-              text: data['mor-submitter-role']
+              text: data['reporter-role']
             },
             actions: {
               items: [
@@ -220,7 +262,7 @@
               text: "Occurrence date"
             },
             value: {
-              text: (data['occurrence-date-day'] or "10") + " " + (data['occurrence-date-month'] or "05") + " " + (data['occurrence-date-year' or "2022")]
+              text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year' or "2022")]
             },
             actions: {
               items: [
@@ -234,27 +276,10 @@
           },
           {
             key: {
-              text: "Occurrence reporter"
-            },
-            value: {
-              html: (data['reporter-first-name'] or "Jane") + " " + (data['reporter-last-name'] or "Wilson") + "<br>" + (data['reporter-email'] or "jane@test.com")  + "<br>" + (data['reporter-relationship'] or "Visitor")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-occurrence/occurrence-reporter",
-                  text: "Change",
-                  visuallyHiddenText: "licence period"
-                }
-              ]
-            }
-          },
-          {
-            key: {
               text: "Occurrence details"
             },
             value: {
-              text: data['occurrence-details'] or "Details of the occurrence"
+              html: data['occurrence-details-what'] or "Details of the occurrence"
             },
             actions: {
               items: [
