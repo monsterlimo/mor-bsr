@@ -31,9 +31,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-building/which-region",
+                  href: "about-the-building/enter-hrb-number",
                   text: "Change",
-                  visuallyHiddenText: "home address"
+                  visuallyHiddenText: "Building HRB number"
                 }
               ]
             }
@@ -50,7 +50,7 @@
                 {
                   href: "about-the-building/which-region",
                   text: "Change",
-                  visuallyHiddenText: "home address"
+                  visuallyHiddenText: "Building region"
                 }
               ]
             }
@@ -67,7 +67,7 @@
                 {
                   href: "about-the-building/postcode-lookup",
                   text: "Change",
-                  visuallyHiddenText: "home address"
+                  visuallyHiddenText: "Building address"
                 }
               ]
             }
@@ -77,14 +77,14 @@
               text: "Building status"
             },
             value: {
-              text: (data['building-status'] | capitalize) or "Yes"
+              text: (data['building-status'] | capitalize) or "occupied"
             },
             actions: {
               items: [
                 {
                   href: "about-the-building/is-the-building-occupied",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "Building status"
                 }
               ]
             }
@@ -99,9 +99,9 @@
             actions: {
               items: [
                 {
-                  href: "building-in-scope/prof-number-of-floors",
+                  href: "building-in-scope/number-of-floors",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "Number of floors"
                 }
               ]
             }
@@ -116,9 +116,9 @@
             actions: {
               items: [
                 {
-                  href: "building-in-scope/prof-height-of-building",
+                  href: "building-in-scope/height-of-building",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "Building height"
                 }
               ]
             }
@@ -133,9 +133,9 @@
             actions: {
               items: [
                 {
-                  href: "building-in-scope/prof-number-of-units",
+                  href: "building-in-scope/number-of-units",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "Number of units"
                 }
               ]
             } 
@@ -157,9 +157,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-person/enter-your-name",
+                  href: "about-the-person/your-details",
                   text: "Change",
-                  visuallyHiddenText: "name"
+                  visuallyHiddenText: "Your name"
                 }
               ]
             }
@@ -174,9 +174,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-person/enter-your-contact-details",
+                  href: "about-the-person/your-details",
                   text: "Change",
-                  visuallyHiddenText: "contact details"
+                  visuallyHiddenText: "Contact details"
                 }
               ]
             }
@@ -191,9 +191,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-person/enter-your-contact-details",
+                  href: "about-the-person/your-details",
                   text: "Change",
-                  visuallyHiddenText: "contact details"
+                  visuallyHiddenText: "Your organisation details"
                 }
               ]
             }
@@ -233,9 +233,9 @@
             actions: {
               items: [
                 {
-                  href: "about-occurrence/reporter-relationship",
+                  href: "about-the-person/your-role",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "How are you or your organisation are involved in this building"
                 }
               ]
             }
@@ -252,7 +252,7 @@
                 {
                   href: "about-occurrence/occurrence-type",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "type of occurrence"
                 }
               ]
             }
@@ -269,7 +269,7 @@
                 {
                   href: "about-occurrence/occurrence-date",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "Occurrence date"
                 }
               ]
             }
@@ -286,7 +286,7 @@
                 {
                   href: "about-occurrence/occurrence-details",
                   text: "Change",
-                  visuallyHiddenText: "licence period"
+                  visuallyHiddenText: "Occurrence details"
                 }
               ]
             }
