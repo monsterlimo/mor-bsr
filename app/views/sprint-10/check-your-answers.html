@@ -1,0 +1,325 @@
+{% extends "layouts/main.html" %}
+{% set title = "Check your answers" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      <p>Review the information you want to send us</p>
+
+      <h2 class="govuk-heading-m">About the building</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Building HRB number"
+            },
+            value: {
+              html: data['building-reg-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-hrb-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
+            }
+          } if data['has-building-reg-number'],
+          {
+            key: {
+              text: "Building region"
+            },
+            value: {
+              html: (data['building-region'] | capitalize) or "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/which-region",
+                  text: "Change",
+                  visuallyHiddenText: "Building region"
+                }
+              ]
+            }
+          } if data['building-region'],
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: "<p>Whitehall 2<br>Leeds, LS1</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/postcode-lookup",
+                  text: "Change",
+                  visuallyHiddenText: "Building address"
+                }
+              ]
+            }
+          } if data['has-building-reg-number'] == "no",
+          {
+            key: {
+              text: "Building status"
+            },
+            value: {
+              text: (data['building-status'] | capitalize) or "occupied"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/is-the-building-occupied",
+                  text: "Change",
+                  visuallyHiddenText: "Building status"
+                }
+              ]
+            }
+          },        
+          {
+            key: {
+              text: "Number of floors"
+            },
+            value: {
+              text: (data['number-floors'] | capitalize) or "9"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/number-of-floors",
+                  text: "Change",
+                  visuallyHiddenText: "Number of floors"
+                }
+              ]
+            }
+          } if data['has-building-reg-number'] == "no",
+          {
+            key: {
+              text: "Building height"
+            },
+            value: {
+              text: (data['building-height'] | capitalize) or "20m"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/height-of-building",
+                  text: "Change",
+                  visuallyHiddenText: "Building height"
+                }
+              ]
+            }
+          } if data['has-building-reg-number'] == "no",
+          {
+            key: {
+              text: "Number of units"
+            },
+            value: {
+              text: data['number-units'] or "85"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/number-of-units",
+                  text: "Change",
+                  visuallyHiddenText: "Number of units"
+                }
+              ]
+            } 
+          } if data['has-building-reg-number'] == "no"
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">About you</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Your name"
+            },
+            value: {
+              text: (data['contact-full-name'] or "John Smith")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-details",
+                  text: "Change",
+                  visuallyHiddenText: "Your name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Contact details"
+            },
+            value: {
+              html: (data['contact-email'] or "john@test.com")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-details",
+                  text: "Change",
+                  visuallyHiddenText: "Contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Your organisation details"
+            },
+            value: {
+              html: data['contact-organisation'] or "No organisation supplied"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-details",
+                  text: "Change",
+                  visuallyHiddenText: "Your organisation details"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% set supportingInfo %}
+        <ul class="govuk-list govuk-list--bullet">
+        {% for file in data['filesUploaded'] %}
+          <li>{{ file }}</li>
+        {% else %}
+            <p>You have not uploaded any supporting information</p>
+        {% endfor %}
+      </ul>
+      {% endset %}
+     
+
+      {% set detailsHTML %}
+        {{ govukDetails({
+          summaryText: "View supporting information",
+          html: supportingInfo
+        }) }}
+      {% endset %}
+
+      <h2 class="govuk-heading-m">About the occurrence</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "How are you or your organisation involved in this building?"
+            },
+            value: {
+              text: data['reporter-role']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-role",
+                  text: "Change",
+                  visuallyHiddenText: "How are you or your organisation are involved in this building"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence type"
+            },
+            value: {
+              text: data['occurrence-type']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-occurrence/occurrence-type",
+                  text: "Change",
+                  visuallyHiddenText: "type of occurrence"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence date"
+            },
+            value: {
+              text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year' or "2022")]
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-occurrence/occurrence-date",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence details"
+            },
+            value: {
+              html: data['occurrence-details-what'] or "Details of the occurrence"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Supporting information"
+            },
+            value: {
+              html: detailsHTML
+            },
+            actions: {
+              items: [
+                {
+                  href: "supporting-information/review-uploads",
+                  text: "Change",
+                  visuallyHiddenText: "supporting information"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+   
+
+      <form action="" method="post">
+        <input type="hidden" name="answers-checked" value="true">
+        {{ govukButton({
+          text: "Accept and send"
+        }) }}
+      </form>
+   
+    </div>
+  </div>
+
+{% endblock %}

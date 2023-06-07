@@ -15,24 +15,35 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       {{ serviceName }}
     </h1>
 
+    {% set emailsV5 %}
+      <p><a href="sprint-10/emails/mor-confirmation-email">MOR Confirmation email</a></p>
+      <p><a href="sprint-10/emails/mor-more-info-email">MOR more info required email</a></p>
+      <p><a href="sprint-10/emails/mor-investigation-email">MOR investigation email</a></p>
+      <p><a href="sprint-10/emails/mor-action-taken-email">MOR action taken email</a></p>
+      <p><a href="sprint-10/emails/mor-case-closed-email">MOR case closed email</a></p>
+    {% endset %}
+    
     {% set emailsV4 %}
-      
       <p><a href="sprint-9/emails/mor-confirmation-email">MOR Confirmation email</a></p>
       <p><a href="sprint-9/emails/mor-more-info-email">MOR more info required email</a></p>
       <p><a href="sprint-9/emails/mor-investigation-email">MOR investigation email</a></p>
       <p><a href="sprint-9/emails/mor-action-taken-email">MOR action taken email</a></p>
       <p><a href="sprint-9/emails/mor-case-closed-email">MOR case closed email</a></p>
-      
     {% endset %}
 
     <h2 class="govuk-heading-m">Current</h2>
+    <p><a href="sprint-10/start">Sprint 10 (v4.5)</a></p>
+    {{ govukDetails({
+      summaryText: "Emails",
+      html: emailsV5
+    }) }}
+
+    <h2 class="govuk-heading-m">Alpha</h2>
     <p><a href="sprint-9/start">Sprint 9 (v4)</a></p>
     {{ govukDetails({
       summaryText: "Emails",
       html: emailsV4
     }) }}
-
-    <h2 class="govuk-heading-m">Alpha</h2>
     <p><a href="sprint-5/start">Sprint 5 (v3)</a></p>
     <p><a href="sprint-4/start">Sprint 4 (v2)</a></p>
     <p><a href="sprint-3/start">Sprint 3 (v1)</a></p>
