@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+{% set title = "Details of the " + data['risk-event'] %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the occurrence</span>
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        {{ govukTextarea({
+          name: "occurrence-details-what",
+          id: "occurrence-details-what",
+          label: {
+            text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "occurrence-details-why",
+          id: "occurrence-details-why",
+          label: {
+            text: "What caused it?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "occurrence-details-who",
+          id: "occurrence-details-who",
+          label: {
+            text: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what why?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "occurrence-details-reporter",
+          id: "occurrence-details-reporter",
+          label: {
+            text: "Who told your organisation?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukTextarea({
+          name: "occurrence-details-action",
+          id: "occurrence-details-action",
+          label: {
+            text: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        <p>Next we will ask you to upload supporting information, such as documents or photographs.</p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
