@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Choose how to locate building?"  %}
+{% set title = "Have you submitted the design to building control approval?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,8 +16,9 @@
 
       <form action="" method="post">
         <span class="govuk-caption-l">About the building</span>
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "address-known",
+          name: "design-status",
           fieldset: {
             legend: {
               text: title,
@@ -27,17 +28,25 @@
           },
           items: [
             {
-              value: "northing",
-              text: "Northing / easting coordinates"
+              value: "yes",
+              text: "Yes, and we have a building control application reference"
             },
             {
-              value: "building control",
-              text: "Building control application number"
+              value: "no",
+              text: "Yes, but we have not received a response from building control"
+            },
+            {
+              value: "no",
+              text: "No, the design is not ready for submission"
+            },
+            {
+              value: "no",
+              text: "not started"
             }
+            
           ]
         }) }}
 
-      
         {{ govukButton({
           text: "Continue"
         }) }}

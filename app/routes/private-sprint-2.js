@@ -16,15 +16,21 @@ module.exports = router => {
         } else {
             res.redirect('/private-sprint-2/about-the-building/is-the-building-occupied')
         }
-        
     })
-    
-    /*
+
     router.post('/private-sprint-2/about-the-building/is-the-building-occupied', (req, res) => {
-        if (req.session.data['building-status'] == "in design" || req.session.data['building-status'] == "in construction") {
-            res.redirect('/private-sprint-2/about-the-building/have-an-address')
+        if (req.session.data['building-status'] == "in design") {
+            res.redirect('/private-sprint-2/about-the-building/design-status')
         } else {
-            res.redirect('/private-sprint-2/about-the-building/do-you-have-a-hrb-number')
+            res.redirect('/private-sprint-2/about-the-building/have-an-address')
+        }
+    })
+
+    router.post('/private-sprint-2/about-the-building/design-status', (req, res) => {
+        if (req.session.data['design-status'] == "yes") {
+            res.redirect('/private-sprint-2/about-the-building/enter-bcr-number')
+        } else {
+            res.redirect('/private-sprint-2/about-the-building/mor-not-required')
         }
     })
 
@@ -35,7 +41,16 @@ module.exports = router => {
             res.redirect('/private-sprint-2/about-the-building/choose-how-to-locate-building')
         }
     })
+/*
+    router.post('/private-sprint-2/about-the-building/have-an-address', (req, res) => {
+        if (req.session.data['has-address'] == "yes") {
+            res.redirect('/private-sprint-2/about-the-building/postcode-lookup')
+        } else {
+            res.redirect('/private-sprint-2/about-the-building/choose-how-to-locate-building')
+        }
+    })
 
+ 
     router.post('/private-sprint-2/about-the-building/choose-how-to-locate-building', (req, res) => {
         res.redirect('/private-sprint-2/about-the-person/your-details')
     })
