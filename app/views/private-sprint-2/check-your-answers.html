@@ -23,6 +23,23 @@
         rows: [
           {
             key: {
+              text: "Identify your building"
+            },
+            value: {
+              html: "Building control number" if data['existing-application'] == "hrb" else "Building control application reference"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/have-existing-applications",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
+            }
+          } if data['existing-application'] != "none",
+          {
+            key: {
               text: "Building HRB number"
             },
             value: {
@@ -37,7 +54,24 @@
                 }
               ]
             }
-          } if data['has-building-reg-number'],
+          } if data['existing-application'] == "hrb",
+          {
+            key: {
+              text: "Building controler application reference"
+            },
+            value: {
+              html: data['building-control-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-bcr-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building control reference"
+                }
+              ]
+            }
+          } if data['existing-application'] == "bcr",
           {
             key: {
               text: "Building region"
@@ -71,7 +105,7 @@
                 }
               ]
             }
-          } if data['has-building-reg-number'] == "no",
+          } if data['existing-application'] == "none",
           {
             key: {
               text: "Building status"
@@ -88,7 +122,7 @@
                 }
               ]
             }
-          },        
+          } if data['existing-application'] == "none",        
           {
             key: {
               text: "Number of floors"
@@ -105,7 +139,7 @@
                 }
               ]
             }
-          } if data['has-building-reg-number'] == "no",
+          } if data['existing-application'] == "none",
           {
             key: {
               text: "Building height"
@@ -122,7 +156,7 @@
                 }
               ]
             }
-          } if data['has-building-reg-number'] == "no",
+          } if data['existing-application'] == "none",
           {
             key: {
               text: "Number of units"
@@ -139,7 +173,7 @@
                 }
               ]
             } 
-          } if data['has-building-reg-number'] == "no"
+          } if data['existing-application'] == "none"
         ]
       }) }}
 
@@ -152,7 +186,7 @@
               text: "Your name"
             },
             value: {
-              text: (data['contact-full-name'] or "John Smith")
+              text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
             },
             actions: {
               items: [
@@ -186,7 +220,7 @@
               text: "Your organisation details"
             },
             value: {
-              html: data['contact-organisation'] or "No organisation supplied"
+              html: data['organisation-name'] or "No organisation supplied"
             },
             actions: {
               items: [
@@ -197,7 +231,7 @@
                 }
               ]
             }
-          }
+          } if data['type-of-reporter'] == "none"
         ]
       }) }}
 
@@ -225,6 +259,23 @@
         rows: [
           {
             key: {
+              text: "Risk or event"
+            },
+            value: {
+              text: data['risk-event']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/risk-or-event",
+                  text: "Change",
+                  visuallyHiddenText: "How are you or your organisation are involved in this building"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "How are you or your organisation involved in this building?"
             },
             value: {
@@ -239,7 +290,7 @@
                 }
               ]
             }
-          },
+          } if data['type-of-reporter'] == "none",
           {
             key: {
               text: "Occurrence type"
@@ -250,7 +301,7 @@
             actions: {
               items: [
                 {
-                  href: "about-occurrence/occurrence-type",
+                  href: "about-the-occurrence/occurrence-type",
                   text: "Change",
                   visuallyHiddenText: "type of occurrence"
                 }
@@ -262,14 +313,48 @@
               text: "Occurrence date"
             },
             value: {
-              text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year' or "2022")]
+              text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time'] or "9am")
             },
             actions: {
               items: [
                 {
-                  href: "about-occurrence/occurrence-date",
+                  href: "about-the-occurrence/occurrence-date",
                   text: "Change",
                   visuallyHiddenText: "Occurrence date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?"
+            },
+            value: {
+              html: data['occurrence-details-what'] or "what"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "What caused it?"
+            },
+            value: {
+              html: data['occurrence-details-why'] or "Why"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
                 }
               ]
             }
@@ -279,12 +364,46 @@
               text: "Occurrence details"
             },
             value: {
-              html: data['occurrence-details-what'] or "Details of the occurrence"
+              html: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?"
             },
             actions: {
               items: [
                 {
-                  href: "about-occurrence/occurrence-details",
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence details"
+            },
+            value: {
+              html: "Who told your organisation?"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence details"
+            },
+            value: {
+              html: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
                   text: "Change",
                   visuallyHiddenText: "Occurrence details"
                 }
@@ -301,7 +420,7 @@
             actions: {
               items: [
                 {
-                  href: "supporting-information/review-uploads",
+                  href: "supporting-information/upload-supporting-info",
                   text: "Change",
                   visuallyHiddenText: "supporting information"
                 }
