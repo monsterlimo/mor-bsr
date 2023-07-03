@@ -40,6 +40,23 @@
           } if data['existing-application'] != "none",
           {
             key: {
+              text: "Identify your building"
+            },
+            value: {
+              html: "None"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/have-existing-applications",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
               text: "Building HRB number"
             },
             value: {
@@ -72,6 +89,14 @@
               ]
             }
           } if data['existing-application'] == "bcr",
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: "Whitehall 2, Leeds, LS1"
+            }
+          } if data['existing-application'] != "none",
           {
             key: {
               text: "Building region"
@@ -220,6 +245,23 @@
               text: "Your organisation details"
             },
             value: {
+              html: data['selected-organisation'] or "No organisation supplied"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/select-organisation",
+                  text: "Change",
+                  visuallyHiddenText: "Your organisation details"
+                }
+              ]
+            }
+          } if data['type-of-reporter'] != "none",
+          {
+            key: {
+              text: "Your organisation details"
+            },
+            value: {
               html: data['organisation-name'] or "No organisation supplied"
             },
             actions: {
@@ -262,7 +304,7 @@
               text: "Risk or event"
             },
             value: {
-              text: data['risk-event']
+              text: data['risk-event'] | capitalize
             },
             actions: {
               items: [
@@ -330,7 +372,7 @@
               text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?"
             },
             value: {
-              html: data['occurrence-details-what'] or "what"
+              html: data['occurrence-details-what'] or "Fire doors were incorrectly fitted"
             },
             actions: {
               items: [
@@ -347,7 +389,7 @@
               text: "What caused it?"
             },
             value: {
-              html: data['occurrence-details-why'] or "Why"
+              html: data['occurrence-details-why'] or "The building contractor sourced an alternative product which was not to standard"
             },
             actions: {
               items: [
@@ -361,10 +403,10 @@
           },
           {
             key: {
-              text: "Occurrence details"
+              text: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?"
             },
             value: {
-              html: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?"
+              html: data['occurrence-details-who'] or "The whole building was affected including the common rooms"
             },
             actions: {
               items: [
@@ -378,10 +420,10 @@
           },
           {
             key: {
-              text: "Occurrence details"
+              text: "Who told your organisation"
             },
             value: {
-              html: "Who told your organisation?"
+              html: data['occurrence-details-reporter'] or "We were informed by a 3rd party surveyor who completed an inspection of the building before occupation"
             },
             actions: {
               items: [
@@ -395,10 +437,10 @@
           },
           {
             key: {
-              text: "Occurrence details"
+              text: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?"
             },
             value: {
-              html: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?"
+              html: data['occurrence-details-action'] or "We've replaced all the doors in the building and made a note on future designs to periodically check building contract"
             },
             actions: {
               items: [

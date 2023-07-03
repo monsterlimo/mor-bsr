@@ -18,7 +18,7 @@
         <span class="govuk-caption-l">About you</span>
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "type-of-reporter",
+          name: "selected-organisation",
           fieldset: {
             legend: {
               text: title,
@@ -28,19 +28,19 @@
           },
           items: [
             {
-              value: "individual",
+              value: "G & W Design Services",
               text: "G & W Design Services (principal accountable person)"
             },
             {
-              value: "organisation",
+              value: "Company ABC",
               text: "Company ABC (accountable person)"
             },
             {
-              value: "individual",
+              value: "G & W Design Services",
               text: "G & W Design Services (principal designer)"
             },
             {
-              value: "individual",
+              value: "Smith constructions",
               text: "Smith constructions (principal contractor)"
             },
             {
