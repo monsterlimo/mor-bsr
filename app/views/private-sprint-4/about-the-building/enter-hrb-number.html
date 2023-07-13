@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Building control application reference" %}
+{% set title = "High-rise residential building registration number" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -22,15 +22,15 @@
             isPageHeading: true
           },
           hint: {
-            text: "This is the reference number given by the building control body on your application"
+            text: "This is the number given by the Building Safety Regulator when you registered the building"
           },
-          id: "building-control-number",
-          name: "building-control-number",
+          id: "building-reg-number",
+          name: "building-reg-number",
           classes: "govuk-input--width-20",
-          value: data['building-control-number']
+          value: data['building-reg-number']
         }) }}
 
-        <p><a href="/private-sprint-4/about-the-building/do-you-know-the-address">I need to identify my building another way</a></p>
+        <p><a href="/private-sprint-2/about-the-building/do-you-know-the-address">I need to identify my building another way</a></p>
 
         {{ govukButton({
           text: "Continue"
