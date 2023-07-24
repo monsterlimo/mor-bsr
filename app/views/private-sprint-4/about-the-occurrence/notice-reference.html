@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Do you have a notice reference?" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -24,7 +25,7 @@
             }
           },
           hint: {
-            text: "If you submitted a mandatory occurrence notice you will have been given a reference number."
+            text: "The reference number is in the email or text message acknowledging we have received your mandatory occurrence notice."
           },
           items: [
             {

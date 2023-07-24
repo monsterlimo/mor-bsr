@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set title = "What do you want to do?" %}
+{% set title = "What do you want to submit?" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -30,16 +31,16 @@
           items: [
             {
               value: "notice",
-              text: "Submit a notice for an occupied building",
+              text: "A mandatory occurrence notice",
               hint: {
-                text: "Tell us briefly what has happened if the occurrence has happened recently"
+                text: "You must submit a mandatory occurrence notice as soon as practicable when an incident or risk is identified."
               }
             },
             {
               value: "report",
-              text: "Submit a mandatory occurrence report",
+              text: "A mandatory occurrence report",
               hint: {
-                text: "Tell us what happened in more detail within 10 days"
+                text: "You must submit a mandatory occurrence report to BSR within 10 days of the incident or risk being identified."
               }
             }
           ]

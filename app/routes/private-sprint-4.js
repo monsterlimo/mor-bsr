@@ -1,3 +1,4 @@
+const govukPrototypeKit = require('govuk-prototype-kit');
 const _ = require('lodash')
 
 module.exports = router => {
@@ -7,9 +8,21 @@ module.exports = router => {
         res.redirect('/private-sprint-4/about-the-occurrence/notice-report')
     })
 
+    router.post('/private-sprint-4/start-text', (req, res) => {
+        req.session.data['enquiry-about'] = "mor";
+        req.session.data['building-status'] = "occupied"
+        res.redirect('/private-sprint-4/about-the-occurrence/notice-report')
+    })
+
+    router.post('/private-sprint-4/start-mail', (req, res) => {
+        req.session.data['enquiry-about'] = "mor";
+        req.session.data['building-status'] = "occupied"
+        res.redirect('/private-sprint-4/about-the-occurrence/notice-report')
+    })
+
     router.post('/private-sprint-4/about-the-occurrence/notice-report', (req, res) => {
         if (req.session.data['notice-report'] == "notice") {
-            res.redirect('/private-sprint-4/about-the-building/postcode-lookup')
+            res.redirect('/private-sprint-4/about-the-building/have-existing-applications')
         } else {
             res.redirect('/private-sprint-4/about-the-occurrence/notice-reference')
         }
@@ -24,7 +37,15 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-4/about-the-occurrence/enter-notice-reference', (req, res) => {
-        res.redirect('/private-sprint-4/about-the-occurrence/risk-or-event')
+        res.redirect('/private-sprint-4/about-the-occurrence/notice-submitter')
+    })
+
+    router.post('/private-sprint-4/about-the-occurrence/notice-submitter', (req, res) => {
+        if (req.session.data[''] == "yes") {
+            res.redirect('/private-sprint-4/about-the-occurrence/risk-or-event')
+        } else {
+            res.redirect('/private-sprint-4/about-the-person/your-details')
+        }
     })
 
     router.post('/private-sprint-4/about-the-building/have-existing-applications', (req, res) => {
@@ -124,6 +145,10 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-4/about-the-person/your-details', (req, res) => {
+        res.redirect('/private-sprint-4/about-the-person/your-role')
+    })
+    
+    router.post('/private-sprint-4/about-the-person/your-role', (req, res) => {
         if (req.session.data['notice-report'] == "notice") {
             res.redirect('/private-sprint-4/about-the-occurrence/brief-details')
         } else {

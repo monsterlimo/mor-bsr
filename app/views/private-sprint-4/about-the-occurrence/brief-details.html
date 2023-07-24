@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter a summary of the occurrence" %}
+{% set title = "Briefly describe the risk or event" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -29,7 +30,7 @@
           }
         }) }}
 
-        <p>You will need to make a full report within 10 days of becoming aware of the occurrence.</p>
+        <p>You must submit a full mandatory occurrence report within 10 days of the occurrence being identified.</p>
 
         {{ govukButton({
           text: "Continue"

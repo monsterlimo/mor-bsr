@@ -41,7 +41,7 @@
           }
         ,
         hint: {
-          text: "Tell us if anything has changed with the building such as building work"
+          text: "Tell us if anything has changed, for example, recent building work"
         }
         }) }}
 
@@ -56,8 +56,8 @@
             isPageHeading: false
           },
           hint: {
-            text: "Tell us the number of serious injuries and fatalities"
-          }
+            text: "Tell us if people were evacuated, injured or killed. If so, how many?"
+          } if data['risk-event'] == "event"
         }) }}
 
         {{ govukCharacterCount ({
@@ -66,9 +66,12 @@
           rows: 3,
           maxlength: 200,
           label: {
-            text: "Who told your organisation?",
+            text: "How was the occurrence discovered?",
             classes: "govuk-label--s",
             isPageHeading: false
+          },
+          hint: {
+            text: "How did your organisation find out?"
           }
         }) }}
 

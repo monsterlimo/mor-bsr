@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "What do you want to do?" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -44,21 +45,21 @@
               value: "notice",
               text: "Submit a mandatory occurrence notice",
               hint: {
-                text: "You need to tell as soon as reasonably practical after the occurrence has taken place "
+                text: "You must submit a mandatory occurrence notice as soon as practicable when an incident or risk is identified."
               }
             },
             {
               value: "report",
-              text: "Make a mandatory occurrence report",
+              text: "Submit a mandatory occurrence report",
               hint: {
-                text: "You need to tell us within 10 days from becoming aware of the occurrence"
+                text: "You must submit a mandatory occurrence report to BSR within 10 days of the incident or risk being identified."
               }
             },
             {
               value: "return",
-              text: "Use a mandatory occurrence report reference to complete the report",
+              text: " Submit a mandatory occurrence report using a notice reference number",
               hint: {
-                text: "You will have received a reference when submitting the notice"
+                text: "The reference number is in the email/text message when we acknowledged you had submitted a notice"
               },
               conditional: {
                 html: returnHtml

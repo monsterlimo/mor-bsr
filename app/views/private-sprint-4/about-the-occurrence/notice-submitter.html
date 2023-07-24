@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set title = "When did " + (data['org-name'] or "ACME")  +" become aware of the problem?" %}
+{% set title = "Did you submit the notice?" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -13,12 +14,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       <form action="" method="post">
-        <span class="govuk-caption-l">About the occurrence</span>
-        {{ govukDateInput({
-          id: "occurrence-date",
-          namePrefix: "occurrence-date",
+        {{ govukRadios({
+          name: "hasubmitted-the-notice",
           fieldset: {
             legend: {
               text: title,
@@ -26,23 +24,17 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            html: "For example, 27 05 2023"
-          }
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
         }) }}
-
-        {{ govukInput({
-            label: {
-              text: 'Time',
-              classes: 'govuk-label--s'
-            },
-            hint: {
-              text: "For example, 23:59"
-            },
-            id: "occurrence-time",
-            name: "occurrence-time",
-            classes: "govuk-input--width-4"
-          }) }}
 
         {{ govukButton({
           text: "Continue"

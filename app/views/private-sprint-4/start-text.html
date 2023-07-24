@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set serviceName = "Make a mandatory occurrence report" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
 {% block pageTitle %}
   {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
@@ -87,34 +87,10 @@
           {% if serviceName %} {{ serviceName }} {% endif %}
         </h1>
 
-        
-        {{ govukWarningText({
-          text: "Text 'notice' to 553322 as soon as possible when you are made aware of a safety occurrence.",
-          iconFallbackText: "Warning"
-        }) }}
+        <p>Use this service to submit a mandatory occurrence notice and report to the Building Safety Regulator (BSR).</p>
 
-        {{ govukWarningText({
-          text: "Email BSR as soon as possible when you are made aware of a safety occurrence.",
-          iconFallbackText: "Warning"
-        }) }}
-        
+        <p> submit a mandatory occurrence notice and report if you are:</p>
 
-        <p>Use this service to:
-          
-        <ul class="govuk-list govuk-list--bullet">
-          <li>submit a notice of an occurrence to the Building Safety Regulator</li>
-          <li>make a mandatory occurrence report to the Building Safety Regulator</li>
-        </ul>
-
-        <h2 class="govuk-heading-m">When to submit a notice</h2>
-        <p>You need to tell us as soon as possible when you are made aware of an occurrence.</p>
-
-
-        <h2 class="govuk-heading-m">When to make a mandatory occurrence report</h2>
-
-
-
-        <p>Make a mandatory occurrence report if you are:</p>
         <ul class="govuk-list govuk-list--bullet">
           <li>an accountable person or principal accountable person.</li>
           <li>principal contractor or principal designer.</li>
@@ -122,7 +98,7 @@
 
         <h2 class="govuk-heading-m">Occupied buildings</h2>
 
-        <p>If you are an accountable person or principal accountable person, you must make a mandatory occurrence report for an occupied building if something causes</p>
+        <p>If you are an accountable person or principal accountable person, you must submit a mandatory occurrence notice and report for an occupied building if something causes</p>
 
         <ul class="govuk-list govuk-list--bullet">
           <li>structural failure</li>
@@ -138,7 +114,7 @@
 
         <h2 class="govuk-heading-m">Buildings in design or construction</h2>
 
-        <p>If you are a principal contractor or principal designer, you must make a mandatory occurrence report if something</p>
+        <p>If you are a principal contractor or principal designer, you must submit a mandatory occurrence notice and report if something</p>
 
         <ul class="govuk-list govuk-list--bullet">
           <li>causes structural failure</li>
@@ -152,11 +128,33 @@
           <li>diminishing fire safety</li>
         </ul>
 
-        <p>You do not need to make a mandatory occurrence report for a design until the project has a building control application number.</p>
+        <p>You do not need to submit a mandatory occurrence notice or report for a design until the project has a building control application number.</p>
 
-        <h2 class="govuk-heading-m">Before you start</h2>
+        <p><a href="">Read the guidance on what occurrences require you to submit a notice and report. (opens in a new tab)</a></p>
 
-        <p>To make a mandatory occurrence report, we will ask you:</p>
+        <h2 class="govuk-heading-m">Mandatory occurrence notice</h2>
+
+        <p>You must submit a mandatory occurrence notice to BSR as soon as practicable when an incident or risk is identified.</p>
+
+        <p>To submit a mandatory occurrence notice, text 'notice' to 071 23 45 67 89. Text messages will be charged at your standard rate.</p>
+
+        <p>We will reply asking you:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>your contact details</li>
+          <li>the address of the building where the incident or risk has been identified</li>
+          <li>to describe briefly the incident or risk</li>
+        </ul>
+
+        <p>Do not click the start button on this service until you are ready to submit a mandatory occurrence report.</p>
+
+        <p>When you submit a mandatory occurrence notice, we will give you a reference number you can use to submit a mandatory occurrence report.</p>
+
+        <h2 class="govuk-heading-m">Mandatory occurrence report</h2>
+
+        <p>You must submit a mandatory occurrence report to BSR within 10 days of the incident or risk being identified.</p>
+
+        <p>To submit a mandatory occurrence report, we will ask you:</p>
 
         <ul class="govuk-list govuk-list--bullet">
           <li>the building registration number or address if the building is occupied</li>
@@ -165,15 +163,9 @@
           <li>the type of occurrence you are reporting and when you became aware of it</li>
           <li>what happened, or is at risk of happening</li>
           <li>who is involved and the effect on them</li>
-          <li>what you have done to keep people safe</li>
+          <li>what you have done and plan to do to keep people safe</li>
           <li>for any supporting information, such as documents or photographs</li>
         </ul>
-
-        <p><a href="">Read the guidance on what occurrences should be reported. (opens in a new tab)</a></p> 
-
-        <p>If you are not a principal accountable person, accountable person, principal contractor or principal designer and want to raise an issue with BSR, you should <a href="">make a complaint to BSR</a>.</p>
-
-        <p>A criminal offence is committed if a mandatory occurrence report is not made within 10 days of you or your organisation becoming aware of an occurrence or risk.</p>
 
         <h2 class="govuk-heading-m">If you can’t use this service</h2>
 
