@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+{% set title = "Enter mandatory occurrence notice reference" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <!--<span class="govuk-caption-l">About the building</span>-->
+      <form action="" method="post">
+        {{ govukInput({
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "This is the reference number given by BSR when you submitted a mandatory occurrence notice"
+          },
+          id: "notice-reference",
+          name: "notice-reference",
+          classes: "govuk-input--width-20",
+          value: data['notice-reference']
+        }) }}
+
+        <p><a href="/private-sprint-4/about-the-building/have-existing-application">I don't have a notice reference</a></p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

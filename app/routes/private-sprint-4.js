@@ -4,9 +4,28 @@ module.exports = router => {
     router.post('/private-sprint-4/start', (req, res) => {
         req.session.data['enquiry-about'] = "mor";
         req.session.data['building-status'] = "occupied"
-        res.redirect('/private-sprint-4/about-the-building/have-existing-applications')
+        res.redirect('/private-sprint-4/about-the-occurrence/notice-report')
     })
 
+    router.post('/private-sprint-4/about-the-occurrence/notice-report', (req, res) => {
+        if (req.session.data['notice-report'] == "notice") {
+            res.redirect('/private-sprint-4/about-the-building/postcode-lookup')
+        } else {
+            res.redirect('/private-sprint-4/about-the-occurrence/notice-reference')
+        }
+    })
+
+    router.post('/private-sprint-4/about-the-occurrence/notice-reference', (req, res) => {
+        if (req.session.data['have-notice-reference'] == "yes") {
+            res.redirect('/private-sprint-4/about-the-occurrence/enter-notice-reference')
+        } else {
+            res.redirect('/private-sprint-4/about-the-building/have-existing-applications')
+        }
+    })
+
+    router.post('/private-sprint-4/about-the-occurrence/enter-notice-reference', (req, res) => {
+        res.redirect('/private-sprint-4/about-the-occurrence/risk-or-event')
+    })
 
     router.post('/private-sprint-4/about-the-building/have-existing-applications', (req, res) => {
         if (req.session.data['existing-application'] == "bcr") {
@@ -81,7 +100,11 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-4/about-the-building/confirm-address', (req, res) => {
-        res.redirect('/private-sprint-4/about-the-person/select-organisation')
+        if (req.session.data['notice-report'] == "notice") {
+            res.redirect('/private-sprint-4/about-the-person/your-details')
+        } else {
+            res.redirect('/private-sprint-4/about-the-person/select-organisation')
+        }
     })
 
     router.post('/private-sprint-4/about-the-building/which-region', (req, res) => {
@@ -101,11 +124,23 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-4/about-the-person/your-details', (req, res) => {
-        res.redirect('/private-sprint-4/about-the-occurrence/risk-or-event')
+        if (req.session.data['notice-report'] == "notice") {
+            res.redirect('/private-sprint-4/about-the-occurrence/brief-details')
+        } else {
+            res.redirect('/private-sprint-4/about-the-occurrence/risk-or-event')
+        }
     })
 
     router.post('/private-sprint-4/about-the-occurrence/risk-or-event', (req, res) => {
         res.redirect('/private-sprint-4/about-the-occurrence/occurrence-type')
+    })
+    
+    router.post('/private-sprint-4/about-the-occurrence/brief-details', (req, res) => {
+        res.redirect('/private-sprint-4/check-your-answers-notice')
+    })
+
+    router.post('/private-sprint-4/check-your-answers-notice', (req, res) => {
+        res.redirect('/private-sprint-4/confirmation-notice')
     })
 /*
 

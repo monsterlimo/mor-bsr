@@ -18,9 +18,10 @@
         <span class="govuk-caption-l">About the occurrence</span>
         <h1 class="govuk-heading-l">{{ title }}</h1>
 
-        {{ govukTextarea({
+        {{ govukCharacterCount ({
           name: "occurrence-details-what",
           id: "occurrence-details-what",
+          maxlength: 500,
           label: {
             text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?",
             classes: "govuk-label--s",
@@ -28,29 +29,42 @@
           }
         }) }}
 
-        {{ govukTextarea({
+        {{ govukCharacterCount ({
           name: "occurrence-details-why",
           id: "occurrence-details-why",
+          maxlength: 300,
+          rows: 4,
           label: {
             text: "What caused it?",
             classes: "govuk-label--s",
             isPageHeading: false
           }
+        ,
+        hint: {
+          text: "Tell us if anything has changed with the building such as building work"
+        }
         }) }}
 
-        {{ govukTextarea({
+        {{ govukCharacterCount ({
           name: "occurrence-details-who",
           id: "occurrence-details-who",
+          rows: 3,
+          maxlength: 200,
           label: {
             text: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?",
             classes: "govuk-label--s",
             isPageHeading: false
+          },
+          hint: {
+            text: "Tell us the number of serious injuries and fatalities"
           }
         }) }}
 
-        {{ govukTextarea({
+        {{ govukCharacterCount ({
           name: "occurrence-details-reporter",
           id: "occurrence-details-reporter",
+          rows: 3,
+          maxlength: 200,
           label: {
             text: "Who told your organisation?",
             classes: "govuk-label--s",
@@ -58,9 +72,10 @@
           }
         }) }}
 
-        {{ govukTextarea({
+        {{ govukCharacterCount ({
           name: "occurrence-details-action",
           id: "occurrence-details-action",
+          maxlength: 500,
           label: {
             text: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?",
             classes: "govuk-label--s",

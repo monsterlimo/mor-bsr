@@ -1,0 +1,26 @@
+{% extends "layouts/main.html" %}
+{% set title = "Mandatory occurrence notice received" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">{{title}}</h1>
+        <div class="govuk-panel__body">
+          Reference number<br><strong>HDJ2123F</strong>
+        </div>
+      </div>
+
+      <p>We have sent you a confirmation email that includes your reference number.</p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p>You need to complete a full report within 10 days of becoming aware of the occurrence.</p>
+      <p>You can use your mandatory occurrence notice reference to save you time when completing your full report.</p>
+
+    </div>
+  </div>
+{% endblock %}
