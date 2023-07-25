@@ -203,6 +203,8 @@
         ]
       }) }}
 
+    {% if data['has-submitted-notice'] != "yes" %}
+
       <h2 class="govuk-heading-m">About you</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
@@ -251,7 +253,7 @@
             actions: {
               items: [
                 {
-                  href: "about-the-person/select-organisation",
+                  href: "about-the-person/your-details",
                   text: "Change",
                   visuallyHiddenText: "Your organisation details"
                 }
@@ -278,8 +280,10 @@
         ]
       }) }}
 
+      {% endif %}
+
       {% set supportingInfo %}
-        <ul class="govuk-list govuk-list--bullet">
+        <ul class="govuk-list govuk-list--none">
         {% for file in data['filesUploaded'] %}
           <li>{{ file }}</li>
         {% else %}
@@ -302,6 +306,23 @@
         rows: [
           {
             key: {
+              text: "Mandatory occurrence notice reference"
+            },
+            value: {
+              text: data['notice-reference']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/enter-notice-reference",
+                  text: "Change",
+                  visuallyHiddenText: "mandatory occurrnce notice reference"
+                }
+              ]
+            }
+          } if data['notice-reference'],
+          {
+            key: {
               text: "Risk or event"
             },
             value: {
@@ -310,9 +331,9 @@
             actions: {
               items: [
                 {
-                  href: "about-the-building/risk-or-event",
+                  href: "about-the-occurrence/risk-or-event",
                   text: "Change",
-                  visuallyHiddenText: "How are you or your organisation are involved in this building"
+                  visuallyHiddenText: "what you are reporting about"
                 }
               ]
             }
@@ -458,7 +479,7 @@
               text: "Supporting information"
             },
             value: {
-              html: detailsHTML
+              html: supportingInfo
             },
             actions: {
               items: [

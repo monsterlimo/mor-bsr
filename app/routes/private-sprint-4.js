@@ -41,7 +41,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-4/about-the-occurrence/notice-submitter', (req, res) => {
-        if (req.session.data[''] == "yes") {
+        if (req.session.data['has-submitted-notice'] == "yes") {
             res.redirect('/private-sprint-4/about-the-occurrence/risk-or-event')
         } else {
             res.redirect('/private-sprint-4/about-the-person/your-details')
@@ -121,11 +121,12 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-4/about-the-building/confirm-address', (req, res) => {
-        if (req.session.data['notice-report'] == "notice") {
+        //if (req.session.data['notice-report'] == "notice") {
+         //   res.redirect('/private-sprint-4/about-the-person/your-details')
+        //} else {
+            //res.redirect('/private-sprint-4/about-the-person/select-organisation')
             res.redirect('/private-sprint-4/about-the-person/your-details')
-        } else {
-            res.redirect('/private-sprint-4/about-the-person/select-organisation')
-        }
+        //}
     })
 
     router.post('/private-sprint-4/about-the-building/which-region', (req, res) => {

@@ -32,6 +32,40 @@
           },
           {
             key: {
+              text: "Building HRB number"
+            },
+            value: {
+              html: data['building-reg-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-hrb-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
+            }
+          } if data['existing-application'] == "hrb",
+          {
+            key: {
+              text: "Building controler application reference"
+            },
+            value: {
+              html: data['building-control-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-bcr-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building control reference"
+                }
+              ]
+            }
+          } if data['existing-application'] == "bcr",
+          {
+            key: {
               text: "Building region"
             },
             value: {
@@ -178,7 +212,7 @@
               text: "Your organisation details"
             },
             value: {
-              html: data['contact-org'] or "No organisation supplied"
+              html: data['contact-organisation'] or "No organisation supplied"
             },
             actions: {
               items: [
