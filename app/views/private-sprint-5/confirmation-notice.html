@@ -1,0 +1,27 @@
+{% extends "layouts/main.html" %}
+{% set title = "Mandatory occurrence notice received" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">{{title}}</h1>
+        <div class="govuk-panel__body">
+          Reference number<br><strong>HDJ2123F</strong>
+        </div>
+      </div>
+
+      <p>We have sent you a confirmation email that includes your reference number.</p>
+      
+      <p>You must submit a full mandatory occurrence report within 10 days of the occurrence being identified. Use your mandatory occurrence notice reference number.</p>
+
+      <p><a href="/private-sprint-5/about-the-occurrence/risk-or-event">Continue submitting your mandatory occurrence report</a></p>
+
+    </div>
+  </div>
+{% endblock %}

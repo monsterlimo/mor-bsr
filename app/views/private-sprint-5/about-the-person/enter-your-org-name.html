@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "High-rise residential building registration number" %}
+{% set title = "Name of your organisation" %}
 {% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -14,8 +14,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">About the building</span>
+
       <form action="" method="post">
+        <span class="govuk-caption-l">About you</span>
         {{ govukInput({
           label: {
             text: title,
@@ -23,15 +24,13 @@
             isPageHeading: true
           },
           hint: {
-            text: "This is the number given by the Building Safety Regulator when you registered the building"
+            text: "For example, when you are making a MOR on behalf of an organisation."
           },
-          id: "building-reg-number",
-          name: "building-reg-number",
+          id: "organisation-name",
+          name: "organisation-name",
           classes: "govuk-input--width-20",
-          value: data['building-reg-number']
+          value: data['organisation-name']
         }) }}
-
-        <p><a href="/private-sprint-4/about-the-building/do-you-know-the-address">I need to identify my building another way</a></p>
 
         {{ govukButton({
           text: "Continue"

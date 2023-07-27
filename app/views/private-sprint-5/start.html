@@ -1,0 +1,231 @@
+{% extends "layouts/main.html" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+{% block pageTitle %}
+  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+  {% set html %}
+    <p class="govuk-body">We’d like to use analytics cookies so we can understand how you use this site.</p>
+    <p class="govuk-body">We also use essential cookies to remember if you’ve accepted analytics cookies.</p>
+  {% endset %}
+
+  {% set acceptHtml %}
+    <p class="govuk-body">You’ve accepted analytics cookies. You can <a class="govuk-link" href="cookies">change your cookie settings</a> at any time.</p>
+  {% endset %}
+
+  {% set rejectHtml %}
+    <p class="govuk-body">You’ve rejected analytics cookies. You can <a class="govuk-link" href="cookies">change your cookie settings</a> at any time.</p>
+  {% endset %}
+
+    {{ govukCookieBanner({
+      classes: "js-cookies-banner",
+      messages: [
+        {
+            headingText: "Cookies on " + serviceName,
+            html: html,
+            actions: [
+                {
+                    text: "Accept analytics cookies",
+                    type: "button",
+                    classes: "js-cookies-button-accept"
+                },
+                {
+                    text: "Reject analytics cookies",
+                    type: "button",
+                    classes: "js-cookies-button-reject"
+                },
+                {
+                    text: "View cookie preferences",
+                    href: "cookies"
+                }
+            ],
+            classes: "js-question-banner"
+        },
+        {
+            html: acceptHtml,
+            role: "alert",
+            actions: [
+                {
+                    text: "Hide cookie message",
+                    type: "button",
+                    classes: "js-hide"
+                }
+            ],
+            classes: "js-cookies-accepted",
+            hidden: true
+        },
+        {
+            html: rejectHtml,
+            role: "alert",
+            actions: [
+                {
+                    text: "Hide cookie message",
+                    type: "button",
+                    classes: "js-hide"
+                }
+            ],
+            classes: "js-cookies-rejected",
+            hidden: true
+        }
+    ]
+    }) }}
+
+
+
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form action="" method="post">
+        <h1 class="govuk-heading-xl">
+          {% if serviceName %} {{ serviceName }} {% endif %}
+        </h1>
+
+        <p>Use this service to submit a mandatory occurrence notice and report to the Building Safety Regulator (BSR).</p>
+
+        <p>Content</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a href="#notice">Mandatory occurrence notice</a></li>
+          <li><a href="#report">Mandatory occurrence report</a></li>
+        </ul>
+        
+        <p>Submit a mandatory occurrence notice and report if you are:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>an accountable person or principal accountable person.</li>
+          <li>principal contractor or principal designer.</li>
+        </ul>
+
+        <p>Read the guidance on what <a href="">risks and incidents</a> require you to submit a notice and report.</p> 
+
+        <h2 class="govuk-heading-m">Accountable person or principal accountable person</h2>
+
+        <p>If you are an accountable person or principal accountable person, you must submit a mandatory occurrence notice and report for an occupied building if something causes</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>structural failure</li>
+          <li>spread of fire</li>
+        </ul>
+
+        <p>or if something risks</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>structural failure</li>
+          <li>spread of fire</li>
+        </ul>
+
+        <h2 class="govuk-heading-m">Principal contractor or principal designer</h2>
+
+        <p>If you are a principal contractor or principal designer, you must submit a mandatory occurrence notice and report if something</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>causes structural failure</li>
+          <li>diminishes fire safety</li>
+        </ul>
+
+        <p>or if something risks</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>structural failure</li>
+          <li>diminishing fire safety</li>
+        </ul>
+
+        <p>You do not need to submit a mandatory occurrence notice or report for a design until you have a building control application number.</p>
+
+        <h2 id="notice" class="govuk-heading-m">Mandatory occurrence notice</h2>
+
+        <p>You must submit a mandatory occurrence notice to BSR as soon as you can when an incident or risk is identified.</p>
+
+        <p>To submit a mandatory occurrence notice, we will ask you:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>your contact details</li>
+          <li>the address of the building where the incident or risk has been identified</li>
+          <li>to describe briefly the incident or risk</li>
+        </ul>
+
+        <p>When you submit a mandatory occurrence notice, we will give you a reference number you can use to submit a mandatory occurrence report.</p>
+
+        <h2 id="report" class="govuk-heading-m">Mandatory occurrence report</h2>
+
+        <p>You must submit a mandatory occurrence report to BSR within 10 calendar days of identifying an incident or risk.</p>
+
+        <p>To submit a mandatory occurrence report, we will ask you:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the building registration number or address if the building is occupied</li>
+          <li>the building control application number if the building is in design or construction</li>
+          <li>your contact details, the name of your organisation and your relationship to the building, for example, principal accountable person</li>
+          <li>the type of occurrence you are reporting and when you became aware of it</li>
+          <li>what happened, or is at risk of happening</li>
+          <li>who is involved and the effect on them</li>
+          <li>what you have done and plan to do to keep people safe</li>
+          <li>for any supporting information, such as documents or photographs</li>
+        </ul>
+
+        <h2 class="govuk-heading-m">If you can’t use this service</h2>
+
+        <p>If you cannot use the online service, call BSR on <a href="tel:0300 790 6787">0300 790 6787</a>. BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+
+        <p>A translation service is available if you would prefer to speak in a language other than English.</p>
+
+        {{ govukButton({
+          text: "Start now",
+          isStartButton: true
+        }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+
+  <script>
+    var acceptButton = document.querySelector('.js-cookies-button-accept')
+    var rejectButton = document.querySelector('.js-cookies-button-reject')
+
+    var acceptedBanner = document.querySelector('.js-cookies-accepted')
+    var rejectedBanner = document.querySelector('.js-cookies-rejected')
+    var questionBanner = document.querySelector('.js-question-banner')
+    var cookieBanner = document.querySelector('.js-cookies-banner')
+
+    function showBanner(banner) {
+        questionBanner.setAttribute('hidden', 'hidden')
+        banner.removeAttribute('hidden')
+
+        // Shift focus to the banner
+        banner.setAttribute('tabindex', '-1')
+        banner.focus()
+
+        banner.addEventListener('blur', function () {
+            banner.removeAttribute('tabindex')
+        })
+    }
+
+    acceptButton.addEventListener('click', function (event) {
+        showBanner(acceptedBanner)
+        event.preventDefault()
+    })
+
+    rejectButton.addEventListener('click', function (event) {
+        showBanner(rejectedBanner)
+        event.preventDefault()
+    })
+
+    acceptedBanner.querySelector('.js-hide').addEventListener('click', function() {
+      cookieBanner.setAttribute('hidden', 'hidden')
+    })
+
+    rejectedBanner.querySelector('.js-hide').addEventListener('click', function() {
+      cookieBanner.setAttribute('hidden', 'hidden')
+    })
+  </script>
+
+{% endblock %}

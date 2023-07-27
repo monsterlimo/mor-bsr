@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "High-rise residential building registration number" %}
+{% set title = "Building control application reference" %}
 {% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -23,15 +23,15 @@
             isPageHeading: true
           },
           hint: {
-            text: "This is the number given by the Building Safety Regulator when you registered the building"
+            text: "This is the reference number given by the building control body on your application"
           },
-          id: "building-reg-number",
-          name: "building-reg-number",
+          id: "building-control-number",
+          name: "building-control-number",
           classes: "govuk-input--width-20",
-          value: data['building-reg-number']
+          value: data['building-control-number']
         }) }}
 
-        <p><a href="/private-sprint-4/about-the-building/do-you-know-the-address">I need to identify my building another way</a></p>
+        <p><a href="/private-sprint-5/about-the-building/do-you-know-the-address">I need to identify my building another way</a></p>
 
         {{ govukButton({
           text: "Continue"
