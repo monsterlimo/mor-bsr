@@ -140,11 +140,36 @@ module.exports = router => {
     })
     
     router.post('/private-sprint-5/about-the-person/your-role', (req, res) => {
-        if (req.session.data['notice-report'] == "notice") {
-            res.redirect('/private-sprint-5/about-the-occurrence/brief-details')
+        const roles = req.session.data['reporter-role'];
+
+        if (roles) {
+            if (roles.length == 1) {
+                roles.forEach(role => {
+                    if (role == "other") {
+                        res.redirect('/private-sprint-5/about-the-person/other-organisation')
+                    } else {
+                        if (req.session.data['notice-report'] == "notice") {
+                            res.redirect('/private-sprint-5/about-the-occurrence/brief-details')
+                        } else {
+                            res.redirect('/private-sprint-5/about-the-occurrence/risk-or-event')
+                        }
+                    }
+                });
+            } else {
+                res.redirect('/private-sprint-5/about-the-occurrence/risk-or-event')
+            }
         } else {
             res.redirect('/private-sprint-5/about-the-occurrence/risk-or-event')
+        }        
+    })
+
+    router.post('/private-sprint-5/about-the-person/other-organisation', (req, res) => {
+        if (req.session.data['other-org'] == "yes") {
+
+        } else {
+
         }
+        
     })
 
     router.post('/private-sprint-5/about-the-occurrence/risk-or-event', (req, res) => {
