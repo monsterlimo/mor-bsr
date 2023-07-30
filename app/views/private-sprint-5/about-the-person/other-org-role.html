@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Are you making this mandatory occurence notice on behalf of another organisation?" %}
+{% set title = "How is " + data['contact-organisation'] + " involved in this building?" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "How are you involved in this building?" %}
 {% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -17,9 +17,8 @@
 
       <form action="" method="post">
         <span class="govuk-caption-l">About you</span>
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
-        {{ govukRadios({
-          name: "other-org",
+        {{ govukCheckboxes({
+          name: "reporter-role",
           fieldset: {
             legend: {
               text: title,
@@ -27,14 +26,29 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "Select all that apply"
+          },
           items: [
             {
-              value: "yes",
-              text: "Yes"
+              value: "accountable person",
+              text: "accountable person"
             },
             {
-              value: "no",
-              text: "Yes"
+              value: "principal accountable person",
+              text: "principal accountable person"
+            },
+            {
+              value: "principal contractor",
+              text: "principal contractor"
+            },
+            {
+              value: "principal designer",
+              text: "principal designer"
+            },
+            {
+              value: "other",
+              text: "other"
             }
           ]
         }) }}

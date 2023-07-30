@@ -165,11 +165,24 @@ module.exports = router => {
 
     router.post('/private-sprint-5/about-the-person/other-organisation', (req, res) => {
         if (req.session.data['other-org'] == "yes") {
-
+            res.redirect('/private-sprint-5/about-the-person/enter-other-org-name') 
         } else {
+            res.redirect('/private-sprint-5/about-the-person/not-able-to-submit') 
+        } 
+    })
 
+    router.post('/private-sprint-5/about-the-person/enter-other-org-name', (req, res) => {
+        res.redirect('/private-sprint-5/about-the-person/other-org-role') 
+    })
+
+    router.post('/private-sprint-5/about-the-person/other-org-role', (req, res) => {
+        //res.redirect('/private-sprint-5/about-the-person/other-org-role') 
+
+        if (req.session.data['notice-report'] == "notice") {
+            res.redirect('/private-sprint-5/about-the-occurrence/brief-details')
+        } else {
+            res.redirect('/private-sprint-5/about-the-occurrence/risk-or-event')
         }
-        
     })
 
     router.post('/private-sprint-5/about-the-occurrence/risk-or-event', (req, res) => {

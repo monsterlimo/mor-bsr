@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Have you submitted a notice?" %}
+{% set title = "Do you need to submit a notice for this occurrence?" %}
 {% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -30,12 +30,12 @@
           },
           items: [
             {
-              value: "report",
+              value: "notice",
               text: "Yes"
             },
             {
-              value: "notice",
-              text: "No"
+              value: "report",
+              text: "No, i need to complete a report"
             }
           ]
         }) }}

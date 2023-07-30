@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Who submitted the notice?" %}
+{% set title = "Name of the organisation you are submitting on behalf of" %}
 {% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -14,26 +14,19 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       <form action="" method="post">
-        {{ govukRadios({
-          name: "has-submitted-notice",
-          fieldset: {
-            legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+        <span class="govuk-caption-l">About you</span>
+        {{ govukInput({
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
-          items: [
-            {
-              value: "yes",
-              text: "Me"
-            },
-            {
-              value: "no",
-              text: "Someone else"
-            }
-          ]
+          id: "organisation-name",
+          name: "organisation-name",
+          classes: "govuk-input--width-20",
+          value: data['organisation-name']
         }) }}
 
         {{ govukButton({
