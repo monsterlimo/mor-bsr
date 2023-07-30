@@ -5,6 +5,14 @@ module.exports = router => {
     router.post('/private-sprint-5/start', (req, res) => {
         req.session.data['enquiry-about'] = "mor";
         req.session.data['building-status'] = "occupied"
+        res.redirect('/private-sprint-5/verification/your-email')
+    })
+
+    router.post('/private-sprint-5/verification/your-email', (req, res) => {
+        res.redirect('/private-sprint-5/verification/verify-email')
+    })
+
+    router.post('/private-sprint-5/verification/verify-email', (req, res) => {
         res.redirect('/private-sprint-5/about-the-occurrence/notice-report')
     })
 
@@ -159,7 +167,11 @@ module.exports = router => {
                 res.redirect('/private-sprint-5/about-the-occurrence/risk-or-event')
             }
         } else {
-            res.redirect('/private-sprint-5/about-the-occurrence/risk-or-event')
+            if (req.session.data['notice-report'] == "notice") {
+                res.redirect('/private-sprint-5/about-the-occurrence/brief-details')
+            } else {
+                res.redirect('/private-sprint-5/about-the-occurrence/risk-or-event')
+            }
         }        
     })
 
