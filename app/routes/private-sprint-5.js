@@ -40,7 +40,7 @@ module.exports = router => {
 
     router.post('/private-sprint-5/about-the-occurrence/notice-submitter', (req, res) => {
         if (req.session.data['has-submitted-notice'] == "yes") {
-            res.redirect('/private-sprint-5/about-the-occurrence/risk-or-event')
+            res.redirect('/private-sprint-5/about-the-person/enter-your-org-name')
         } else {
             res.redirect('/private-sprint-5/about-the-person/your-details')
         }
@@ -79,24 +79,7 @@ module.exports = router => {
             res.redirect('/private-sprint-5/about-the-building/choose-how-to-locate-building')
         }
     })
-/*
-    router.post('/private-sprint-5/about-the-building/have-an-address', (req, res) => {
-        if (req.session.data['has-address'] == "yes") {
-            res.redirect('/private-sprint-5/about-the-building/postcode-lookup')
-        } else {
-            res.redirect('/private-sprint-5/about-the-building/choose-how-to-locate-building')
-        }
-    })
 
- 
-    router.post('/private-sprint-5/about-the-building/choose-how-to-locate-building', (req, res) => {
-        res.redirect('/private-sprint-5/about-the-person/your-details')
-    })
-
-    router.post('/private-sprint-5/about-the-building/building-location', (req, res) => {
-        res.redirect('/private-sprint-5/about-the-person/your-details')
-    })
-*/
     router.post('/private-sprint-5/about-the-building/enter-hrb-number', (req, res) => {
         res.redirect('/private-sprint-5/about-the-building/confirm-address')
     })
@@ -119,12 +102,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-5/about-the-building/confirm-address', (req, res) => {
-        //if (req.session.data['notice-report'] == "notice") {
-         //   res.redirect('/private-sprint-5/about-the-person/your-details')
-        //} else {
-            //res.redirect('/private-sprint-5/about-the-person/select-organisation')
-            res.redirect('/private-sprint-5/about-the-person/your-details')
-        //}
+        res.redirect('/private-sprint-5/about-the-person/your-details')
     })
 
     router.post('/private-sprint-5/about-the-building/which-region', (req, res) => {
@@ -144,9 +122,17 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-5/about-the-person/your-details', (req, res) => {
+        if (req.session.data['notice-report'] == "notice") {
+            res.redirect('/private-sprint-5/about-the-occurrence/brief-details')
+        } else {
+            res.redirect('/private-sprint-5/about-the-person/enter-your-org-name')
+        }
+    })
+
+    router.post('/private-sprint-5/about-the-person/enter-your-org-name', (req, res) => {
         res.redirect('/private-sprint-5/about-the-person/your-role')
     })
-    
+
     router.post('/private-sprint-5/about-the-person/your-role', (req, res) => {
         const roles = req.session.data['reporter-role'];
 

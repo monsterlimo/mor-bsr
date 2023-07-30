@@ -17,6 +17,20 @@
 
       <form action="" method="post">
         <span class="govuk-caption-l">About you</span>
+
+        {% set otherHTML %}
+          {{ govukInput({
+            label: {
+              text: "Enter " + data['contact-organisation'] + "'s role" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "Enter your role",
+              classes: "govuk-label--s"
+            },
+            id: "other-role",
+            name: "other-role",
+            classes: "govuk-input--width-20",
+            value: data['other-role']
+          }) }}
+        {% endset %}
+
         {{ govukCheckboxes({
           name: "reporter-role",
           fieldset: {
@@ -48,7 +62,10 @@
             },
             {
               value: "other",
-              text: "other"
+              text: "other",
+              conditional: {
+                html: otherHTML
+              }
             }
           ]
         }) }}

@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Are you making this mandatory occurence notice on behalf of another organisation?" %}
+{% set title = "Is " + data['contact-organisation']  + " submitting this report behalf of another organisation?" %}
 {% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -34,7 +34,7 @@
             },
             {
               value: "no",
-              text: "Yes"
+              text: "No"
             }
           ]
         }) }}

@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Your contact details" %}
+{% set title = "Your details" %}
 {% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -54,17 +54,6 @@
             value: data['contact-email'],
             classes: "govuk-input--width-20"
           }) }}
-
-          {{ govukInput({
-            label: {
-              text: 'Organisation name (optional)'
-            },
-            id: "contact-organisation",
-            name: "contact-organisation",
-            value: data['contact-organisation'],
-            classes: "govuk-input--width-20"
-          }) }}
-
           
           
         {% endcall %}

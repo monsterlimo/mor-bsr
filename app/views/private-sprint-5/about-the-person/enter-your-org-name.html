@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Name of your organisation" %}
+{% set title = "Enter the organisation you are submitting on behalf of" %}
 {% set serviceName = "Notify BSR of a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -26,8 +26,8 @@
           hint: {
             text: "For example, when you are making a MOR on behalf of an organisation."
           },
-          id: "organisation-name",
-          name: "organisation-name",
+          id: "contact-organisation",
+          name: "contact-organisation",
           classes: "govuk-input--width-20",
           value: data['organisation-name']
         }) }}
