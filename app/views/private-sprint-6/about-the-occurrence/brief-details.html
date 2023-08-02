@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+{% set title = "Briefly describe the risk or incident" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the occurrence</span>
+
+
+        {{ govukCharacterCount({
+          name: "occurrence-summary",
+          id: "occurrence-summary",
+          maxlength: 500,
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+
+        <p>You must submit a full mandatory occurrence report within 10 days of the occurrence being identified.</p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

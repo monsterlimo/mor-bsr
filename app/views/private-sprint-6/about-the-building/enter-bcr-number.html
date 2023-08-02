@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+{% set title = "Building control application reference" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">About the building</span>
+      <form action="" method="post">
+        {{ govukInput({
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "This is the reference number given by the building control body on your application"
+          },
+          id: "building-control-number",
+          name: "building-control-number",
+          classes: "govuk-input--width-20",
+          value: data['building-control-number']
+        }) }}
+
+        <p><a href="/private-sprint-6/about-the-building/do-you-know-the-address">I need to identify my building another way</a></p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

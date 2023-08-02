@@ -1,0 +1,265 @@
+{% extends "layouts/main.html" %}
+{% set title = "Check your answers" %}
+{% set serviceName = "Notify BSR of a mandatory occurrence" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      <p>Review the information you want to send us</p>
+
+      <h2 class="govuk-heading-m">About the building</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: "Whitehall 2, Leeds, LS1"
+            }
+          },
+          {
+            key: {
+              text: "Building HRB number"
+            },
+            value: {
+              html: data['building-reg-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-hrb-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
+            }
+          } if data['existing-application'] == "hrb",
+          {
+            key: {
+              text: "Building controler application reference"
+            },
+            value: {
+              html: data['building-control-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-bcr-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building control reference"
+                }
+              ]
+            }
+          } if data['existing-application'] == "bcr",
+          {
+            key: {
+              text: "Building region"
+            },
+            value: {
+              html: (data['building-region'] | capitalize) or "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/which-region",
+                  text: "Change",
+                  visuallyHiddenText: "Building region"
+                }
+              ]
+            }
+          } if data['building-region'],
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: "<p>Whitehall 2<br>Leeds, LS1</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/postcode-lookup",
+                  text: "Change",
+                  visuallyHiddenText: "Building address"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Building status"
+            },
+            value: {
+              text: (data['building-status'] | capitalize) or "occupied"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/is-the-building-occupied",
+                  text: "Change",
+                  visuallyHiddenText: "Building status"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",        
+          {
+            key: {
+              text: "Number of floors"
+            },
+            value: {
+              text: (data['number-floors'] | capitalize) or "9"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/number-of-floors",
+                  text: "Change",
+                  visuallyHiddenText: "Number of floors"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Building height"
+            },
+            value: {
+              text: (data['building-height'] | capitalize) or "20m"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/height-of-building",
+                  text: "Change",
+                  visuallyHiddenText: "Building height"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Number of units"
+            },
+            value: {
+              text: data['number-units'] or "85"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/number-of-units",
+                  text: "Change",
+                  visuallyHiddenText: "Number of units"
+                }
+              ]
+            } 
+          } if data['existing-application'] == "none"
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">About you</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Your name"
+            },
+            value: {
+              text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-details",
+                  text: "Change",
+                  visuallyHiddenText: "Your name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Contact details"
+            },
+            value: {
+              html: (data['contact-email'] or "john@test.com")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-details",
+                  text: "Change",
+                  visuallyHiddenText: "Contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Your organisation details"
+            },
+            value: {
+              html: data['contact-organisation'] or "No organisation supplied"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/select-organisation",
+                  text: "Change",
+                  visuallyHiddenText: "Your organisation details"
+                }
+              ]
+            }
+          } if data['type-of-reporter'] != "none"
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">About the occurrence</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Summary of the occurrence"
+            },
+            value: {
+              text: data['occurrence-summary'] or "A fire has spread through 5 units and there are multiple serious injuries."
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-role",
+                  text: "Change",
+                  visuallyHiddenText: "How are you or your organisation are involved in this building"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+   
+
+      <form action="" method="post">
+        <input type="hidden" name="answers-checked" value="true">
+        {{ govukButton({
+          text: "Confirm and send"
+        }) }}
+      </form>
+   
+    </div>
+  </div>
+
+{% endblock %}
