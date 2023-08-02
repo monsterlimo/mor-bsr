@@ -188,7 +188,7 @@ module.exports = router => {
     })
     
     router.post('/private-sprint-6/about-the-occurrence/brief-details', (req, res) => {
-        res.redirect('/private-sprint-6/check-your-answers-notice')
+        res.redirect('/private-sprint-6/about-the-occurrence/occurrence-date')
     })
 
     router.post('/private-sprint-6/check-your-answers-notice', (req, res) => {
@@ -261,7 +261,11 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-6/about-the-occurrence/occurrence-date', (req, res) => {
-        res.redirect('/private-sprint-6/about-the-occurrence/occurrence-details')
+        if (req.session.data['notice-report'] == "notice") {
+            res.redirect('/private-sprint-6/check-your-answers-notice')
+        } else {
+            res.redirect('/private-sprint-6/about-the-occurrence/occurrence-details')
+        } 
     })
 
     router.post('/private-sprint-6/about-the-occurrence/occurrence-details', (req, res) => {

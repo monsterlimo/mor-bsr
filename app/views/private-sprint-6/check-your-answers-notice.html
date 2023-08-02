@@ -49,7 +49,7 @@
           } if data['existing-application'] == "hrb",
           {
             key: {
-              text: "Building controler application reference"
+              text: "Building control application reference"
             },
             value: {
               html: data['building-control-number'] or "ABC123456789"
@@ -206,24 +206,7 @@
                 }
               ]
             }
-          },
-          {
-            key: {
-              text: "Your organisation details"
-            },
-            value: {
-              html: data['contact-organisation'] or "No organisation supplied"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/select-organisation",
-                  text: "Change",
-                  visuallyHiddenText: "Your organisation details"
-                }
-              ]
-            }
-          } if data['type-of-reporter'] != "none"
+          }
         ]
       }) }}
 
@@ -231,6 +214,23 @@
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
+          {
+            key: {
+              text: "Occurrence type"
+            },
+            value: {
+              text: "Notice"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/notice-report",
+                  text: "Change",
+                  visuallyHiddenText: "the type of occurrence"
+                }
+              ]
+            }
+          },
           {
             key: {
               text: "Summary of the occurrence"
@@ -244,6 +244,23 @@
                   href: "about-the-person/your-role",
                   text: "Change",
                   visuallyHiddenText: "How are you or your organisation are involved in this building"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence date"
+            },
+            value: {
+              text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time'] or "9am")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-date",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence date"
                 }
               ]
             }
