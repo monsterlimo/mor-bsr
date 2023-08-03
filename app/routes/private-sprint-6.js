@@ -257,7 +257,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-6/about-the-occurrence/occurrence-type', (req, res) => {
-        res.redirect('/private-sprint-6/about-the-occurrence/occurrence-date')
+        res.redirect('/private-sprint-6/about-the-occurrence/occurrence-details')
     })
 
     router.post('/private-sprint-6/about-the-occurrence/occurrence-date', (req, res) => {
