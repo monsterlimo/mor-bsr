@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title =  "When did " + (data['org-name'] or "ACME")  +" become aware of the problem?" if data['notice-report'] == "report" else "When did you identify the risk or incident?" %}
+{% set title =  "When did you identify the risk or incident?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -27,7 +27,7 @@
             }
           },
           hint: {
-            html: "For example, 27 05 2023"
+            html: "Be as accurate as you can.<br>For example, 27 05 2023"
           }
         }) }}
 

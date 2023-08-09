@@ -228,7 +228,7 @@
           },
           {
             key: {
-              text: "Contact details"
+              text: "Your email address"
             },
             value: {
               html: (data['contact-email'] or "john@test.com")
@@ -245,10 +245,10 @@
           },
           {
             key: {
-              text: "Your organisation details"
+              text: "Your organisation"
             },
             value: {
-              html: data['selected-organisation'] or "No organisation supplied"
+              html: data['contact-organisation'] or "No organisation supplied"
             },
             actions: {
               items: [
@@ -259,24 +259,7 @@
                 }
               ]
             }
-          } if data['type-of-reporter'] != "none",
-          {
-            key: {
-              text: "Your organisation details"
-            },
-            value: {
-              html: data['organisation-name'] or "No organisation supplied"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-details",
-                  text: "Change",
-                  visuallyHiddenText: "Your organisation details"
-                }
-              ]
-            }
-          } if data['type-of-reporter'] == "none"
+          } if data['type-of-reporter'] != "none"
         ]
       }) }}
 
@@ -360,7 +343,7 @@
               text: "Occurrence type"
             },
             value: {
-              text: data['occurrence-type']
+              text: data['occurrence-type'] or "Fire spread"
             },
             actions: {
               items: [
@@ -442,10 +425,10 @@
           },
           {
             key: {
-              text: "Who told your organisation"
+              text: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?"
             },
             value: {
-              html: data['occurrence-details-reporter'] or "We were informed by a 3rd party surveyor who completed an inspection of the building before occupation"
+              html: data['occurrence-details-action'] or "We've replaced all the doors in the building and made a note on future designs to periodically check building contract"
             },
             actions: {
               items: [
@@ -459,10 +442,10 @@
           },
           {
             key: {
-              text: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?"
+              text: "Who told your organisation"
             },
             value: {
-              html: data['occurrence-details-action'] or "We've replaced all the doors in the building and made a note on future designs to periodically check building contract"
+              html: data['occurrence-details-reporter'] or "We were informed by a 3rd party surveyor who completed an inspection of the building before occupation"
             },
             actions: {
               items: [
