@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you need to notify us about an occurrence?" %}
-{% set serviceName = "Notify BSR of a mandatory occurrence" %}
+{% set title = "Do you want to submit a notice or a report about an occurrence?" %}
+{% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -31,11 +31,11 @@
           items: [
             {
               value: "notice",
-              text: "Yes"
+              text: "Submit a notice"
             },
             {
               value: "report",
-              text: "No"
+              text: "Submit a report"
             }
           ]
         }) }}
