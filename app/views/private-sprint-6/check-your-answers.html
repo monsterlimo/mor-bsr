@@ -289,17 +289,34 @@
         rows: [
           {
             key: {
+              text: "Notice or report"
+            },
+            value: {
+              text: "Report"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/notice-report",
+                  text: "Change",
+                  visuallyHiddenText: "the type of occurrence"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "Mandatory occurrence notice reference"
             },
             value: {
-              text: data['notice-reference']
+              text: data['notice-reference'] or 'HDJ2123F'
             },
             actions: {
               items: [
                 {
                   href: "about-the-occurrence/enter-notice-reference",
                   text: "Change",
-                  visuallyHiddenText: "mandatory occurrnce notice reference"
+                  visuallyHiddenText: "mandatory occurrence notice reference"
                 }
               ]
             }
@@ -371,7 +388,7 @@
                 }
               ]
             }
-          },
+          } if data['notice-report'] == "full-report",
           {
             key: {
               text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?"

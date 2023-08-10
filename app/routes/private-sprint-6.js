@@ -80,6 +80,14 @@ module.exports = router => {
         }
     })
 
+    router.post('/private-sprint-6/about-the-building/choose-how-to-locate-building', (req, res) => {
+        res.redirect('/private-sprint-6/about-the-building/building-location')
+    })
+
+    router.post('/private-sprint-6/about-the-building/building-location', (req, res) => {
+        res.redirect('/private-sprint-6/building-in-scope/number-of-floors')
+    })
+
     router.post('/private-sprint-6/about-the-building/enter-hrb-number', (req, res) => {
         res.redirect('/private-sprint-6/about-the-building/confirm-address')
     })
@@ -140,7 +148,7 @@ module.exports = router => {
             if (roles.length == 1) {
                 roles.forEach(role => {
                     if (role == "other") {
-                        res.redirect('/private-sprint-6/about-the-person/other-organisation')
+                        res.redirect('/private-sprint-6/about-the-person/not-able-to-submit')
                     } else {
                         if (req.session.data['notice-report'] == "notice") {
                             res.redirect('/private-sprint-6/about-the-occurrence/brief-details')
@@ -250,7 +258,7 @@ module.exports = router => {
         const inScope = (height >= 18 || floors >= 7) && units >= 2;
 
         if (inScope) {
-            res.redirect('/private-sprint-6/about-the-occurrence/occurrence-type')
+            res.redirect('/private-sprint-6/about-the-person/your-details')
         } else {
             res.redirect('/private-sprint-6/building-in-scope/not-in-scope')
         }
