@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "How can you identify your building?" %}
+{% set title = "Do you want to submit a notice or a report about an occurrence?" %}
 {% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -16,10 +16,11 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">About the building</span>
-        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        <!--<span class="govuk-caption-l">About the occurrence</span>-->
+        
+
         {{ govukRadios({
-          name: "existing-application",
+          name: "notice-report",
           fieldset: {
             legend: {
               text: title,
@@ -29,17 +30,15 @@
           },
           items: [
             {
-              value: "bcr",
-              text: "By building control application reference"
+              value: "notice",
+              text: "Submit a notice"
             },
             {
-              value: "hrb",
-              text: "By high-rise residential building registration"
+              value: "report",
+              text: "Submit a report"
             }
           ]
         }) }}
-
-        <p><a href="/private-sprint-7/about-the-building/is-the-building-occupied?existing-application=postcode">I need to find my building another way</p>
 
         {{ govukButton({
           text: "Continue"

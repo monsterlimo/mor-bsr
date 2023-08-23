@@ -1,6 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "How can you identify your building?" %}
-{% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
+{% set title = "Who first reported the occurrence?" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -16,10 +15,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">About the building</span>
+        <span class="govuk-caption-l">About the occurrence</span>
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukRadios({
-          name: "existing-application",
+          name: "who-reported-occurrence",
           fieldset: {
             legend: {
               text: title,
@@ -29,17 +28,15 @@
           },
           items: [
             {
-              value: "bcr",
-              text: "By building control application reference"
+              value: "i did",
+              text: "I did"
             },
             {
-              value: "hrb",
-              text: "By high-rise residential building registration"
+              value: "someone else reported it to me",
+              text: "Someone else reported it to me"
             }
           ]
         }) }}
-
-        <p><a href="/private-sprint-7/about-the-building/is-the-building-occupied?existing-application=postcode">I need to find my building another way</p>
 
         {{ govukButton({
           text: "Continue"

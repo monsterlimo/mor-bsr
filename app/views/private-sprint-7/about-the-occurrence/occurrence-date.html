@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+{% set title =  "When did you identify the risk or incident?" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the occurrence</span>
+        {{ govukDateInput({
+          id: "occurrence-date",
+          namePrefix: "occurrence-date",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: "Be as accurate as you can.<br>For example, 27 05 2023"
+          }
+        }) }}
+
+        {{ govukInput({
+            label: {
+              text: 'Time',
+              classes: 'govuk-label--s'
+            },
+            hint: {
+              text: "For example, 23:59"
+            },
+            id: "occurrence-time",
+            name: "occurrence-time",
+            classes: "govuk-input--width-4"
+          }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

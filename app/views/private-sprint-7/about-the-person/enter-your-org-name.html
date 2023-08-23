@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Building control application reference" %}
+{% set title = "What is the name of the organisation you represent?" %}
 {% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -14,8 +14,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">About the building</span>
+
       <form action="" method="post">
+        <span class="govuk-caption-l">About you</span>
         {{ govukInput({
           label: {
             text: title,
@@ -23,15 +24,13 @@
             isPageHeading: true
           },
           hint: {
-            text: "This is the reference number given by the building control body on your application"
+            text: "For example, when you are making a MOR on behalf of an organisation."
           },
-          id: "building-control-number",
-          name: "building-control-number",
+          id: "contact-organisation",
+          name: "contact-organisation",
           classes: "govuk-input--width-20",
-          value: data['building-control-number']
+          value: data['organisation-name']
         }) }}
-
-        <p><a href="/private-sprint-7/about-the-building/do-you-know-the-address">I need to find my building another way</a></p>
 
         {{ govukButton({
           text: "Continue"

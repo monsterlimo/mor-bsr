@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Enter mandatory occurrence notice reference" %}
+{% set title = "Verify your email address" %}
 {% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -15,23 +15,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <!--<span class="govuk-caption-l">About the building</span>-->
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+      <p>We have sent a 6-digit security code to: <strong>{{ data['contact-email']}}</strong></p>
+      <p>If you cannot find the email, check your junk or spam folders.</p>
+      <p>If you did not get an email, or wish to use a different email address you can <a href="">resend the email or enter a different email address</a>.</p>
       <form action="" method="post">
         {{ govukInput({
           label: {
-            text: title,
-            classes: "govuk-label--l",
-            isPageHeading: true
+            text: "Security code",
+            classes: "govuk-label--s"
           },
           hint: {
-            text: "The reference number is in the email or text message acknowledging we have received your mandatory occurrence notice."
+            text: "For example, '123456'"
           },
-          id: "notice-reference",
-          name: "notice-reference",
-          classes: "govuk-input--width-20",
-          value: data['notice-reference']
+          id: "security-code",
+          name: "security-code",
+          classes: "govuk-input--width-20"
         }) }}
-
-        <p><a href="/private-sprint-7/about-the-building/have-existing-applications?notice-report=full-report">I don't have a notice reference</a></p>
 
         {{ govukButton({
           text: "Continue"

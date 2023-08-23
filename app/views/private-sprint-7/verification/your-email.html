@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+{% set title = "Your email address" %}
+{% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <!--<span class="govuk-caption-l">About the building</span>-->
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+      <p>To secure your mandatory occurrence notice or report and allow you to return to it later, we need to verify your email address. To do this, we will send you a 6-digit security code.</p>
+      <p>If you do not have an email address, <a href="">contact us</a> to submit a mandatory occurrence notice or a report.</p>
+      <form action="" method="post">
+        {{ govukInput({
+          label: {
+            text: "Enter your email address",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "We will use this to contact you about this notice or report. You will need to use this email address to access the notice or report."
+          },
+          id: "contact-email",
+          name: "contact-email",
+          classes: "govuk-input--width-20",
+          value: data['contact-email']
+        }) }}
+
+        {{ govukButton({
+          text: "Send verification email"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

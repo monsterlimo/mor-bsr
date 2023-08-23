@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Building control application reference" %}
+{% set title = "Number of residential units" %}
 {% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -14,24 +14,24 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">About the building</span>
       <form action="" method="post">
+
+        <h1 class="govuk-heading-l">{{title}}</h1>
+        <p>A residential unit is a flat, maisonette, student bedroom, room or any other place where someone could live.</p>
+       
         {{ govukInput({
           label: {
-            text: title,
-            classes: "govuk-label--l",
-            isPageHeading: true
+            text: "Number of residential units",
+            isPageHeading: false,
+            classes: "govuk-label--s"
           },
           hint: {
-            text: "This is the reference number given by the building control body on your application"
+            text: "Count all of the residential units, whether someone is living in them or not."
           },
-          id: "building-control-number",
-          name: "building-control-number",
-          classes: "govuk-input--width-20",
-          value: data['building-control-number']
+          id: "number-units",
+          name: "number-units",
+          classes: "govuk-input--width-3"
         }) }}
-
-        <p><a href="/private-sprint-7/about-the-building/do-you-know-the-address">I need to find my building another way</a></p>
 
         {{ govukButton({
           text: "Continue"

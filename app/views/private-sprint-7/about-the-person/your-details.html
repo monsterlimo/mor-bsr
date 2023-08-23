@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Building address" %}
+{% set title = "Your details" %}
 {% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
 
 {% block pageTitle %}
@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">About the building</span>
+        <span class="govuk-caption-l">About you</span>
         {% call govukFieldset({
           legend: {
             text: title,
@@ -24,22 +24,39 @@
             isPageHeading: true
           }
         }) %}
+
           {{ govukInput({
             label: {
-              text: 'Postcode'
+              text: 'First name'
             },
-            hint: {
-              text: "If you know the post code of the building, enter it here and select the relevant address."
-            },
-            id: "building-postcode",
-            name: "building-postcode",
-            autocomplete: "building-postcode",
+            id: "contact-first-name",
+            name: "contact-first-name",
+            value: data['contact-first-name'],
             classes: "govuk-input--width-20"
           }) }}
-
+          
+          {{ govukInput({
+            label: {
+              text: 'Last name'
+            },
+            id: "contact-last-name",
+            name: "contact-last-name",
+            value: data['contact-last-name'],
+            classes: "govuk-input--width-20"
+          }) }}
+{#
+          {{ govukInput({
+            label: {
+              text: 'Email'
+            },
+            id: "contact-email",
+            name: "contact-email",
+            value: data['contact-email'],
+            classes: "govuk-input--width-20"
+          }) }}
+#}  
+          
         {% endcall %}
-
-        <p><a href="/private-sprint-7/about-the-building/which-region">Enter address manually</a></p>
 
         {{ govukButton({
           text: "Continue"
