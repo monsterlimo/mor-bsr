@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set title = "Do you want to submit a notice or a report about an occurrence?" %}
-{% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
+{% set title = "What do you want to submit?" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -31,11 +31,17 @@
           items: [
             {
               value: "notice",
-              text: "Submit a notice"
+              text: "A notice",
+              hint: {
+                text: "You must do this as soon as possible and before you submit your report"
+              }
             },
             {
               value: "report",
-              text: "Submit a report"
+              text: "A report",
+              hint: {
+                text: "You must do this after submitting a notice and within 10 working days of identifying a risk or incident"
+              }
             }
           ]
         }) }}

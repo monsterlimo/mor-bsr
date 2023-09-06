@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Enter mandatory occurrence notice reference" %}
-{% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -31,7 +31,7 @@
           value: data['notice-reference']
         }) }}
 
-        <p><a href="/private-sprint-6/about-the-building/have-existing-applications?notice-report=full-report">I don't have a notice reference</a></p>
+        <p><a href="/private-sprint-7/about-the-building/have-existing-applications?notice-report=full-report">I don't have a notice reference</a></p>
 
         {{ govukButton({
           text: "Continue"

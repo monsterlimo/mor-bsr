@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "High-rise residential building registration number" %}
-{% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -31,7 +31,7 @@
           value: data['building-reg-number']
         }) }}
 
-        <p><a href="/private-sprint-6/about-the-building/do-you-know-the-address">I need to find my building another way</a></p>
+        <p><a href="/private-sprint-7/about-the-building/do-you-know-the-address">I need to find my building another way</a></p>
 
         {{ govukButton({
           text: "Continue"

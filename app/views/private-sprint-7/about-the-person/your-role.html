@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "How is " + data['contact-organisation'] + " involved in this building?" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "How are you involved in this building?" %}
-{% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit

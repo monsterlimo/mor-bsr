@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "What do you want to report?" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -29,7 +30,7 @@
           items: [
             {
               value: "incident",
-              text: "Incident"
+              text: "An incident that has happened"
             },
             {
               value: "risk",

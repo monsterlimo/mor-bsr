@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set title = "Upload supporting information" %}
-{% set serviceName = "Tell the Building Safety Regulator about a mandatory occurrence" %}
+{% set title = "Upload supporting information (optional)" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -18,6 +18,8 @@
   }
 </style>
 
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-three-quarters-from-desktop">
       <span class="govuk-caption-l">About the occurrence</span>
@@ -29,6 +31,7 @@
       You can upload supporting information, for example scanned documents or photos from your phone. You can upload more than one file at a time. Each file must be smaller than 100MB.
     </div>
 
+    <mark>don't show uploaded files until started uploading</mark>
     <p id="upload-update" class="govuk-body govuk-!-display-none" aria-live="assertive" aria-relevant="all">1 of 2 files uploaded</p>
 
     
@@ -38,7 +41,7 @@
     
     <div id="upload-wrapper" class="govuk-form-group">
       <label class="govuk-label" for="upload-button">
-        Upload supporting information
+        Upload supporting information <mark>remove this without</mark>
       </label>
       <input class="govuk-file-upload" id="upload-button" name="upload-button" type="file" multiple="multiple">
     </div>

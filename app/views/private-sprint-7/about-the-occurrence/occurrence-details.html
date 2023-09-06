@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title = "Details of the " + data['risk-event'] %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">About the occurrence</span>
+        <span class="govuk-caption-l">Your mandatory occurrence report</span>
         <h1 class="govuk-heading-l">{{ title }}</h1>
 
         {{ govukCharacterCount ({
@@ -49,7 +50,7 @@
           name: "occurrence-details-who",
           id: "occurrence-details-who",
           rows: 3,
-          maxlength: 250,
+          maxlength: 500,
           label: {
             text: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?",
             classes: "govuk-label--s",
@@ -66,7 +67,7 @@
           rows: 6,
           maxlength: 750,
           label: {
-            text: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?",
+            text: "What are you doing or planning to do to keep people safe?",
             classes: "govuk-label--s",
             isPageHeading: false
           }
@@ -78,7 +79,7 @@
           rows: 3,
           maxlength: 250,
           label: {
-            text: "How was the occurrence discovered?",
+            text: "How was the " + data['risk-event'] + " discovered?",
             classes: "govuk-label--s",
             isPageHeading: false
           },

@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set title =  "When did you identify the risk or incident?" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
@@ -15,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">About the occurrence</span>
+        <span class="govuk-caption-l">Your mandatory occurrence notice</span>
         {{ govukDateInput({
           id: "occurrence-date",
           namePrefix: "occurrence-date",
@@ -27,7 +28,7 @@
             }
           },
           hint: {
-            html: "Be as accurate as you can.<br>For example, 27 05 2023"
+            html: "Be as accurate as you can. For example, 27 05 2023"
           }
         }) }}
 
@@ -37,7 +38,7 @@
               classes: 'govuk-label--s'
             },
             hint: {
-              text: "For example, 23:59"
+              text: "This can be an estimate. For example, 12:00"
             },
             id: "occurrence-time",
             name: "occurrence-time",
