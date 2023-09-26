@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+{% set title = "What is the name of the organisation you represent?" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About you</span>
+        {{ govukInput({
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, when you are making a MOR on behalf of an organisation."
+          },
+          id: "contact-organisation",
+          name: "contact-organisation",
+          classes: "govuk-input--width-20",
+          value: data['organisation-name']
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

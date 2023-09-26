@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+<div class="email-heading"><p class="govuk-heading-m">Email template</p></div>
+{% endblock %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<style>
+body.govuk-template__body {
+  background-color: lightgrey;
+}
+
+.email-heading {
+  height: 70px;
+  background-color: black;
+  width: 1040px;
+  margin: auto;
+}
+
+.email-heading p {
+  color: white;
+  padding: 20px 40px 20px 40px;
+  
+}
+
+.govuk-width-container {
+  //max-width: 800px;
+  background-color: white;
+  padding: 0 40px 40px 40px;
+}
+  
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Mandatory occurrence report - enforcement actions completed</h1>
+
+      <p>The accountable person has completed the enforcement actions from your mandatory occurrence report (MOR).</p>
+
+      <h2 class="govuk-heading-m">Reference number</h2>
+
+      <p>HDJ2123F</p>
+
+      <p>The enforcement actions taken were:</p>
+      
+      <ul class="govuk-list govuk-list--bullet">
+        <li>enforcement action 1</li> 
+        <li>enforcement action 2</li> 
+        <li>enforcement action n</li> 
+      </ul>
+ 
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p>I will close your case.</p>
+
+      <p>If you need to contact me further about your MOR, you can reply to this email, or call me on 0300 790 6787 quoting your reference number.</p>
+
+      <p>BSR is open Monday to Friday from 8.30am to 5pm, except Wednesdays when we are open from 10am to 5pm.</p>
+
+      <p>Ben Walker, BSR investigator</p>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

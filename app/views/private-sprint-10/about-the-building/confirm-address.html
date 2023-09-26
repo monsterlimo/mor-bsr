@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+{% set title = "Confirm the building" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<style>
+.govuk-summary-list__key {
+  width: 50%
+}
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the building</span>
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Building name"
+              },
+              value: {
+                text: "Whitehall 2"
+              }
+            },
+            {
+              key: {
+                text: "Building address"
+              },
+              value: {
+                text: "Leeds, LS1"
+              }
+            }
+          ]
+        }) }}        
+
+        {% if data['existing-application'] == "hrb" or data['existing-application'] == "bcr" %}
+          {% set searchType = "Building control application reference" if data['existing-application'] == "bcr" else "Building registration number" %}
+          <p>If this isn't the correct building, <a href="javascript:window.history.back()">re-enter your {{ searchType }} </a> or <a href="javascript:window.history.go(-2)">choose another means of finding your building</a>.</p>
+        {% else %}
+          <p>If this isn't the correct building, <a href="javascript:window.history.go(-2)">re-enter your post code</a> or <a href="javascript:window.history.go(-5)">choose another means of finding your building</a>.</p>
+        {% endif %}
+
+        {{ govukButton({
+          text: "Confirm"
+        }) }}
+
+    
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
