@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Your contact details" %}
+{% set title = "UK telephone number" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -19,7 +19,7 @@
 
           {{ govukInput({
             label: {
-              text: "Enter your telephone or mobile number",
+              text: title,
               classes: "govuk-label--l",
               isPageHeading: true
             },
