@@ -81,10 +81,6 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-10/about-the-building/choose-how-to-locate-building', (req, res) => {
-        res.redirect('/private-sprint-10/about-the-building/building-location')
-    })
-
-    router.post('/private-sprint-10/about-the-building/building-location', (req, res) => {
         res.redirect('/private-sprint-10/building-in-scope/number-of-floors')
     })
 
@@ -122,11 +118,7 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-10/about-the-building/enter-the-building-address', (req, res) => {
-        res.redirect('/private-sprint-10/about-the-person/select-organisation')
-    })
-
-    router.post('/private-sprint-10/about-the-person/select-organisation', (req, res) => {
-        res.redirect('/private-sprint-10/about-the-person/your-details')
+        res.redirect('/private-sprint-10/building-in-scope/number-of-floors')
     })
 
     router.post('/private-sprint-10/about-the-person/your-details', (req, res) => {

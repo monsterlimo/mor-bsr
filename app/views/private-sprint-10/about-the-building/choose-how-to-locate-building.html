@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Choose how to locate building?"  %}
+{% set title = "Tell us how to find your building"  %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -17,27 +17,18 @@
 
       <form action="" method="post">
         <span class="govuk-caption-l">About the building</span>
-        {{ govukRadios({
-          name: "address-known",
-          fieldset: {
-            legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+        {{ govukTextarea({
+          name: "building-location",
+          id: "building-location",
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
           },
-          items: [
-            {
-              value: "northing",
-              text: "Easting / northing coordinates"
-            },
-            {
-              value: "building control",
-              text: "Building control application number"
-            }
-          ]
+          hint: {
+            text: "If your building doesn't have an address or has not been identified by BSR, then tell us the closest address or enter a grid reference"
+          }
         }) }}
-
       
         {{ govukButton({
           text: "Continue"
