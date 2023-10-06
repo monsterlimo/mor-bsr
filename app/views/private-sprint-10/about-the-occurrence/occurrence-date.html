@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title =  "When did you identify the single incident?" %}
+{% set title = "When did you identify the safety occurrence?" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -32,18 +32,49 @@
           }
         }) }}
 
-        {{ govukInput({
-            label: {
-              text: 'Time',
-              classes: 'govuk-label--s'
-            },
-            hint: {
-              text: "This can be an estimate. For example, 12:00"
-            },
-            id: "occurrence-time",
-            name: "occurrence-time",
-            classes: "govuk-input--width-4"
-          }) }}
+
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="occurrence-time-hint">
+              <legend class="govuk-fieldset__legend govuk-label--s">
+                  Time
+              </legend>
+              <div id="passport-issued-hint" class="govuk-hint">
+                For example, 9:30am or 2:55pm
+              </div>
+              <div class="govuk-date-input" id="passport-issued">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="occurrence-time-hour">
+                      Hour
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="occurrence-time-hour" name="occurrence-time-hour" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="occurrence-time-minute">
+                      Minute
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="occurrence-time-minute" name="occurrence-time-minute" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="occurrence-time-am-pm">
+                        am or pm
+                      </label>
+                      <select class="govuk-select" id="occurrence-time-am-pm" name="occurrence-time-am-pm" style="max-width: 50px; min-width: 100px; width: 10px !important;">
+                        <option value="am">am</option>
+                        <option value="pm" selected>pm</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
 
         {{ govukButton({
           text: "Continue"

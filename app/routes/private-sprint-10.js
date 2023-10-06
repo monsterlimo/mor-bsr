@@ -143,14 +143,33 @@ module.exports = router => {
 
         if (role == "other") {
             res.redirect('/private-sprint-10/about-the-person/not-able-to-submit')
+        } else if (role == "acting on behalf of the duty holder") {
+            res.redirect('/private-sprint-10/about-the-person/enter-representing-org-name')
         } else {
             if (req.session.data['notice-report'] == "notice") {
-                res.redirect('/private-sprint-10/about-the-occurrence/brief-details')
+                res.redirect('/private-sprint-10/about-the-occurrence/occurrence-date')
             } else {
                 res.redirect('/private-sprint-10/about-the-occurrence/risk-or-event')
             }
         }
+    })
 
+    router.post('/private-sprint-10/about-the-person/enter-representing-org-name', (req, res) => {
+        res.redirect('/private-sprint-10/about-the-person/representing-org-role')
+    })
+
+    router.post('/private-sprint-10/about-the-person/representing-org-role', (req, res) => {
+        const role = req.session.data['representing-role'];
+
+        if (role == "other") {
+            res.redirect('/private-sprint-10/about-the-person/not-able-to-submit')
+        } else {
+            if (req.session.data['notice-report'] == "notice") {
+                res.redirect('/private-sprint-10/about-the-occurrence/occurrence-date')
+            } else {
+                res.redirect('/private-sprint-10/about-the-occurrence/risk-or-event')
+            }
+        }
     })
 
     router.post('/private-sprint-10/about-the-person/other-organisation', (req, res) => {
@@ -180,7 +199,8 @@ module.exports = router => {
     })
     
     router.post('/private-sprint-10/about-the-occurrence/brief-details', (req, res) => {
-        res.redirect('/private-sprint-10/about-the-occurrence/occurrence-date')
+        res.redirect('/private-sprint-10/check-your-answers-notice')
+        
     })
 
     router.post('/private-sprint-10/check-your-answers-notice', (req, res) => {
@@ -218,7 +238,7 @@ module.exports = router => {
 
     router.post('/private-sprint-10/about-the-occurrence/occurrence-date', (req, res) => {
         if (req.session.data['notice-report'] == "notice") {
-            res.redirect('/private-sprint-10/check-your-answers-notice')
+            res.redirect('/private-sprint-10/about-the-occurrence/brief-details')
         } else {
             res.redirect('/private-sprint-10/about-the-occurrence/occurrence-details')
         } 

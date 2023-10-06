@@ -206,6 +206,23 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "Telephone or mobile number"
+            },
+            value: {
+              html: (data['contact-number'] or "0123456789")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-contact-details",
+                  text: "Change",
+                  visuallyHiddenText: "Telephone or mobile number"
+                }
+              ]
+            }
           }
         ]
       }) }}
@@ -233,7 +250,7 @@
           },
           {
             key: {
-              text: "Summary of the occurrence"
+              text: "Brief description of the occurrence"
             },
             value: {
               text: data['occurrence-summary'] or "A fire has spread through 5 units and there are multiple serious injuries."
@@ -250,10 +267,27 @@
           },
           {
             key: {
-              text: "Occurrence date"
+              text: "Immediate actions taken to keep people safe"
             },
             value: {
-              text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time'] or "9am")
+              text: data['occurrence-actions'] or "Evacuation of all residents and moved to hotels."
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-role",
+                  text: "Change",
+                  visuallyHiddenText: "Immediate actions taken to keep people safe"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date and time"
+            },
+            value: {
+              text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time-hour'] or "2") + ":" + (data['occurrence-time-minute'] or "05") + (data['occurrence-time-am-pm'] or "pm")
             },
             actions: {
               items: [

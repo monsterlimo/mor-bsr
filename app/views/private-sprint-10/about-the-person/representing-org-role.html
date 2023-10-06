@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "In what capacity is " + data['contact-organisation'] + " submitting this notice?" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "In what capacity are you submitting this notice?" %}
+{% set title = "In what capacity is " + data['contact-organisation'] + " submitting this notice?" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -24,15 +24,15 @@
               text: "Enter " + data['contact-organisation'] + "'s role" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "Enter your role",
               classes: "govuk-label--s"
             },
-            id: "other-role",
-            name: "other-role",
+            id: "representing--other-role",
+            name: "representing-other-role",
             classes: "govuk-input--width-20",
             value: data['other-role']
           }) }}
         {% endset %}
 
         {{ govukRadios({
-          name: "reporter-role",
+          name: "representing-role",
           fieldset: {
             legend: {
               text: title,
@@ -56,10 +56,6 @@
             {
               value: "Principal designer",
               text: "Principal designer"
-            },
-            {
-              value: "acting on behalf of the duty holder",
-              text: "Acting on behalf of the duty holder"
             },
             {
               value: "other",

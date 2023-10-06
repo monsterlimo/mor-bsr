@@ -20,12 +20,13 @@
       
       <p>You must submit a full mandatory occurrence report within 10 days of the occurrence being identified. Use your mandatory occurrence notice reference number.</p>
 
-      <h2 class="govuk-heading-m">What you told us has happened</h2>
+      <h2 class="govuk-heading-m">What you told us</h2>
+      <h3 class="govuk-heading-s">Describe the safety occurrence</h3>
       <p>{{ data['occurrence-summary'] or "A fire has spread through 5 units and there are multiple serious injuries." }}</p>
 
-      <h2 class="govuk-heading-m">What mitigating actions you have taken so far</h2>
-      <p>{{ data['occurrence-summary'] or "A fire has spread through 5 units and there are multiple serious injuries." }}</p>
-      <p><a href="">Print this page</a></p>
+      <h3 class="govuk-heading-s">Tell us any immediate actions you've taken since to keep people safe</h3>
+      <p>{{ data['occurrence-actions'] or "Evacuation of all residents and moved to hotels." }}</p>
+      <p><a href="" onclick="window.print();" class="noPrint">Print this page</a></p>
 
     </div>
   </div>
