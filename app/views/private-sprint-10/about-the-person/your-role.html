@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "How is " + data['contact-organisation'] + " involved in this building?" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "How are you involved in this building?" %}
+{% set title = "In what capacity is " + data['contact-organisation'] + " submitting this notice?" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "In what capacity are you submitting this notice?" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -31,7 +31,7 @@
           }) }}
         {% endset %}
 
-        {{ govukCheckboxes({
+        {{ govukRadios({
           name: "reporter-role",
           fieldset: {
             legend: {
@@ -39,9 +39,6 @@
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
-          },
-          hint: {
-            text: "Select all that apply"
           },
           items: [
             {

@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Briefly describe the risk or incident" %}
+{% set title = "Details of the notice" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -18,15 +18,27 @@
       <form action="" method="post">
         <span class="govuk-caption-l">Your mandatory occurrence notice</span>
 
+        <h1 class="govuk-heading-l">{{ title }}</h1>
 
         {{ govukCharacterCount({
           name: "occurrence-summary",
           id: "occurrence-summary",
           maxlength: 500,
           label: {
-            text: title,
-            classes: "govuk-label--l",
-            isPageHeading: true
+            text: "Briefly describe the risk or incident",
+            classes: "govuk-label--m",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukCharacterCount({
+          name: "occurrence-summary",
+          id: "occurrence-summary",
+          maxlength: 500,
+          label: {
+            text: "Describe what have you done to mitigate the risk",
+            classes: "govuk-label--m",
+            isPageHeading: false
           }
         }) }}
 

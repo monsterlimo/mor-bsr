@@ -130,8 +130,13 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-10/about-the-person/your-details', (req, res) => {
+        res.redirect('/private-sprint-10/about-the-person/enter-your-contact-details')
+    })
+
+    router.post('/private-sprint-10/about-the-person/enter-your-contact-details', (req, res) => {
         if (req.session.data['notice-report'] == "notice") {
-            res.redirect('/private-sprint-10/about-the-occurrence/brief-details')
+            // org and role
+            res.redirect('/private-sprint-10/about-the-person/enter-your-org-name')
         } else {
             res.redirect('/private-sprint-10/about-the-person/enter-your-org-name')
         }
@@ -142,31 +147,18 @@ module.exports = router => {
     })
 
     router.post('/private-sprint-10/about-the-person/your-role', (req, res) => {
-        const roles = req.session.data['reporter-role'];
+        const role = req.session.data['reporter-role'];
 
-        if (roles) {
-            if (roles.length == 1) {
-                roles.forEach(role => {
-                    if (role == "other") {
-                        res.redirect('/private-sprint-10/about-the-person/not-able-to-submit')
-                    } else {
-                        if (req.session.data['notice-report'] == "notice") {
-                            res.redirect('/private-sprint-10/about-the-occurrence/brief-details')
-                        } else {
-                            res.redirect('/private-sprint-10/about-the-occurrence/risk-or-event')
-                        }
-                    }
-                });
-            } else {
-                res.redirect('/private-sprint-10/about-the-occurrence/risk-or-event')
-            }
+        if (role == "other") {
+            res.redirect('/private-sprint-10/about-the-person/not-able-to-submit')
         } else {
             if (req.session.data['notice-report'] == "notice") {
                 res.redirect('/private-sprint-10/about-the-occurrence/brief-details')
             } else {
                 res.redirect('/private-sprint-10/about-the-occurrence/risk-or-event')
             }
-        }        
+        }
+
     })
 
     router.post('/private-sprint-10/about-the-person/other-organisation', (req, res) => {
@@ -202,42 +194,6 @@ module.exports = router => {
     router.post('/private-sprint-10/check-your-answers-notice', (req, res) => {
         res.redirect('/private-sprint-10/confirmation-notice')
     })
-/*
-
-
-    router.post('/private-sprint-10/about-the-person/enter-your-contact-details', (req, res) => {
-        res.redirect('/private-sprint-10/about-the-person/your-role')
-    })
-
-    router.post('/private-sprint-10/about-the-person/your-role', (req, res) => {
-        const roles = req.session.data['reporter-role'];
-
-        if (roles) {
-            if (roles.length == 1) {
-                roles.forEach(role => {
-                    if (role == "other") {
-                        res.redirect('/private-sprint-10/about-the-person/not-able-to-submit')
-                    } else {
-                        if (req.session.data['has-building-reg-number'] == "yes") {
-                            res.redirect('/private-sprint-10/about-the-occurrence/occurrence-type')
-                        } else {
-                            res.redirect('/private-sprint-10/building-in-scope/number-of-floors')
-                        }
-                    }
-                });
-            } else {
-                if (req.session.data['has-building-reg-number'] == "yes") {
-                    res.redirect('/private-sprint-10/about-the-occurrence/occurrence-type')
-                } else {
-                    res.redirect('/private-sprint-10/building-in-scope/number-of-floors')
-                }
-            }
-        } else {
-            res.redirect('/private-sprint-10/about-the-occurrence/occurrence-type')
-        }        
-    })
-
-    */
 
     router.post('/private-sprint-10/building-in-scope/number-of-floors', (req, res) => {
         res.redirect('/private-sprint-10/building-in-scope/height-of-building')   
