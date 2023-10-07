@@ -223,6 +223,40 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "Organisation"
+            },
+            value: {
+              html: (data['contact-organisation'] or "Acme")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-org-name",
+                  text: "Change",
+                  visuallyHiddenText: "your organisation's name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Organisation's role"
+            },
+            value: {
+              html: (data['reporter-role'] or "Principal contractor")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-role",
+                  text: "Change",
+                  visuallyHiddenText: "your organisation's role"
+                }
+              ]
+            }
           }
         ]
       }) }}
