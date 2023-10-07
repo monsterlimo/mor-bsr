@@ -47,15 +47,6 @@ body.govuk-template__body {
 
       <p>HDJ2123F</p>
       
-      <h2 class="govuk-heading-m">What you told us</h2>
-
-
-      <h3 class="govuk-heading-s">Summary of the occurrence</h3>
-      <p>{{ data['occurrence-summary'] or "A fire has spread through 5 units and there are multiple serious injuries." }}</p>
-      
-      <h3 class="govuk-heading-s">Occurrence date</h3>
-      <p>{{ (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time'] or "9am") }}</p>
-
       <h2 class="govuk-heading-m">What happens next</h2>
 
       <p>We review all MORs.</p>

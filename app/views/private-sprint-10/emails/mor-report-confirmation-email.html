@@ -46,39 +46,6 @@ body.govuk-template__body {
       <h2 class="govuk-heading-m">Reference number</h2>
 
       <p>HDJ2123F</p>
-      
-      <h2 class="govuk-heading-m">What you told us</h2>
-
-      <h3 class="govuk-heading-s">Risk or event</h3>
-      <p>{{ data['risk-event'] | capitalize or "Risk"}} </p>
-      
-      <h3 class="govuk-heading-s">How are you or your organisation involved in this building?</p>
-      <p>{{ data['reporter-role'] or "Principal accountable person" }}</p>
-      
-      <h3 class="govuk-heading-s">Occurrence date</h3>
-      <p>{{ (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time'] or "9am") }}</p>
-      
-      <h3 class="govuk-heading-s">What is the risk?</h3>
-      <p>{{ data['occurrence-details-what'] or "Fire doors were incorrectly fitted" }}</p>
-      
-      <h3 class="govuk-heading-s">What caused it?</h3>
-      <p>{{ data['occurrence-details-why'] or "The building contractor sourced an alternative product which was not to standard" }}</p>
-      
-      <h3 class="govuk-heading-s">Who could be affected and in what way?</h3>
-      <p>{{ data['occurrence-details-who'] or "The whole building was affected including the common rooms" }}</p>
-      
-      <h3 class="govuk-heading-s">What have you done to keep people safe?</h3>
-      <p>{{ data['occurrence-details-action'] or "We've replaced all the doors in the building and made a note on future designs to periodically check building contract" }}</p>
-
-      <h3 class="govuk-heading-s">Who told your organisation</h3>
-      <p>{{ data['occurrence-details-reporter'] or "We were informed by a 3rd party surveyor who completed an inspection of the building before occupation" }}</p>
-
-      <h3 class="govuk-heading-s">Your supporting information</h2>
-      <ul class="govuk-list">
-        <li>image-1234.png</li>
-        <li>email-screenshot.jpg</li>
-        <li>further-details.doc</li>
-      </ul>
 
       <h2 class="govuk-heading-m">What happens next</h2>
 

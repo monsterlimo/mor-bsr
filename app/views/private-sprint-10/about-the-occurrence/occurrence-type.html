@@ -38,11 +38,11 @@
             {
               value: "risk of fire spreading" if data['risk-event'] == "risk" else "fire spread",
               text: "Risk of fire spreading" if data['risk-event'] == "risk" else "Fire spread"
-            } if data['building-status'] == "occupied" or data['building-status'] == "complete but not occupied",
+            } if data['reporter-role'] == "Accountable person" or data['reporter-role'] == "Principal accountable person" or data['representing-role'] == "Accountable person" or data['representing-role'] == "Principal accountable person",
             {
               value: "fire safety",
               text: "Fire safety"
-            } if data['building-status'] == "in design" or data['building-status'] == "in construction"
+            } if data['reporter-role'] == "Principal contractor" or data['reporter-role'] == "Principal designer" or data['representing-role'] == "Principal contractor" or data['representing-role'] == "Principal designer"
           ]
         }) }}         
 

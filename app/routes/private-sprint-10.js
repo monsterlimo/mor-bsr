@@ -35,12 +35,18 @@ module.exports = router => {
     */
 
     router.post('/private-sprint-10/about-the-occurrence/enter-notice-reference', (req, res) => {
+        // check if data exists before overwriting
+        if (!req.session.data['reporter-role']) {
+            req.session.data['reporter-role'] = "Principal contractor"
+            //req.session.data['reporter-role'] = "Principal contractor"
+        }
+        
         res.redirect('/private-sprint-10/about-the-occurrence/notice-submitter')
     })
 
     router.post('/private-sprint-10/about-the-occurrence/notice-submitter', (req, res) => {
         if (req.session.data['has-submitted-notice'] == "yes") {
-            res.redirect('/private-sprint-10/about-the-person/enter-your-org-name')
+            res.redirect('/private-sprint-10/about-the-occurrence/risk-or-event')
         } else {
             res.redirect('/private-sprint-10/about-the-person/your-details')
         }
@@ -146,11 +152,7 @@ module.exports = router => {
         } else if (role == "acting on behalf of the duty holder") {
             res.redirect('/private-sprint-10/about-the-person/enter-representing-org-name')
         } else {
-            if (req.session.data['notice-report'] == "notice") {
-                res.redirect('/private-sprint-10/about-the-occurrence/occurrence-date')
-            } else {
-                res.redirect('/private-sprint-10/about-the-occurrence/risk-or-event')
-            }
+            res.redirect('/private-sprint-10/about-the-occurrence/occurrence-date')
         }
     })
 
@@ -240,7 +242,7 @@ module.exports = router => {
         if (req.session.data['notice-report'] == "notice") {
             res.redirect('/private-sprint-10/about-the-occurrence/brief-details')
         } else {
-            res.redirect('/private-sprint-10/about-the-occurrence/occurrence-details')
+            res.redirect('/private-sprint-10/about-the-occurrence/risk-or-event')
         } 
     })
 
