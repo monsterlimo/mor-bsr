@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set title = "What type of " + data['risk-event'] + " are you reporting?" %}
+{% set title = "What happened?" if data['risk-event'] == "incident" else "What could happen in future?" %}
+
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -16,7 +17,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">About the occurrence</span>
+        <span class="govuk-caption-l">About the safety occurrence</span>
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
         {{ govukCheckboxes({
           name: "occurrence-type",

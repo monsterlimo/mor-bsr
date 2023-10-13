@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Details of the " + data['risk-event'] %}
+{% set title = "Describe what happened" if data['risk-event'] == "incident" else "Describe what could happen in future" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -16,13 +16,14 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">Your mandatory occurrence report</span>
+        <span class="govuk-caption-l">About the safety occurrence</span>
         <h1 class="govuk-heading-l">{{ title }}</h1>
 
         {{ govukCharacterCount ({
           name: "occurrence-details-what",
           id: "occurrence-details-what",
-          maxlength: 500,
+          maxwords: 200,
+          rows: 6,
           label: {
             text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?",
             classes: "govuk-label--s",
@@ -33,8 +34,8 @@
         {{ govukCharacterCount ({
           name: "occurrence-details-why",
           id: "occurrence-details-why",
-          maxlength: 300,
-          rows: 4,
+          maxwords: 200,
+          rows: 6,
           label: {
             text: "What caused it?",
             classes: "govuk-label--s",
@@ -49,10 +50,10 @@
         {{ govukCharacterCount ({
           name: "occurrence-details-who",
           id: "occurrence-details-who",
-          rows: 3,
-          maxlength: 500,
+          maxwords: 200,
+          rows: 6,
           label: {
-            text: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?",
+            text: "Tell us who has been affected and in what way" if data['risk-event'] == "incident" else "Tell us who could be affected and in what way",
             classes: "govuk-label--s",
             isPageHeading: false
           },
@@ -64,10 +65,10 @@
         {{ govukCharacterCount ({
           name: "occurrence-details-action",
           id: "occurrence-details-action",
-          rows: 6,
-          maxlength: 750,
+          maxwords: 300,
+          rows: 7,
           label: {
-            text: "What are you doing or planning to do to keep people safe?",
+            text: "Explain what you are doing or planning to do to keep people safe",
             classes: "govuk-label--s",
             isPageHeading: false
           }
@@ -76,10 +77,10 @@
         {{ govukCharacterCount ({
           name: "occurrence-details-reporter",
           id: "occurrence-details-reporter",
+          maxwords: 100,
           rows: 3,
-          maxlength: 250,
           label: {
-            text: "How was the " + data['risk-event'] + " discovered?",
+            text: "Tell us how you discovered the safety occurrence",
             classes: "govuk-label--s",
             isPageHeading: false
           },

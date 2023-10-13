@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Who do you work for?" %}
+{% set title = "Tell us your organisation's name" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -16,15 +16,12 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">About you</span>
+        <span class="govuk-caption-l">About the organisation</span>
         {{ govukInput({
           label: {
             text: title,
             classes: "govuk-label--l",
             isPageHeading: true
-          },
-          hint: {
-            text: "Tell us your organisation's name."
           },
           id: "contact-organisation",
           name: "contact-organisation",

@@ -23,7 +23,8 @@
         {{ govukCharacterCount({
           name: "occurrence-summary",
           id: "occurrence-summary",
-          maxlength: 500,
+          maxwords: 200,
+          rows: 6,
           label: {
             text: "Describe the safety occurrence",
             classes: "govuk-label--m",
@@ -34,7 +35,8 @@
         {{ govukCharacterCount({
           name: "occurrence-actions",
           id: "occurrence-actions",
-          maxlength: 500,
+          maxwords: 200,
+          rows: 6,
           label: {
             text: "Tell us any immediate actions you've taken since to keep people safe",
             classes: "govuk-label--m",

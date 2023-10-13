@@ -20,22 +20,7 @@
 
       <p>We will review your mandatory occurrence report and then contact you. This may take up to 21 working days.</p>
 
-      <h2 class="govuk-heading-m">What you told us</h2>
-      <h3 class="govuk-label govuk-label--s">{{ "What is the risk?" if data['risk-event'] == "risk" else "What happened?" }}</h3>
-      <p>{{ data['occurrence-details-what'] or "A fire has spread through 5 units and there are multiple serious injuries." }}</p>
-
-      <h3 class="govuk-label govuk-label--s">What caused it?</h3>
-      <p>{{ data['occurrence-details-why'] or "Several incorrectly fitted fire doors" }}</p>
-
-      <h3 class="govuk-label govuk-label--s">{{ "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?" }}</h3>
-      <p>{{ data['occurrence-details-who'] or "All residents on the fourth floor" }}</p>
-
-      <h3 class="govuk-label govuk-label--s">What are you doing or planning to do to keep people safe?</h3>
-      <p>{{ data['occurrence-details-action'] or "We moved all residents to a hotel and replaced all faulty fire doors" }}</p>
-
-      <h3 class="govuk-label govuk-label--s">{{ "How was the " + data['risk-event'] + " discovered?" }}</h3>
-      <p>{{ data['occurrence-details-reporter'] or "A fire created by a resident in a communal area set off the sprinkler system" }}</p>
-      <p><a href="" onclick="window.print();" class="govuk-!-display-none-print">Print this page</a></p>
+      <p>You can <a href="print-notification">print or save this page as a PDF</a></p>
       
     </div>
   </div>

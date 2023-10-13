@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "In what capacity is " + data['contact-organisation'] + " submitting this notice?" %}
+{% set title = "What is " + data['contact-organisation'] + "'s role in submitting this notice?" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form action="" method="post">
-        <span class="govuk-caption-l">About you</span>
+        <span class="govuk-caption-l">Organisation your acting for</span>
 
         {% set otherHTML %}
           {{ govukInput({
