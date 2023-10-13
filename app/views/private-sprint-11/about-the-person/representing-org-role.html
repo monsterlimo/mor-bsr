@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+{% set title = "In what capacity is " + data['contact-organisation'] + " submitting this notice?" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About you</span>
+
+        {% set otherHTML %}
+          {{ govukInput({
+            label: {
+              text: "Enter " + data['contact-organisation'] + "'s role" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "Enter your role",
+              classes: "govuk-label--s"
+            },
+            id: "representing--other-role",
+            name: "representing-other-role",
+            classes: "govuk-input--width-20",
+            value: data['other-role']
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "representing-role",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Accountable person",
+              text: "Accountable person"
+            },
+            {
+              value: "Principal accountable person",
+              text: "Principal accountable person"
+            },
+            {
+              value: "Principal contractor",
+              text: "Principal contractor"
+            },
+            {
+              value: "Principal designer",
+              text: "Principal designer"
+            },
+            {
+              value: "other",
+              text: "Other",
+              conditional: {
+                html: otherHTML
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

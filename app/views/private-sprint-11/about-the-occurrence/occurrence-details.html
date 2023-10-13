@@ -1,0 +1,102 @@
+{% extends "layouts/main.html" %}
+{% set title = "Details of the " + data['risk-event'] %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">Your mandatory occurrence report</span>
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        {{ govukCharacterCount ({
+          name: "occurrence-details-what",
+          id: "occurrence-details-what",
+          maxlength: 500,
+          label: {
+            text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukCharacterCount ({
+          name: "occurrence-details-why",
+          id: "occurrence-details-why",
+          maxlength: 300,
+          rows: 4,
+          label: {
+            text: "What caused it?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        ,
+        hint: {
+          text: "Tell us if anything has changed, for example, recent building work"
+        }
+        }) }}
+
+        {{ govukCharacterCount ({
+          name: "occurrence-details-who",
+          id: "occurrence-details-who",
+          rows: 3,
+          maxlength: 500,
+          label: {
+            text: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "Tell us if people were evacuated, injured or killed. If so, how many?"
+          } if data['risk-event'] == "event"
+        }) }}
+
+        {{ govukCharacterCount ({
+          name: "occurrence-details-action",
+          id: "occurrence-details-action",
+          rows: 6,
+          maxlength: 750,
+          label: {
+            text: "What are you doing or planning to do to keep people safe?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+        {{ govukCharacterCount ({
+          name: "occurrence-details-reporter",
+          id: "occurrence-details-reporter",
+          rows: 3,
+          maxlength: 250,
+          label: {
+            text: "How was the " + data['risk-event'] + " discovered?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "How did your organisation find out?"
+          }
+        }) }}
+
+        <p>Next we will ask you to upload supporting information, such as documents or photographs.</p>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

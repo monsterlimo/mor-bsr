@@ -1,0 +1,58 @@
+{% extends "layouts/main.html" %}
+{% set title = "What type of " + data['risk-event'] + " are you reporting?" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the occurrence</span>
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukCheckboxes({
+          name: "occurrence-type",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          items: [
+            {
+              value: "risk of structural failure" if data['risk-event'] == "risk" else "structural failure",
+              text: "Risk of structural failure" if data['risk-event'] == "risk" else "Structural failure"
+            },
+            {
+              value: "risk of fire spreading" if data['risk-event'] == "risk" else "fire spread",
+              text: "Risk of fire spreading" if data['risk-event'] == "risk" else "Fire spread"
+            } if data['reporter-role'] == "Accountable person" or data['reporter-role'] == "Principal accountable person" or data['representing-role'] == "Accountable person" or data['representing-role'] == "Principal accountable person",
+            {
+              value: "fire safety",
+              text: "Fire safety"
+            } if data['reporter-role'] == "Principal contractor" or data['reporter-role'] == "Principal designer" or data['representing-role'] == "Principal contractor" or data['representing-role'] == "Principal designer"
+          ]
+        }) }}         
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
