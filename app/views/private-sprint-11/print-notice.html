@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Check your answers" %}
+{% set title = "Print or save mandatory occurrence notice" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -11,12 +11,9 @@
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-three-quarters">
-
-      <h1 class="govuk-heading-l">{{title}}</h1>
-      <p>Review the information you want to send us</p>
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ title }}</h1>
 
       <h2 class="govuk-heading-m">About the building</h2>
       {{ govukSummaryList({
@@ -385,15 +382,8 @@
         ]
       }) }}
    
+      <p><a href="" onclick="window.print();" class="govuk-!-display-none-print">Print this page</a></p>
 
-      <form action="" method="post">
-        <input type="hidden" name="answers-checked" value="true">
-        {{ govukButton({
-          text: "Confirm and send"
-        }) }}
-      </form>
-   
     </div>
   </div>
-
 {% endblock %}

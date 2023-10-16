@@ -262,6 +262,48 @@
           } if data['type-of-reporter'] != "none"
         ]
       }) }}
+     
+
+      <h2 class="govuk-heading-m">About the organisation your action for</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [        
+          {
+            key: {
+              text: "Organisation"
+            },
+            value: {
+              html: (data['representing-contact-organisation'] or "Acme")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-org-name",
+                  text: "Change",
+                  visuallyHiddenText: "your organisation's name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Organisation's role"
+            },
+            value: {
+              html: (data['representing-role'] or "Principal contractor")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-role",
+                  text: "Change",
+                  visuallyHiddenText: "your organisation's role"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
       {% endif %}
 
@@ -283,7 +325,7 @@
         }) }}
       {% endset %}
 
-      <h2 class="govuk-heading-m">About the occurrence</h2>
+      <h2 class="govuk-heading-m">About the safety occurrence</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
@@ -323,7 +365,7 @@
           } if data['notice-reference'],
           {
             key: {
-              text: "Risk or event"
+              text: "Incident or situation"
             },
             value: {
               text: data['risk-event'] | capitalize
@@ -357,7 +399,7 @@
           } if data['type-of-reporter'] == "none",
           {
             key: {
-              text: "Occurrence type"
+              text: "Type of incident" if data['risk-event'] == "incident" else "Type of situation"
             },
             value: {
               text: data['occurrence-type'] or "Fire spread"
