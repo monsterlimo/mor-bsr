@@ -1,0 +1,543 @@
+{% extends "layouts/main.html" %}
+{% set title = "Print or save mandatory occurrence report" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      <p>Review the information you want to send us</p>
+
+      <h2 class="govuk-heading-m">About the building</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Identify your building"
+            },
+            value: {
+              html: "Building control number" if data['existing-application'] == "hrb" else "Building control application reference"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/have-existing-applications",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
+            }
+          } if data['existing-application'] != "none",
+          {
+            key: {
+              text: "Identify your building"
+            },
+            value: {
+              html: "None"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/have-existing-applications",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Building HRB number"
+            },
+            value: {
+              html: data['building-reg-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-hrb-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
+            }
+          } if data['existing-application'] == "hrb",
+          {
+            key: {
+              text: "Building control application reference"
+            },
+            value: {
+              html: data['building-control-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-bcr-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building control reference"
+                }
+              ]
+            }
+          } if data['existing-application'] == "bcr",
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: "Whitehall 2, Leeds, LS1"
+            }
+          } if data['existing-application'] != "none",
+          {
+            key: {
+              text: "Building region"
+            },
+            value: {
+              html: (data['building-region'] | capitalize) or "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/which-region",
+                  text: "Change",
+                  visuallyHiddenText: "Building region"
+                }
+              ]
+            }
+          } if data['building-region'],
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: "<p>Whitehall 2<br>Leeds, LS1</p>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/postcode-lookup",
+                  text: "Change",
+                  visuallyHiddenText: "Building address"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Building status"
+            },
+            value: {
+              text: (data['building-status'] | capitalize) or "occupied"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/is-the-building-occupied",
+                  text: "Change",
+                  visuallyHiddenText: "Building status"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",        
+          {
+            key: {
+              text: "Number of floors"
+            },
+            value: {
+              text: (data['number-floors'] | capitalize) or "9"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/number-of-floors",
+                  text: "Change",
+                  visuallyHiddenText: "Number of floors"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Building height"
+            },
+            value: {
+              text: (data['building-height'] | capitalize) or "20m"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/height-of-building",
+                  text: "Change",
+                  visuallyHiddenText: "Building height"
+                }
+              ]
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Number of units"
+            },
+            value: {
+              text: data['number-units'] or "85"
+            },
+            actions: {
+              items: [
+                {
+                  href: "building-in-scope/number-of-units",
+                  text: "Change",
+                  visuallyHiddenText: "Number of units"
+                }
+              ]
+            } 
+          } if data['existing-application'] == "none"
+        ]
+      }) }}
+
+    {% if data['has-submitted-notice'] != "yes" %}
+
+      <h2 class="govuk-heading-m">About you</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Your name"
+            },
+            value: {
+              text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-details",
+                  text: "Change",
+                  visuallyHiddenText: "Your name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Your email address"
+            },
+            value: {
+              html: (data['contact-email'] or "john@test.com")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-details",
+                  text: "Change",
+                  visuallyHiddenText: "Contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Your organisation"
+            },
+            value: {
+              html: data['contact-organisation'] or "No organisation supplied"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-details",
+                  text: "Change",
+                  visuallyHiddenText: "Your organisation details"
+                }
+              ]
+            }
+          } if data['type-of-reporter'] != "none"
+        ]
+      }) }}
+
+      {% if data['reporter-role'] == "acting on behalf of the duty holder" %}
+
+      <h2 class="govuk-heading-m">About the organisation your action for</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [        
+          {
+            key: {
+              text: "Organisation"
+            },
+            value: {
+              html: (data['representing-contact-organisation'] or "Acme")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-org-name",
+                  text: "Change",
+                  visuallyHiddenText: "your organisation's name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Organisation's role"
+            },
+            value: {
+              html: (data['representing-role'] or "Principal contractor")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-role",
+                  text: "Change",
+                  visuallyHiddenText: "your organisation's role"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      {% endif %}
+
+      {% endif %}
+
+      {% set supportingInfo %}
+        <ul class="govuk-list govuk-list--none">
+        {% for file in data['filesUploaded'] %}
+          <li>{{ file }}</li>
+        {% else %}
+            <p>You have not uploaded any supporting information</p>
+        {% endfor %}
+      </ul>
+      {% endset %}
+     
+
+      {% set detailsHTML %}
+        {{ govukDetails({
+          summaryText: "View supporting information",
+          html: supportingInfo
+        }) }}
+      {% endset %}
+
+      <h2 class="govuk-heading-m">About the safety occurrence</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Notice or report"
+            },
+            value: {
+              text: "Report"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/notice-report",
+                  text: "Change",
+                  visuallyHiddenText: "the type of occurrence"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Mandatory occurrence notice reference"
+            },
+            value: {
+              text: data['notice-reference'] or 'HDJ2123F'
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/enter-notice-reference",
+                  text: "Change",
+                  visuallyHiddenText: "mandatory occurrence notice reference"
+                }
+              ]
+            }
+          } if data['notice-reference'],
+          {
+            key: {
+              text: "Incident or situation"
+            },
+            value: {
+              text: data['risk-event'] | capitalize
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/risk-or-event",
+                  text: "Change",
+                  visuallyHiddenText: "what you are reporting about"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "How are you or your organisation involved in this building?"
+            },
+            value: {
+              text: data['reporter-role']
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/your-role",
+                  text: "Change",
+                  visuallyHiddenText: "How are you or your organisation are involved in this building"
+                }
+              ]
+            }
+          } if data['type-of-reporter'] == "none",
+          {
+            key: {
+              text: "Type of incident" if data['risk-event'] == "incident" else "Type of situation"
+            },
+            value: {
+              text: data['occurrence-type'] or "Fire spread"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-type",
+                  text: "Change",
+                  visuallyHiddenText: "type of occurrence"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Occurrence date"
+            },
+            value: {
+              text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time'] or "9am")
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-date",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence date"
+                }
+              ]
+            }
+          } if data['notice-report'] == "full-report",
+          {
+            key: {
+              text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?"
+            },
+            value: {
+              html: data['occurrence-details-what'] or "Fire doors were incorrectly fitted"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "What caused it?"
+            },
+            value: {
+              html: data['occurrence-details-why'] or "The building contractor sourced an alternative product which was not to standard"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?"
+            },
+            value: {
+              html: data['occurrence-details-who'] or "The whole building was affected including the common rooms"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?"
+            },
+            value: {
+              html: data['occurrence-details-action'] or "We've replaced all the doors in the building and made a note on future designs to periodically check building contract"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Who told your organisation"
+            },
+            value: {
+              html: data['occurrence-details-reporter'] or "We were informed by a 3rd party surveyor who completed an inspection of the building before occupation"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Supporting information"
+            },
+            value: {
+              html: supportingInfo
+            },
+            actions: {
+              items: [
+                {
+                  href: "supporting-information/upload-supporting-info",
+                  text: "Change",
+                  visuallyHiddenText: "supporting information"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+   
+      <p><a href="" onclick="window.print();" class="govuk-!-display-none-print">Print this page</a></p>
+
+    </div>
+  </div>
+{% endblock %}
