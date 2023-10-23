@@ -203,6 +203,8 @@
         ]
       }) }}
 
+  
+
     {% if data['has-submitted-notice'] != "yes" %}
 
       <h2 class="govuk-heading-m">About you</h2>
@@ -262,6 +264,8 @@
           } if data['type-of-reporter'] != "none"
         ]
       }) }}
+
+     
      
 
      {% if data['reporter-role'] == "acting on behalf of the duty holder" %}
@@ -308,7 +312,9 @@
       }) }}
       {% endif %}
 
+
       {% endif %}
+
 
       {% set supportingInfo %}
         <ul class="govuk-list govuk-list--none">
@@ -521,6 +527,23 @@
           },
           {
             key: {
+              text: "Who told your organisation"
+            },
+            value: {
+              html: data['occurrence-details-learnings'] or "We recommend the affected company need to improve the quality of their product"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-occurrence/occurrence-details",
+                  text: "Change",
+                  visuallyHiddenText: "Occurrence details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "Supporting information"
             },
             value: {
@@ -538,6 +561,8 @@
           }
         ]
       }) }}
+
+      
    
 
       <form action="" method="post">

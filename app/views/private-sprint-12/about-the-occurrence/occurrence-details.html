@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Describe what happened" if data['risk-event'] == "incident" else "Describe what could happen in future" %}
+{% set title = "Describe the incident" if data['risk-event'] == "incident" else "Describe the situation" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -25,7 +25,7 @@
           maxwords: 200,
           rows: 6,
           label: {
-            text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?",
+            text: "What is the situation?" if data['risk-event'] == "risk" else "What happened?",
             classes: "govuk-label--s",
             isPageHeading: false
           }
@@ -81,6 +81,21 @@
           rows: 3,
           label: {
             text: "Tell us how you discovered the safety occurrence",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "How did your organisation find out?"
+          }
+        }) }}
+
+        {{ govukCharacterCount ({
+          name: "occurrence-details-learnings",
+          id: "occurrence-details-learnings",
+          maxwords: 100,
+          rows: 3,
+          label: {
+            text: "Tell us any anything you think should be shared for others to learn from (optional)",
             classes: "govuk-label--s",
             isPageHeading: false
           },
