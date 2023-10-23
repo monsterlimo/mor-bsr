@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is " + data['contact-organisation'] + "'s role in submitting this notice?" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "What is your role in submitting this notice?" %}
+{% set title = "What is " + data['contact-organisation'] + "'s role in submitting this " + data['notice-report'] or "notice"  +"?" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "What is your role in submitting this " + data['notice-report'] or "notice" + "?" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -59,7 +59,7 @@
             },
             {
               value: "acting on behalf of the duty holder",
-              text: "Acting on behalf of the duty holder. For example, a managing agent"
+              text: "Acting for the dutyholder - for example, a managing agent"
             },
             {
               value: "other",
