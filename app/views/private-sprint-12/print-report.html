@@ -14,7 +14,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{title}}</h1>
-      <p>Review the information you want to send us</p>
+      
+      <h2 class="govuk-heading-m">About the report</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Mandatory occurrence report reference"
+            },
+            value: {
+              html: "HDJ2123F"
+            }
+          }
+        ]
+      }) }}
 
       <h2 class="govuk-heading-m">About the building</h2>
       {{ govukSummaryList({
@@ -26,15 +40,6 @@
             },
             value: {
               html: "Building control number" if data['existing-application'] == "hrb" else "Building control application reference"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/have-existing-applications",
-                  text: "Change",
-                  visuallyHiddenText: "Building HRB number"
-                }
-              ]
             }
           } if data['existing-application'] != "none",
           {
@@ -43,15 +48,6 @@
             },
             value: {
               html: "None"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/have-existing-applications",
-                  text: "Change",
-                  visuallyHiddenText: "Building HRB number"
-                }
-              ]
             }
           } if data['existing-application'] == "none",
           {
@@ -60,15 +56,6 @@
             },
             value: {
               html: data['building-reg-number'] or "ABC123456789"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/enter-hrb-number",
-                  text: "Change",
-                  visuallyHiddenText: "Building HRB number"
-                }
-              ]
             }
           } if data['existing-application'] == "hrb",
           {
@@ -77,15 +64,6 @@
             },
             value: {
               html: data['building-control-number'] or "ABC123456789"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/enter-bcr-number",
-                  text: "Change",
-                  visuallyHiddenText: "Building control reference"
-                }
-              ]
             }
           } if data['existing-application'] == "bcr",
           {
@@ -102,15 +80,6 @@
             },
             value: {
               html: (data['building-region'] | capitalize) or "England"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/which-region",
-                  text: "Change",
-                  visuallyHiddenText: "Building region"
-                }
-              ]
             }
           } if data['building-region'],
           {
@@ -119,15 +88,6 @@
             },
             value: {
               html: "<p>Whitehall 2<br>Leeds, LS1</p>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/postcode-lookup",
-                  text: "Change",
-                  visuallyHiddenText: "Building address"
-                }
-              ]
             }
           } if data['existing-application'] == "none",
           {
@@ -136,15 +96,6 @@
             },
             value: {
               text: (data['building-status'] | capitalize) or "occupied"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/is-the-building-occupied",
-                  text: "Change",
-                  visuallyHiddenText: "Building status"
-                }
-              ]
             }
           } if data['existing-application'] == "none",        
           {
@@ -153,15 +104,6 @@
             },
             value: {
               text: (data['number-floors'] | capitalize) or "9"
-            },
-            actions: {
-              items: [
-                {
-                  href: "building-in-scope/number-of-floors",
-                  text: "Change",
-                  visuallyHiddenText: "Number of floors"
-                }
-              ]
             }
           } if data['existing-application'] == "none",
           {
@@ -170,15 +112,6 @@
             },
             value: {
               text: (data['building-height'] | capitalize) or "20m"
-            },
-            actions: {
-              items: [
-                {
-                  href: "building-in-scope/height-of-building",
-                  text: "Change",
-                  visuallyHiddenText: "Building height"
-                }
-              ]
             }
           } if data['existing-application'] == "none",
           {
@@ -187,16 +120,7 @@
             },
             value: {
               text: data['number-units'] or "85"
-            },
-            actions: {
-              items: [
-                {
-                  href: "building-in-scope/number-of-units",
-                  text: "Change",
-                  visuallyHiddenText: "Number of units"
-                }
-              ]
-            } 
+            }
           } if data['existing-application'] == "none"
         ]
       }) }}
@@ -213,15 +137,6 @@
             },
             value: {
               text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-details",
-                  text: "Change",
-                  visuallyHiddenText: "Your name"
-                }
-              ]
             }
           },
           {
@@ -230,15 +145,6 @@
             },
             value: {
               html: (data['contact-email'] or "john@test.com")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-details",
-                  text: "Change",
-                  visuallyHiddenText: "Contact details"
-                }
-              ]
             }
           },
           {
@@ -247,15 +153,6 @@
             },
             value: {
               html: data['contact-organisation'] or "No organisation supplied"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-details",
-                  text: "Change",
-                  visuallyHiddenText: "Your organisation details"
-                }
-              ]
             }
           } if data['type-of-reporter'] != "none"
         ]
@@ -273,15 +170,6 @@
             },
             value: {
               html: (data['representing-contact-organisation'] or "Acme")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/enter-your-org-name",
-                  text: "Change",
-                  visuallyHiddenText: "your organisation's name"
-                }
-              ]
             }
           },
           {
@@ -290,15 +178,6 @@
             },
             value: {
               html: (data['representing-role'] or "Principal contractor")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-role",
-                  text: "Change",
-                  visuallyHiddenText: "your organisation's role"
-                }
-              ]
             }
           }
         ]
@@ -335,15 +214,6 @@
             },
             value: {
               text: "Report"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/notice-report",
-                  text: "Change",
-                  visuallyHiddenText: "the type of occurrence"
-                }
-              ]
             }
           },
           {
@@ -352,15 +222,6 @@
             },
             value: {
               text: data['notice-reference'] or 'HDJ2123F'
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/enter-notice-reference",
-                  text: "Change",
-                  visuallyHiddenText: "mandatory occurrence notice reference"
-                }
-              ]
             }
           } if data['notice-reference'],
           {
@@ -369,15 +230,6 @@
             },
             value: {
               text: data['risk-event'] | capitalize
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/risk-or-event",
-                  text: "Change",
-                  visuallyHiddenText: "what you are reporting about"
-                }
-              ]
             }
           },
           {
@@ -386,15 +238,6 @@
             },
             value: {
               text: data['reporter-role']
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-role",
-                  text: "Change",
-                  visuallyHiddenText: "How are you or your organisation are involved in this building"
-                }
-              ]
             }
           } if data['type-of-reporter'] == "none",
           {
@@ -403,15 +246,6 @@
             },
             value: {
               text: data['occurrence-type'] or "Fire spread"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/occurrence-type",
-                  text: "Change",
-                  visuallyHiddenText: "type of occurrence"
-                }
-              ]
             }
           },
           {
@@ -420,15 +254,6 @@
             },
             value: {
               text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time'] or "9am")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/occurrence-date",
-                  text: "Change",
-                  visuallyHiddenText: "Occurrence date"
-                }
-              ]
             }
           } if data['notice-report'] == "full-report",
           {
@@ -437,15 +262,6 @@
             },
             value: {
               html: data['occurrence-details-what'] or "Fire doors were incorrectly fitted"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/occurrence-details",
-                  text: "Change",
-                  visuallyHiddenText: "Occurrence details"
-                }
-              ]
             }
           },
           {
@@ -454,15 +270,6 @@
             },
             value: {
               html: data['occurrence-details-why'] or "The building contractor sourced an alternative product which was not to standard"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/occurrence-details",
-                  text: "Change",
-                  visuallyHiddenText: "Occurrence details"
-                }
-              ]
             }
           },
           {
@@ -471,15 +278,6 @@
             },
             value: {
               html: data['occurrence-details-who'] or "The whole building was affected including the common rooms"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/occurrence-details",
-                  text: "Change",
-                  visuallyHiddenText: "Occurrence details"
-                }
-              ]
             }
           },
           {
@@ -488,15 +286,6 @@
             },
             value: {
               html: data['occurrence-details-action'] or "We've replaced all the doors in the building and made a note on future designs to periodically check building contract"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/occurrence-details",
-                  text: "Change",
-                  visuallyHiddenText: "Occurrence details"
-                }
-              ]
             }
           },
           {
@@ -505,15 +294,6 @@
             },
             value: {
               html: data['occurrence-details-reporter'] or "We were informed by a 3rd party surveyor who completed an inspection of the building before occupation"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/occurrence-details",
-                  text: "Change",
-                  visuallyHiddenText: "Occurrence details"
-                }
-              ]
             }
           },
           {
@@ -522,21 +302,12 @@
             },
             value: {
               html: supportingInfo
-            },
-            actions: {
-              items: [
-                {
-                  href: "supporting-information/upload-supporting-info",
-                  text: "Change",
-                  visuallyHiddenText: "supporting information"
-                }
-              ]
             }
           }
         ]
       }) }}
    
-      <p><a href="" onclick="window.print();" class="govuk-!-display-none-print">Print this page</a></p>
+      <p><a href="" onclick="window.print();" class="govuk-!-display-none-print">print or save this page</a></p>
 
     </div>
   </div>

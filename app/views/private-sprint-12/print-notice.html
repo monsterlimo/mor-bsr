@@ -15,6 +15,21 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
+      <h2 class="govuk-heading-m">About the notice</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Mandatory occurrence notice reference"
+            },
+            value: {
+              html: "HDJ2123F"
+            }
+          }
+        ]
+      }) }}
+
       <h2 class="govuk-heading-m">About the building</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
@@ -33,15 +48,6 @@
             },
             value: {
               html: data['building-reg-number'] or "ABC123456789"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/enter-hrb-number",
-                  text: "Change",
-                  visuallyHiddenText: "Building HRB number"
-                }
-              ]
             }
           } if data['existing-application'] == "hrb",
           {
@@ -50,15 +56,6 @@
             },
             value: {
               html: data['building-control-number'] or "ABC123456789"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/enter-bcr-number",
-                  text: "Change",
-                  visuallyHiddenText: "Building control reference"
-                }
-              ]
             }
           } if data['existing-application'] == "bcr",
           {
@@ -67,15 +64,6 @@
             },
             value: {
               html: (data['building-region'] | capitalize) or "England"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/which-region",
-                  text: "Change",
-                  visuallyHiddenText: "Building region"
-                }
-              ]
             }
           } if data['building-region'],
           {
@@ -84,15 +72,6 @@
             },
             value: {
               html: "<p>Whitehall 2<br>Leeds, LS1</p>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/postcode-lookup",
-                  text: "Change",
-                  visuallyHiddenText: "Building address"
-                }
-              ]
             }
           } if data['existing-application'] == "none",
           {
@@ -101,15 +80,6 @@
             },
             value: {
               text: (data['building-status'] | capitalize) or "occupied"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-building/is-the-building-occupied",
-                  text: "Change",
-                  visuallyHiddenText: "Building status"
-                }
-              ]
             }
           } if data['existing-application'] == "none",        
           {
@@ -118,15 +88,6 @@
             },
             value: {
               text: (data['number-floors'] | capitalize) or "9"
-            },
-            actions: {
-              items: [
-                {
-                  href: "building-in-scope/number-of-floors",
-                  text: "Change",
-                  visuallyHiddenText: "Number of floors"
-                }
-              ]
             }
           } if data['existing-application'] == "none",
           {
@@ -135,15 +96,6 @@
             },
             value: {
               text: (data['building-height'] | capitalize) or "20m"
-            },
-            actions: {
-              items: [
-                {
-                  href: "building-in-scope/height-of-building",
-                  text: "Change",
-                  visuallyHiddenText: "Building height"
-                }
-              ]
             }
           } if data['existing-application'] == "none",
           {
@@ -152,16 +104,7 @@
             },
             value: {
               text: data['number-units'] or "85"
-            },
-            actions: {
-              items: [
-                {
-                  href: "building-in-scope/number-of-units",
-                  text: "Change",
-                  visuallyHiddenText: "Number of units"
-                }
-              ]
-            } 
+            }
           } if data['existing-application'] == "none"
         ]
       }) }}
@@ -176,15 +119,6 @@
             },
             value: {
               text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-details",
-                  text: "Change",
-                  visuallyHiddenText: "Your name"
-                }
-              ]
             }
           },
           {
@@ -193,15 +127,6 @@
             },
             value: {
               html: (data['contact-email'] or "john@test.com")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-details",
-                  text: "Change",
-                  visuallyHiddenText: "Contact details"
-                }
-              ]
             }
           },
           {
@@ -210,15 +135,6 @@
             },
             value: {
               html: (data['contact-number'] or "0123456789")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/enter-your-contact-details",
-                  text: "Change",
-                  visuallyHiddenText: "Telephone or mobile number"
-                }
-              ]
             }
           }
         ]
@@ -234,15 +150,6 @@
             },
             value: {
               html: (data['contact-organisation'] or "Acme")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/enter-your-org-name",
-                  text: "Change",
-                  visuallyHiddenText: "your organisation's name"
-                }
-              ]
             }
           },
           {
@@ -251,15 +158,6 @@
             },
             value: {
               html: (data['reporter-role'] or "Principal contractor")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-role",
-                  text: "Change",
-                  visuallyHiddenText: "your organisation's role"
-                }
-              ]
             }
           }
         ]
@@ -277,15 +175,6 @@
             },
             value: {
               html: (data['representing-contact-organisation'] or "Acme")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/enter-your-org-name",
-                  text: "Change",
-                  visuallyHiddenText: "your organisation's name"
-                }
-              ]
             }
           },
           {
@@ -294,15 +183,6 @@
             },
             value: {
               html: (data['representing-role'] or "Principal contractor")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-role",
-                  text: "Change",
-                  visuallyHiddenText: "your organisation's role"
-                }
-              ]
             }
           }
         ]
@@ -320,15 +200,6 @@
             },
             value: {
               text: "Notice"
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/notice-report",
-                  text: "Change",
-                  visuallyHiddenText: "the type of occurrence"
-                }
-              ]
             }
           },
           {
@@ -337,15 +208,6 @@
             },
             value: {
               text: data['occurrence-summary'] or "A fire has spread through 5 units and there are multiple serious injuries."
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-role",
-                  text: "Change",
-                  visuallyHiddenText: "How are you or your organisation are involved in this building"
-                }
-              ]
             }
           },
           {
@@ -354,15 +216,6 @@
             },
             value: {
               text: data['occurrence-actions'] or "Evacuation of all residents and moved to hotels."
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-person/your-role",
-                  text: "Change",
-                  visuallyHiddenText: "Immediate actions taken to keep people safe"
-                }
-              ]
             }
           },
           {
@@ -371,21 +224,12 @@
             },
             value: {
               text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time-hour'] or "2") + ":" + (data['occurrence-time-minute'] or "05") + (data['occurrence-time-am-pm'] or "pm")
-            },
-            actions: {
-              items: [
-                {
-                  href: "about-the-occurrence/occurrence-date",
-                  text: "Change",
-                  visuallyHiddenText: "Occurrence date"
-                }
-              ]
             }
           }
         ]
       }) }}
    
-      <p><a href="" onclick="window.print();" class="govuk-!-display-none-print">Print this page</a></p>
+      <p><a href="" onclick="window.print();" class="govuk-!-display-none-print">print or save this page</a></p>
 
     </div>
   </div>

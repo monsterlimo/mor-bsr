@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "What is " + data['contact-organisation'] + "'s role in submitting this notice?" %}
+{% set title = "What is " + data['representing-contact-organisation'] + "'s role in submitting this notice?" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -21,7 +21,7 @@
         {% set otherHTML %}
           {{ govukInput({
             label: {
-              text: "Enter " + data['contact-organisation'] + "'s role" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "Enter your role",
+              text: "Enter " + data['representing-contact-organisation'] + "'s role" if data['representing-contact-organisation']  != "" and data['representing-contact-organisation'] != "null" else "Enter your role",
               classes: "govuk-label--s"
             },
             id: "representing-other-role",

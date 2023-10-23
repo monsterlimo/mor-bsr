@@ -1,6 +1,9 @@
 {% extends "layouts/main.html" %}
-{% set title = "When did you identify the safety occurrence?" %}
+{% set title = "When did " + data['contact-organisation'] + " identify the safety occurrence?" if data['contact-organisation']  != "" and data['contact-organisation'] != "null" else "When did you identify the safety occurrence?" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+
+
 
 {% block pageTitle %}
   {{title}} – {{ serviceName }} – GOV.UK Prototype Kit

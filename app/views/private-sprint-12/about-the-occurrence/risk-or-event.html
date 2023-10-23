@@ -30,13 +30,31 @@
           items: [
             {
               value: "incident",
-              text: "an incident that has happened"
+              text: "an incident that has happened - which caused or could cause death or serious injury to a significant number of people"
             },
             {
               value: "risk",
               text: "a situation that has the potential to cause an incident in the future"
             }
           ]
+        }) }}
+
+        {% set helpText %}
+        
+          <p>You must submit a mandatory occurrence report for all building safety occurrences that resulted in, or are likely to result in:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>the death of a significant number of people</li>
+            <li>serious injury that needs immediate treatment in hospital for a significant number of people</li>
+            <li>a permanent or irreversible disabling condition to a significant number of people</li>
+          </ul>
+
+
+        {% endset %}
+
+        {{ govukDetails({
+          summaryText: "Help with mandatory safety occurrences",
+          html: helpText 
         }) }}
 
         {{ govukButton({
