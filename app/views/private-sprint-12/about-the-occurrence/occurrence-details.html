@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set title = "Describe the incident" if data['risk-event'] == "incident" else "Describe the situation" %}
+{% set title = "Report details" %}
 {% set serviceName = "Submit a mandatory occurrence notice and report" %}
 
 {% block pageTitle %}
@@ -25,7 +25,7 @@
           maxwords: 200,
           rows: 6,
           label: {
-            text: "What is the situation?" if data['risk-event'] == "risk" else "What happened?",
+            text: "Describe the safety occurrence in detail",
             classes: "govuk-label--s",
             isPageHeading: false
           }

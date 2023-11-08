@@ -46,7 +46,7 @@ module.exports = router => {
 
     router.post('/private-sprint-12/about-the-occurrence/notice-submitter', (req, res) => {
         if (req.session.data['has-submitted-notice'] == "yes") {
-            res.redirect('/private-sprint-12/about-the-occurrence/risk-or-event')
+            res.redirect('/private-sprint-12/about-the-occurrence/occurrence-type')
         } else {
             res.redirect('/private-sprint-12/about-the-person/your-details')
         }
@@ -152,7 +152,11 @@ module.exports = router => {
         } else if (role == "acting on behalf of the duty holder") {
             res.redirect('/private-sprint-12/about-the-person/enter-representing-org-name')
         } else {
-            res.redirect('/private-sprint-12/about-the-occurrence/occurrence-date')
+            if (req.session.data['notice-report'] == "report" && req.session.data['notice-reference'] == "") {
+                res.redirect('/private-sprint-12/about-the-occurrence/occurrence-date')
+            } else {
+                res.redirect('/private-sprint-12/about-the-occurrence/occurrence-type')
+            }            
         }
     })
 
@@ -169,7 +173,7 @@ module.exports = router => {
             if (req.session.data['notice-report'] == "notice") {
                 res.redirect('/private-sprint-12/about-the-occurrence/occurrence-date')
             } else {
-                res.redirect('/private-sprint-12/about-the-occurrence/risk-or-event')
+                res.redirect('/private-sprint-12/about-the-occurrence/occurrence-type')
             }
         }
     })
@@ -192,13 +196,13 @@ module.exports = router => {
         if (req.session.data['notice-report'] == "notice") {
             res.redirect('/private-sprint-12/about-the-occurrence/brief-details')
         } else {
-            res.redirect('/private-sprint-12/about-the-occurrence/risk-or-event')
+            res.redirect('/private-sprint-12/about-the-occurrence/occurrence-type')
         }
     })
 
-    router.post('/private-sprint-12/about-the-occurrence/risk-or-event', (req, res) => {
-        res.redirect('/private-sprint-12/about-the-occurrence/occurrence-type')
-    })
+    //router.post('/private-sprint-12/about-the-occurrence/risk-or-event', (req, res) => {
+    //    res.redirect('/private-sprint-12/about-the-occurrence/occurrence-type')
+    //})
     
     router.post('/private-sprint-12/about-the-occurrence/brief-details', (req, res) => {
         res.redirect('/private-sprint-12/check-your-answers-notice')
@@ -242,7 +246,7 @@ module.exports = router => {
         if (req.session.data['notice-report'] == "notice") {
             res.redirect('/private-sprint-12/about-the-occurrence/brief-details')
         } else {
-            res.redirect('/private-sprint-12/about-the-occurrence/risk-or-event')
+            res.redirect('/private-sprint-12/about-the-occurrence/occurrence-type')
         } 
     })
 

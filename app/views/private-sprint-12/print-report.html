@@ -226,14 +226,6 @@
           } if data['notice-reference'],
           {
             key: {
-              text: "Incident or situation"
-            },
-            value: {
-              text: data['risk-event'] | capitalize
-            }
-          },
-          {
-            key: {
               text: "How are you or your organisation involved in this building?"
             },
             value: {
@@ -242,7 +234,7 @@
           } if data['type-of-reporter'] == "none",
           {
             key: {
-              text: "Type of incident" if data['risk-event'] == "incident" else "Type of situation"
+              text: "Type of safety occurrence"
             },
             value: {
               text: data['occurrence-type'] or "Fire spread"
@@ -258,7 +250,7 @@
           } if data['notice-report'] == "full-report",
           {
             key: {
-              text: "What is the risk?" if data['risk-event'] == "risk" else "What happened?"
+              text: "Describe the safety occurrence in detail"
             },
             value: {
               html: data['occurrence-details-what'] or "Fire doors were incorrectly fitted"
@@ -282,7 +274,7 @@
           },
           {
             key: {
-              text: "What have you done to keep people safe?" if data['risk-event'] == "risk" else "What have you done to keep people safe?"
+              text: "Explain what you are doing or planning to do to keep people safe"
             },
             value: {
               html: data['occurrence-details-action'] or "We've replaced all the doors in the building and made a note on future designs to periodically check building contract"
@@ -290,10 +282,18 @@
           },
           {
             key: {
-              text: "Who told your organisation"
+              text: "Tell us how you or your organisation discovered the safety occurrence"
             },
             value: {
               html: data['occurrence-details-reporter'] or "We were informed by a 3rd party surveyor who completed an inspection of the building before occupation"
+            }
+          },
+          {
+            key: {
+              text: "Tell us any anything to share with others"
+            },
+            value: {
+              html: data['occurrence-details-learnings'] or "We recommend the affected company need to improve the quality of their product"
             }
           },
           {
