@@ -17,17 +17,9 @@
 
       <form action="" method="post">
         <span class="govuk-caption-l">About the organisation</span>
-        {{ govukInput({
-          label: {
-            text: title,
-            classes: "govuk-label--l",
-            isPageHeading: true
-          },
-          id: "contact-organisation",
-          name: "contact-organisation",
-          classes: "govuk-input--width-20",
-          value: data['organisation-name']
-        }) }}
+
+        <label class="govuk-label--l" for="my-autocomplete">{{ title }}</label>
+        <div class="govuk-!-margin-top-4 govuk-!-margin-bottom-6" id="my-autocomplete-container"></div>
 
         {{ govukButton({
           text: "Continue"
@@ -38,4 +30,72 @@
     </div>
   </div>
 
+{% endblock %}
+
+
+{% block pageScripts %}
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+<script>
+
+const companies = [
+  'PrimeBuild Properties',
+'EcoVista Homes',
+'Constructive Realty',
+'ProPulse Construction',
+'UrbanGate Property Management',
+'ResiRenew Renovations',
+'Prestige Property Solutions',
+'InvestPro Realty Group',
+'BuildMasters Developers',
+'Premier Property Partners',
+'LegacyStone Construction',
+'HarborView Estates',
+'ProCrest Property Management',
+'ReNewEdge Construction',
+'HeritageHaven Realty',
+'NobleNest Properties',
+'BuildWise Investments',
+'HarmonyHaus Homes',
+'UrbanCraft Builders',
+'EliteEstate Managers',
+'GreenScape Properties',
+'ProFix Construction Services',
+'Strategic Asset Management',
+'InvestRight Realty',
+'PrecisionPro Properties',
+'SkylineBuilders Development',
+'PrestigePark Properties',
+'BuildSmart Innovations',
+'HomeHarbor Realty',
+'AssetAvenue Management',
+'InvestPro Projects',
+'UrbaneBuilders Group',
+'ProTerra Property Management',
+'RenovaRise Homes',
+'CraftedNest Builders',
+'EliteEstate Solutions',
+'ProBuild Management Services',
+'PrimePark Properties',
+'HeritageHaven Developments',
+'UrbanEco Realty',
+'ConstructiveHorizon Homes',
+'BuildWise Investments',
+'ResiRenew Property Management',
+'EcoScape Estates',
+'HarborVista Realty',
+'InvestRight Construction',
+'NobleNest Properties',
+'ProCrest Management Group',
+'LegacyStone Builders',
+'PrimeBuild Realty Group'
+]
+
+accessibleAutocomplete({
+  element: document.querySelector('#my-autocomplete-container'),
+  id: 'my-autocomplete', // To match it to the existing <label>.
+  source: companies,
+  name: 'contact-organisation'
+})
+</script>
 {% endblock %}
