@@ -154,9 +154,11 @@ module.exports = router => {
         } else {
             if (req.session.data['notice-report'] == "report" && req.session.data['notice-reference'] == "") {
                 res.redirect('/private-sprint-12/about-the-occurrence/occurrence-date')
-            } else {
+            } else if (req.session.data['notice-report'] == "report") {
                 res.redirect('/private-sprint-12/about-the-occurrence/occurrence-type')
-            }            
+            } else {
+                res.redirect('/private-sprint-12/about-the-occurrence/occurrence-date')
+            }         
         }
     })
 
@@ -170,10 +172,12 @@ module.exports = router => {
         if (role == "other") {
             res.redirect('/private-sprint-12/about-the-person/not-able-to-submit')
         } else {
-            if (req.session.data['notice-report'] == "notice") {
+            if (req.session.data['notice-report'] == "report" && req.session.data['notice-reference'] == "") {
                 res.redirect('/private-sprint-12/about-the-occurrence/occurrence-date')
-            } else {
+            } else if (req.session.data['notice-report'] == "report") {
                 res.redirect('/private-sprint-12/about-the-occurrence/occurrence-type')
+            } else {
+                res.redirect('/private-sprint-12/about-the-occurrence/occurrence-date')
             }
         }
     })
