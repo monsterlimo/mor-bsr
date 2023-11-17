@@ -230,7 +230,7 @@
           },
           {
             key: {
-              text: "Your email address"
+              text: "Email address"
             },
             value: {
               html: (data['contact-email'] or "john@test.com")
@@ -270,7 +270,7 @@
 
      {% if data['reporter-role'] == "acting on behalf of the duty holder" %}
 
-      <h2 class="govuk-heading-m">About the organisation your action for</h2>
+      <h2 class="govuk-heading-m">About the organisation you're acting for</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [        
