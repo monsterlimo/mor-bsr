@@ -37,7 +37,7 @@ module.exports = router => {
     router.post('/private-sprint-12/about-the-occurrence/enter-notice-reference', (req, res) => {
         // check if data exists before overwriting
         if (!req.session.data['reporter-role']) {
-            req.session.data['reporter-role'] = "Principal contractor"
+            req.session.data['reporter-role'] = "Accountable person"
             //req.session.data['reporter-role'] = "Principal contractor"
         }
         
