@@ -37,7 +37,7 @@
           maxwords: 200,
           rows: 6,
           label: {
-            text: "What caused it?",
+            text: "Tell us what caused or is causing the safety occurrence",
             classes: "govuk-label--s",
             isPageHeading: false
           }
@@ -53,7 +53,7 @@
           maxwords: 200,
           rows: 6,
           label: {
-            text: "Tell us who has been affected and in what way" if data['risk-event'] == "incident" else "Tell us who could be affected and in what way",
+            text: "Tell us who has been affected or who could be affected, and in what ways",
             classes: "govuk-label--s",
             isPageHeading: false
           },
@@ -80,7 +80,7 @@
           maxwords: 100,
           rows: 3,
           label: {
-            text: "Tell us how " + (data['contact-organisation'] if data['contact-organisation']  != "" else "you") + " discovered the safety occurrence",
+            text: "Tell us how " + (data['contact-organisation'] or "Acme") + " discovered the safety occurrence",
             classes: "govuk-label--s",
             isPageHeading: false
           }
@@ -94,7 +94,7 @@
           maxwords: 100,
           rows: 3,
           label: {
-            text: "Tell us any anything you think should be shared for others to learn from (optional)",
+            text: "Tell us anything you think should be shared for others to learn from",
             classes: "govuk-label--s",
             isPageHeading: false
           }

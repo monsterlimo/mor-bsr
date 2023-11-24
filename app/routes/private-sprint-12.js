@@ -24,15 +24,6 @@ module.exports = router => {
         }
     })
 
-    /*
-    router.post('/private-sprint-12/about-the-occurrence/notice-reference', (req, res) => {
-        if (req.session.data['have-notice-reference'] == "yes") {
-            res.redirect('/private-sprint-12/about-the-occurrence/enter-notice-reference')
-        } else {
-            res.redirect('/private-sprint-12/about-the-building/have-existing-applications')
-        }
-    })
-    */
 
     router.post('/private-sprint-12/about-the-occurrence/enter-notice-reference', (req, res) => {
         // check if data exists before overwriting
@@ -149,7 +140,7 @@ module.exports = router => {
 
         if (role == "other") {
             res.redirect('/private-sprint-12/about-the-person/not-able-to-submit')
-        } else if (role == "acting on behalf of the duty holder") {
+        } else if (role == "acting on behalf of the dutyholder") {
             res.redirect('/private-sprint-12/about-the-person/enter-representing-org-name')
         } else {
             if (req.session.data['notice-report'] == "report" && req.session.data['notice-reference'] == "") {

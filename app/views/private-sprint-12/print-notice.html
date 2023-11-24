@@ -48,6 +48,15 @@
             },
             value: {
               html: data['building-reg-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-hrb-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
             }
           } if data['existing-application'] == "hrb",
           {
@@ -56,6 +65,15 @@
             },
             value: {
               html: data['building-control-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-bcr-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building control reference"
+                }
+              ]
             }
           } if data['existing-application'] == "bcr",
           {
@@ -64,6 +82,15 @@
             },
             value: {
               html: (data['building-region'] | capitalize) or "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/which-region",
+                  text: "Change",
+                  visuallyHiddenText: "Building region"
+                }
+              ]
             }
           } if data['building-region'],
           {
@@ -123,7 +150,7 @@
           },
           {
             key: {
-              text: "Contact details"
+              text: "Email address"
             },
             value: {
               html: (data['contact-email'] or "john@test.com")
@@ -163,8 +190,8 @@
         ]
       }) }}
       
-      {% if data['reporter-role'] == "acting on behalf of the duty holder" %}
-
+    {% if data['reporter-role'] == "acting on behalf of the dutyholder" %}
+    
       <h2 class="govuk-heading-m">About the organisation you're acting for</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
@@ -188,8 +215,8 @@
         ]
       }) }}
 
-      {% endif %}
-      
+    {% endif %}
+
       <h2 class="govuk-heading-m">About the safety occurrence</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
