@@ -18,6 +18,10 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
       <p>Review the information you want to send us</p>
 
+
+      {% set buildingIdentity = "Building registration reference" if data['existing-application'] == "hrb" %}
+      {% set buildingIdentity = "Building control application reference" if data['existing-application'] == "bcr" %}
+      {% set buildingIdentity = "By address" if data['existing-application'] != "hrb" or data['existing-application'] != "bcr" %}
       <h2 class="govuk-heading-m">About the building</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
@@ -27,7 +31,7 @@
               text: "Identify your building"
             },
             value: {
-              html: "Building control number" if data['existing-application'] == "hrb" else "Building control application reference"
+              html: buildingIdentity
             },
             actions: {
               items: [
@@ -39,6 +43,23 @@
               ]
             }
           } if data['existing-application'] != "postcode",
+          {
+            key: {
+              text: "Tell us how to find your building"
+            },
+            value: {
+              html: data['building-location'] or "On the main street opposite the bank"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/choose-how-to-locate-building",
+                  text: "Change",
+                  visuallyHiddenText: "how to find your building"
+                }
+              ]
+            }
+          } if data['building-location'] != "",
           {
             key: {
               text: "Identify your building"
@@ -140,7 +161,7 @@
                 }
               ]
             }
-          } if data['existing-application'] == "postcode",     
+          } if data['building-region'] != "",    
           {
             key: {
               text: "Number of floors"
@@ -157,7 +178,7 @@
                 }
               ]
             }
-          } if data['existing-application'] == "postcode",
+          } if data['building-region'] != "",   
           {
             key: {
               text: "Building height"
@@ -174,7 +195,7 @@
                 }
               ]
             }
-          } if data['existing-application'] == "postcode",
+          } if data['building-region'] != "",   
           {
             key: {
               text: "Number of units"
@@ -191,7 +212,7 @@
                 }
               ]
             } 
-          } if data['existing-application'] == "postcode"
+          } if data['building-region'] != ""
         ]
       }) }}
 
@@ -233,6 +254,23 @@
                   href: "about-the-person/your-details",
                   text: "Change",
                   visuallyHiddenText: "Contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Contact number"
+            },
+            value: {
+              text: data['contact-contact-number'] or "0712345678"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-person/enter-your-contact-details",
+                  text: "Change",
+                  visuallyHiddenText: "Your contact number"
                 }
               ]
             }
@@ -436,7 +474,7 @@
                 }
               ]
             }
-          } if data['notice-report'] == "full-report",
+          } if data['notice-report'] == "report" and data['notice-reference'] == "",
           {
             key: {
               text: "Describe the safety occurrence in detail"
