@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+{% set title = "What type of safety occurrence do you want to report?" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <span class="govuk-caption-l">About the safety occurrence</span>
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+        {{ govukRadios({
+          name: "risk-event",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "incident",
+              text: "An incident that has happened - which caused or could cause death or serious injury to a significant number of people"
+            },
+            {
+              value: "risk",
+              text: "A situation that has the potential to cause an incident in the future"
+            }
+          ]
+        }) }}
+
+        {% set helpText %}
+        
+          <p>You must submit a mandatory occurrence report for all building safety occurrences that resulted in, or are likely to result in:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>the death of a significant number of people</li>
+            <li>serious injury that needs immediate treatment in hospital for a significant number of people</li>
+            <li>a permanent or irreversible disabling condition to a significant number of people</li>
+          </ul>
+
+
+        {% endset %}
+
+        {{ govukDetails({
+          summaryText: "Help with mandatory safety occurrences",
+          html: helpText 
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

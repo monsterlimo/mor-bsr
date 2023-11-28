@@ -38,7 +38,7 @@
                 }
               ]
             }
-          } if data['existing-application'] != "postcode",
+          } if data['existing-application'] != "none",
           {
             key: {
               text: "Identify your building"
@@ -92,6 +92,14 @@
           } if data['existing-application'] == "bcr",
           {
             key: {
+              text: "Building address"
+            },
+            value: {
+              html: "Whitehall 2, Leeds, LS1"
+            }
+          } if data['existing-application'] != "none",
+          {
+            key: {
               text: "Building region"
             },
             value: {
@@ -123,7 +131,7 @@
                 }
               ]
             }
-          } if data['existing-application'] == "postcode",
+          } if data['existing-application'] == "none",
           {
             key: {
               text: "Building status"
@@ -140,7 +148,7 @@
                 }
               ]
             }
-          } if data['existing-application'] == "postcode",     
+          } if data['existing-application'] == "none",        
           {
             key: {
               text: "Number of floors"
@@ -157,7 +165,7 @@
                 }
               ]
             }
-          } if data['existing-application'] == "postcode",
+          } if data['existing-application'] == "none",
           {
             key: {
               text: "Building height"
@@ -174,7 +182,7 @@
                 }
               ]
             }
-          } if data['existing-application'] == "postcode",
+          } if data['existing-application'] == "none",
           {
             key: {
               text: "Number of units"
@@ -191,7 +199,7 @@
                 }
               ]
             } 
-          } if data['existing-application'] == "postcode"
+          } if data['existing-application'] == "none"
         ]
       }) }}
 

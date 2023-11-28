@@ -1,0 +1,263 @@
+{% extends "layouts/main.html" %}
+{% set title = "Print or save mandatory occurrence notice" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      <h2 class="govuk-heading-m">About the notice</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Mandatory occurrence notice reference"
+            },
+            value: {
+              html: "HDJ2123F"
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">About the building</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: "Whitehall 2, Leeds, LS1"
+            }
+          },
+          {
+            key: {
+              text: "Building HRB number"
+            },
+            value: {
+              html: data['building-reg-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-hrb-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building HRB number"
+                }
+              ]
+            }
+          } if data['existing-application'] == "hrb",
+          {
+            key: {
+              text: "Building control application reference"
+            },
+            value: {
+              html: data['building-control-number'] or "ABC123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/enter-bcr-number",
+                  text: "Change",
+                  visuallyHiddenText: "Building control reference"
+                }
+              ]
+            }
+          } if data['existing-application'] == "bcr",
+          {
+            key: {
+              text: "Building region"
+            },
+            value: {
+              html: (data['building-region'] | capitalize) or "England"
+            },
+            actions: {
+              items: [
+                {
+                  href: "about-the-building/which-region",
+                  text: "Change",
+                  visuallyHiddenText: "Building region"
+                }
+              ]
+            }
+          } if data['building-region'],
+          {
+            key: {
+              text: "Building address"
+            },
+            value: {
+              html: "<p>Whitehall 2<br>Leeds, LS1</p>"
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Building status"
+            },
+            value: {
+              text: (data['building-status'] | capitalize) or "occupied"
+            }
+          } if data['existing-application'] == "none",        
+          {
+            key: {
+              text: "Number of floors"
+            },
+            value: {
+              text: (data['number-floors'] | capitalize) or "9"
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Building height"
+            },
+            value: {
+              text: (data['building-height'] | capitalize) or "20m"
+            }
+          } if data['existing-application'] == "none",
+          {
+            key: {
+              text: "Number of units"
+            },
+            value: {
+              text: data['number-units'] or "85"
+            }
+          } if data['existing-application'] == "none"
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">About you</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Your name"
+            },
+            value: {
+              text: (data['contact-first-name'] or "John") + " " + (data['contact-last-name'] or "Smith")
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              html: (data['contact-email'] or "john@test.com")
+            }
+          },
+          {
+            key: {
+              text: "Telephone or mobile number"
+            },
+            value: {
+              html: (data['contact-number'] or "0123456789")
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">About the organisation</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [        
+          {
+            key: {
+              text: "Organisation"
+            },
+            value: {
+              html: (data['contact-organisation'] or "Acme")
+            }
+          },
+          {
+            key: {
+              text: "Organisation's role"
+            },
+            value: {
+              html: (data['reporter-role'] or "Principal contractor")
+            }
+          }
+        ]
+      }) }}
+      
+    {% if data['reporter-role'] == "acting on behalf of the dutyholder" %}
+    
+      <h2 class="govuk-heading-m">About the organisation you're acting for</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [        
+          {
+            key: {
+              text: "Organisation"
+            },
+            value: {
+              html: (data['representing-contact-organisation'] or "Acme")
+            }
+          },
+          {
+            key: {
+              text: "Organisation's role"
+            },
+            value: {
+              html: (data['representing-role'] or "Principal contractor")
+            }
+          }
+        ]
+      }) }}
+
+    {% endif %}
+
+      <h2 class="govuk-heading-m">About the safety occurrence</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Notice or report"
+            },
+            value: {
+              text: "Notice"
+            }
+          },
+          {
+            key: {
+              text: "Brief description of the occurrence"
+            },
+            value: {
+              text: data['occurrence-summary'] or "A fire has spread through 5 units and there are multiple serious injuries."
+            }
+          },
+          {
+            key: {
+              text: "Immediate actions taken to keep people safe"
+            },
+            value: {
+              text: data['occurrence-actions'] or "Evacuation of all residents and moved to hotels."
+            }
+          },
+          {
+            key: {
+              text: "Date and time"
+            },
+            value: {
+              text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time-hour'] or "2") + ":" + (data['occurrence-time-minute'] or "05") + (data['occurrence-time-am-pm'] or "pm")
+            }
+          }
+        ]
+      }) }}
+   
+      <p><a href="" onclick="window.print();" class="govuk-!-display-none-print">Print or save this page</a></p>
+
+    </div>
+  </div>
+{% endblock %}

@@ -41,7 +41,7 @@
             value: {
               html: "Building control number" if data['existing-application'] == "hrb" else "Building control application reference"
             }
-          } if data['existing-application'] != "postcode",
+          } if data['existing-application'] != "none",
           {
             key: {
               text: "Identify your building"
@@ -73,7 +73,7 @@
             value: {
               html: "Whitehall 2, Leeds, LS1"
             }
-          } if data['existing-application'] != "postcode",
+          } if data['existing-application'] != "none",
           {
             key: {
               text: "Building region"
@@ -87,17 +87,17 @@
               text: "Building address"
             },
             value: {
-              html: "Whitehall 2, Leeds, LS1"
+              html: "<p>Whitehall 2<br>Leeds, LS1</p>"
             }
-          } if data['existing-application'] == "postcode",
+          } if data['existing-application'] == "none",
           {
             key: {
               text: "Building status"
             },
             value: {
-              text: (data['building-status'] | capitalize) or "Occupied"
+              text: (data['building-status'] | capitalize) or "occupied"
             }
-          } if data['existing-application'] == "postcode",
+          } if data['existing-application'] == "none",        
           {
             key: {
               text: "Number of floors"
@@ -105,7 +105,7 @@
             value: {
               text: (data['number-floors'] | capitalize) or "9"
             }
-          } if data['existing-application'] == "postcode",
+          } if data['existing-application'] == "none",
           {
             key: {
               text: "Building height"
@@ -113,7 +113,7 @@
             value: {
               text: (data['building-height'] | capitalize) or "20m"
             }
-          } if data['existing-application'] == "postcode",
+          } if data['existing-application'] == "none",
           {
             key: {
               text: "Number of units"
@@ -121,7 +121,7 @@
             value: {
               text: data['number-units'] or "85"
             }
-          } if data['existing-application'] == "postcode"
+          } if data['existing-application'] == "none"
         ]
       }) }}
 

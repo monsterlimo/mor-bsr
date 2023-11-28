@@ -15,6 +15,16 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
       {{ serviceName }}
     </h1>
     
+    {% set emailsV14 %}
+      <p><a href="private-sprint-13/emails/mor-notice-confirmation-email">MOR Notice Confirmation email</a></p>
+      <p><a href="private-sprint-13/emails/mor-report-confirmation-email">MOR Report Confirmation email</a></p>
+      <p><a href="private-sprint-13/emails/mor-verification-email">MOR verification email</a></p>
+      <p><a href="private-sprint-13/emails/mor-more-info-email">MOR more info required email</a></p>
+      <p><a href="private-sprint-13/emails/mor-investigation-email">MOR investigation email</a></p>
+      <p><a href="private-sprint-13/emails/mor-action-taken-email">MOR action taken email</a></p>
+      <p><a href="private-sprint-13/emails/mor-case-closed-email">MOR case closed email</a></p>
+    {% endset %}
+    
     {% set emailsV13 %}
       <p><a href="private-sprint-12/emails/mor-notice-confirmation-email">MOR Notice Confirmation email</a></p>
       <p><a href="private-sprint-12/emails/mor-report-confirmation-email">MOR Report Confirmation email</a></p>
@@ -102,13 +112,18 @@ Home – {{serviceName}} – GOV.UK Prototype Kit
     {% endset %}
 
     <h2 class="govuk-heading-m">Private Beta Current</h2>
+    <p><a href="private-sprint-13/start">Sprint (v14)</a></p>
+    {{ govukDetails({
+      summaryText: "Emails",
+      html: emailsV14
+    }) }}
+    
+    <h2 class="govuk-heading-m">Private Beta</h2>
     <p><a href="private-sprint-12/start">Sprint (v13)</a></p>
     {{ govukDetails({
       summaryText: "Emails",
       html: emailsV13
     }) }}
-    
-    <h2 class="govuk-heading-m">Private Beta</h2>
     <p><a href="private-sprint-11/start">Sprint (v12)</a></p>
     {{ govukDetails({
       summaryText: "Emails",

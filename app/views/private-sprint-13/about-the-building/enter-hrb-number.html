@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+{% set title = "High-rise residential building registration reference" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">About the building</span>
+      <form action="" method="post">
+        {{ govukInput({
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "This is the reference the Building Safety Regulator gave the building when it was registered"
+          },
+          id: "building-reg-number",
+          name: "building-reg-number",
+          classes: "govuk-input--width-20",
+          value: data['building-reg-number']
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

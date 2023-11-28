@@ -1,0 +1,32 @@
+{% extends "layouts/main.html" %}
+{% set title = "Mandatory occurrence report received" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">{{title}}</h1>
+        <div class="govuk-panel__body">
+          Reference <br><strong>HDJ2123F</strong>
+        </div>
+      </div>
+
+      <p>We have sent you a confirmation email that includes your satefy occurrence reference.</p>
+
+      <p>You can <a href="print-report">save or print your report and the information in it as a PDF</a></p>
+      
+    </div>
+  </div>
+{% endblock %}
+
+          
+
+
+
+
+      
