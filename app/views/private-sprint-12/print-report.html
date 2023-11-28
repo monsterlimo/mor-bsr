@@ -30,6 +30,10 @@
         ]
       }) }}
 
+      {% set buildingIdentity = "Building registration reference" if data['existing-application'] == "hrb" %}
+      {% set buildingIdentity = "Building control application reference" if data['existing-application'] == "bcr" %}
+      {% set buildingIdentity = "By address" if data['existing-application'] != "hrb" or data['existing-application'] != "bcr" %}
+
       <h2 class="govuk-heading-m">About the building</h2>
       {{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
@@ -39,9 +43,17 @@
               text: "Identify your building"
             },
             value: {
-              html: "Building control number" if data['existing-application'] == "hrb" else "Building control application reference"
+              html: buildingIdentity
             }
           } if data['existing-application'] != "none",
+          {
+            key: {
+              text: "Tell us how to find your building"
+            },
+            value: {
+              html: data['building-location'] or "On the main street opposite the bank"
+            }
+          } if data['building-location'] != "",
           {
             key: {
               text: "Identify your building"
@@ -97,7 +109,7 @@
             value: {
               text: (data['building-status'] | capitalize) or "occupied"
             }
-          } if data['existing-application'] == "none",        
+          } if data['building-region'] != "",   
           {
             key: {
               text: "Number of floors"
@@ -105,7 +117,7 @@
             value: {
               text: (data['number-floors'] | capitalize) or "9"
             }
-          } if data['existing-application'] == "none",
+          } if data['building-region'] != "",   
           {
             key: {
               text: "Building height"
@@ -113,7 +125,7 @@
             value: {
               text: (data['building-height'] | capitalize) or "20m"
             }
-          } if data['existing-application'] == "none",
+          } if data['building-region'] != "",   
           {
             key: {
               text: "Number of units"
@@ -121,9 +133,11 @@
             value: {
               text: data['number-units'] or "85"
             }
-          } if data['existing-application'] == "none"
+          } if data['building-region'] != ""
         ]
       }) }}
+
+  
 
     {% if data['has-submitted-notice'] != "yes" %}
 
@@ -141,7 +155,7 @@
           },
           {
             key: {
-              text: "Your email address"
+              text: "Email address"
             },
             value: {
               html: (data['contact-email'] or "john@test.com")
@@ -149,16 +163,40 @@
           },
           {
             key: {
-              text: "Your organisation"
+              text: "Telephone or mobile number"
             },
             value: {
-              html: data['contact-organisation'] or "No organisation supplied"
+              html: (data['contact-number'] or "0123456789")
             }
-          } if data['type-of-reporter'] != "none"
+          }
         ]
       }) }}
 
-      {% if data['reporter-role'] == "acting on behalf of the duty holder" %}
+      <h2 class="govuk-heading-m">About the organisation</h2>
+      {{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [        
+          {
+            key: {
+              text: "Organisation"
+            },
+            value: {
+              html: (data['contact-organisation'] or "Acme")
+            }
+          },
+          {
+            key: {
+              text: "Organisation's role"
+            },
+            value: {
+              html: (data['reporter-role'] or "Principal contractor")
+            }
+          }
+        ]
+      }) }}
+
+
+     {% if data['reporter-role'] == "acting on behalf of the dutyholder" %}
 
       <h2 class="govuk-heading-m">About the organisation you're acting for</h2>
       {{ govukSummaryList({
@@ -184,7 +222,9 @@
       }) }}
       {% endif %}
 
+
       {% endif %}
+
 
       {% set supportingInfo %}
         <ul class="govuk-list govuk-list--none">
@@ -247,7 +287,7 @@
             value: {
               text: (data['occurrence-date-day'] or "10") + "-" + (data['occurrence-date-month'] or "05") + "-" + (data['occurrence-date-year'] or "2022") + " - " + (data['occurrence-time'] or "9am")
             }
-          } if data['notice-report'] == "full-report",
+          } if data['notice-report'] == "report" and data['notice-reference'] == "",
           {
             key: {
               text: "Describe the safety occurrence in detail"
@@ -258,7 +298,7 @@
           },
           {
             key: {
-              text: "What caused it?"
+              text: "Tell us what caused or is causing the safety occurrence"
             },
             value: {
               html: data['occurrence-details-why'] or "The building contractor sourced an alternative product which was not to standard"
@@ -266,7 +306,7 @@
           },
           {
             key: {
-              text: "Who could be affected and in what way?" if data['risk-event'] == "risk" else "Who has been affected and in what way?"
+              text: "Tell us who has been affected or who could be affected, and in what ways"
             },
             value: {
               html: data['occurrence-details-who'] or "The whole building was affected including the common rooms"
@@ -282,7 +322,7 @@
           },
           {
             key: {
-              text: "Tell us how you or your organisation discovered the safety occurrence"
+              text: "Tell us how " + (data['contact-organisation'] or "Acme") + " discovered the safety occurrence"
             },
             value: {
               html: data['occurrence-details-reporter'] or "We were informed by a 3rd party surveyor who completed an inspection of the building before occupation"
@@ -290,7 +330,7 @@
           },
           {
             key: {
-              text: "Tell us any anything to share with others"
+              text: "Tell us anything you think should be shared for others to learn from"
             },
             value: {
               html: data['occurrence-details-learnings'] or "We recommend the affected company need to improve the quality of their product"
