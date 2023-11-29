@@ -1,0 +1,34 @@
+{% extends "layouts/main.html" %}
+{% set title = "A report has already been submitted using notice reference CAS12345ABCD" %}
+{% set serviceName = "Submit a mandatory occurrence notice and report" %}
+
+{% block pageTitle %}
+  {{title}} – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="" method="post">
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        <p>If you typed the notice reference, check it is correct.</p>
+
+        <p>If you pasted the notice reference, check you copied the entire reference.</p>
+
+        <p>If the notice reference is correct and the report has been submitted incorrectly or in error, <a href="">contact the Building Safety Regulator</a> to speak to someone your this mandatory occurrence report.</p>
+
+       <p><a href="">Re-enter your mandatory occurrence notice reference</a></p>
+          
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

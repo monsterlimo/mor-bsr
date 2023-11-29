@@ -6,7 +6,9 @@
   },
   "dependencies": {
     "@ministryofjustice/frontend": "^1.6.6",
+    "@x-govuk/govuk-prototype-filters": "^1.2.1",
     "accessible-autocomplete": "^2.0.4",
+    "date-fns": "^2.30.0",
     "govuk-frontend": "^4.5.0",
     "govuk-prototype-kit": "^13.2.4",
     "hmrc-frontend": "^5.33.0",
